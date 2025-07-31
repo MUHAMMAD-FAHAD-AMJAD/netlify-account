@@ -129,7 +129,7 @@ function InformationStep({ onContinue, shippingInfo, setShippingInfo }: { onCont
             </div>
             
             <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
-                <Link href="/" className="flex items-center gap-1 text-primary hover:underline">
+                <Link href="/cart" className="flex items-center gap-1 text-primary hover:underline">
                     <ChevronLeft className="h-4 w-4" />
                     Return to cart
                 </Link>

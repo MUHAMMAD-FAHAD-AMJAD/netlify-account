@@ -1,1 +1,0 @@
-Please delete this file and add your logo.png file in this 'public' directory.
