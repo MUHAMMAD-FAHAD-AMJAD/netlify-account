@@ -1,5 +1,7 @@
+
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 function Logo() {
     return (
@@ -33,38 +36,33 @@ function Logo() {
     );
 }
 
-export default function CheckoutPage() {
-  const { cartItems } = useAppContext();
+function Breadcrumbs({ step }: { step: 'information' | 'shipping' | 'payment' }) {
+    const steps = ['information', 'shipping', 'payment'];
+    const currentStepIndex = steps.indexOf(step);
 
-  const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.product.price * item.quantity,
-    0
-  );
-  const shipping = 0; // It's free in the reference screenshot
-  const total = subtotal + shipping;
+    return (
+        <ol className="flex items-center text-sm text-gray-500 mb-6 space-x-2">
+            <li><Link href="/cart" className="text-primary hover:underline">Cart</Link></li>
+            {steps.map((s, index) => (
+                <li key={s} className="flex items-center space-x-2">
+                    <ChevronLeft className="h-4 w-4 rotate-180" />
+                    <span className={cn(
+                        "capitalize",
+                        index === currentStepIndex ? "font-medium text-black" : "",
+                        index > currentStepIndex ? "text-gray-500" : ""
+                    )}>
+                        {s}
+                    </span>
+                </li>
+            ))}
+        </ol>
+    )
+}
 
-  return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-white text-black">
-    
-      {/* Left Side - Forms */}
-      <main className="w-full lg:w-[55%] lg:pl-32 xl:pl-48 py-8 sm:py-16 px-4 sm:px-8 order-2 lg:order-1">
-        <div className="max-w-lg mx-auto lg:mx-0">
-            <div className="hidden lg:block mb-8">
-                 <Logo />
-            </div>
-           
-           <ol className="flex items-center text-sm text-gray-500 mb-6 space-x-2">
-                <li><Link href="/cart" className="text-primary hover:underline">Cart</Link></li>
-                <li><ChevronLeft className="h-4 w-4 rotate-180" /></li>
-                <li className="font-medium text-black">Information</li>
-                <li><ChevronLeft className="h-4 w-4 rotate-180" /></li>
-                <li><span>Shipping</span></li>
-                 <li><ChevronLeft className="h-4 w-4 rotate-180" /></li>
-                <li><span>Payment</span></li>
-            </ol>
-
-            {/* Contact Info */}
-            <div className="border rounded-lg p-3 flex justify-between items-center mb-6 text-sm">
+function InformationStep({ onContinue }: { onContinue: () => void }) {
+    return (
+        <div className="space-y-6">
+            <div className="border rounded-lg p-3 flex justify-between items-center text-sm">
                 <div>
                     <span className="text-xs text-gray-600 block">Contact</span>
                     <p className="font-medium">demo@example.com</p>
@@ -72,47 +70,121 @@ export default function CheckoutPage() {
                 <button className="text-xs text-primary hover:underline">Log out</button>
             </div>
 
-
-            <div className="space-y-6">
-                {/* Shipping Address */}
-                <div>
-                    <h2 className="text-lg font-medium mb-4">Shipping address</h2>
-                    <div className="space-y-4">
-                         <Select>
-                            <SelectTrigger className="h-12 rounded-md">
-                                <SelectValue placeholder="Country/Region" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="pakistan">Pakistan</SelectItem>
-                                <SelectItem value="usa">United States</SelectItem>
-                                <SelectItem value="uk">United Kingdom</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <Input placeholder="First name" className="h-12 rounded-md" />
-                            <Input placeholder="Last name" className="h-12 rounded-md" />
-                        </div>
-                        <Input placeholder="Address" className="h-12 rounded-md" />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                             <Input placeholder="City" className="h-12 rounded-md" />
-                            <Input placeholder="Postal code" className="h-12 rounded-md" />
-                        </div>
-                         <Input placeholder="Phone" type="tel" className="h-12 rounded-md" />
+            <div>
+                <h2 className="text-lg font-medium mb-4">Shipping address</h2>
+                <div className="space-y-4">
+                    <Select>
+                        <SelectTrigger className="h-12 rounded-md">
+                            <SelectValue placeholder="Country/Region" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="pakistan">Pakistan</SelectItem>
+                            <SelectItem value="usa">United States</SelectItem>
+                            <SelectItem value="uk">United Kingdom</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <Input placeholder="First name" className="h-12 rounded-md" />
+                        <Input placeholder="Last name" className="h-12 rounded-md" />
                     </div>
+                    <Input placeholder="Address" className="h-12 rounded-md" />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <Input placeholder="City" className="h-12 rounded-md" />
+                        <Input placeholder="Postal code" className="h-12 rounded-md" />
+                    </div>
+                    <Input placeholder="Phone" type="tel" className="h-12 rounded-md" />
                 </div>
             </div>
+            
+            <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
+                <Link href="/cart" className="flex items-center gap-1 text-primary hover:underline">
+                    <ChevronLeft className="h-4 w-4" />
+                    Return to cart
+                </Link>
+                <Button 
+                    className="w-full sm:w-auto h-14 rounded-md text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 px-8"
+                    onClick={onContinue}
+                >
+                    Continue to shipping
+                </Button>
+            </div>
+        </div>
+    );
+}
 
+function ShippingStep({ onContinue }: { onContinue: () => void }) {
+    // Placeholder for Shipping content
+    return (
+        <div>
+            <h2 className="text-2xl font-bold mb-4">Shipping Information</h2>
+            <p>Shipping options will be displayed here.</p>
              <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
                 <Link href="/cart" className="flex items-center gap-1 text-primary hover:underline">
                     <ChevronLeft className="h-4 w-4" />
                     Return to cart
                 </Link>
-                 <Button className="w-full sm:w-auto h-14 rounded-md text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 px-8">
-                  Continue to shipping
+                <Button 
+                    className="w-full sm:w-auto h-14 rounded-md text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 px-8"
+                    onClick={onContinue}
+                >
+                    Continue to payment
                 </Button>
             </div>
+        </div>
+    )
+}
 
-             <footer className="mt-12 pt-6 border-t">
+function PaymentStep() {
+    // Placeholder for Payment content
+    return (
+        <div>
+            <h2 className="text-2xl font-bold mb-4">Payment Information</h2>
+            <p>Payment options will be displayed here.</p>
+             <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
+                <Link href="/cart" className="flex items-center gap-1 text-primary hover:underline">
+                    <ChevronLeft className="h-4 w-4" />
+                    Return to cart
+                </Link>
+                <Button 
+                    className="w-full sm:w-auto h-14 rounded-md text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 px-8"
+                >
+                    Pay now
+                </Button>
+            </div>
+        </div>
+    )
+}
+
+export default function CheckoutPage() {
+  const { cartItems } = useAppContext();
+  const [step, setStep] = useState<'information' | 'shipping' | 'payment'>('information');
+
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0
+  );
+  const shipping = 0; // It's free in the reference screenshot
+  const total = subtotal + shipping;
+  
+  const handleContinueToShipping = () => setStep('shipping');
+  const handleContinueToPayment = () => setStep('payment');
+
+  return (
+    <div className="min-h-screen flex flex-col lg:flex-row bg-white text-black">
+      {/* Left Side - Forms */}
+      <main className="w-full lg:w-[55%] lg:pl-32 xl:pl-48 py-8 sm:py-16 px-4 sm:px-8 order-2 lg:order-1">
+        <div className="max-w-lg mx-auto lg:mx-0">
+            <div className="hidden lg:block mb-8">
+                 <Logo />
+            </div>
+           
+            <Breadcrumbs step={step} />
+
+            {step === 'information' && <InformationStep onContinue={handleContinueToShipping} />}
+            {step === 'shipping' && <ShippingStep onContinue={handleContinueToPayment} />}
+            {step === 'payment' && <PaymentStep />}
+
+            <footer className="mt-12 pt-6 border-t">
               <p className="text-xs text-gray-500">All rights reserved Maher Zarai Markaz</p>
             </footer>
         </div>
@@ -195,5 +267,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-
-    
