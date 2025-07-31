@@ -6,7 +6,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -66,7 +65,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex min-h-[calc(100vh-200px)] items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
@@ -74,9 +73,9 @@ export default function AuthPage() {
             <TabsTrigger value="signup" className="py-3 text-base">Sign Up</TabsTrigger>
           </TabsList>
           <TabsContent value="login">
-            <Card>
+            <Card className="rounded-2xl">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">Welcome Back!</CardTitle>
+                <CardTitle className="text-3xl font-bold">Welcome Back!</CardTitle>
                 <CardDescription>Log in to access your account and continue shopping.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -84,7 +83,7 @@ export default function AuthPage() {
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="login-email">Email address</Label>
-                      <Input id="login-email" type="email" placeholder="you@example.com" required />
+                      <Input id="login-email" type="email" placeholder="you@example.com" required className="h-12 rounded-lg"/>
                     </div>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
@@ -93,9 +92,9 @@ export default function AuthPage() {
                           Forgot password?
                         </a>
                       </div>
-                      <Input id="login-password" type="password" required />
+                      <Input id="login-password" type="password" required className="h-12 rounded-lg"/>
                     </div>
-                    <Button type="submit" className="w-full h-11 text-base font-semibold bg-black text-white hover:bg-gray-800">
+                    <Button type="submit" className="w-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800 rounded-lg">
                       Log In
                     </Button>
                   </div>
@@ -109,11 +108,11 @@ export default function AuthPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-11 text-base" onClick={() => handleAuthAction('Google Sign-In')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleAuthAction('Google Sign-In')}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="h-11 text-base" onClick={() => handleAuthAction('Facebook Sign-In')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleAuthAction('Facebook Sign-In')}>
                     <FacebookIcon className="mr-2 h-5 w-5" />
                     Facebook
                   </Button>
@@ -122,9 +121,9 @@ export default function AuthPage() {
             </Card>
           </TabsContent>
           <TabsContent value="signup">
-            <Card>
+            <Card className="rounded-2xl">
               <CardHeader className="text-center">
-                <CardTitle className="text-2xl">Create an Account</CardTitle>
+                <CardTitle className="text-3xl font-bold">Create an Account</CardTitle>
                 <CardDescription>Join us and get access to exclusive products and offers.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -132,21 +131,21 @@ export default function AuthPage() {
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <Label htmlFor="signup-name">Full name</Label>
-                        <Input id="signup-name" placeholder="John Doe" required />
+                        <Input id="signup-name" placeholder="John Doe" required className="h-12 rounded-lg"/>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="signup-email">Email address</Label>
-                        <Input id="signup-email" type="email" placeholder="you@example.com" required />
+                        <Input id="signup-email" type="email" placeholder="you@example.com" required className="h-12 rounded-lg"/>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="signup-password">Password</Label>
-                        <Input id="signup-password" type="password" required />
+                        <Input id="signup-password" type="password" required className="h-12 rounded-lg"/>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="signup-confirm-password">Confirm Password</Label>
-                        <Input id="signup-confirm-password" type="password" required />
+                        <Input id="signup-confirm-password" type="password" required className="h-12 rounded-lg"/>
                       </div>
-                      <Button type="submit" className="w-full h-11 text-base font-semibold bg-black text-white hover:bg-gray-800">
+                      <Button type="submit" className="w-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800 rounded-lg">
                         Create Account
                       </Button>
                     </div>
@@ -160,11 +159,11 @@ export default function AuthPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-11 text-base" onClick={() => handleAuthAction('Google Sign-Up')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleAuthAction('Google Sign-Up')}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="h-11 text-base" onClick={() => handleAuthAction('Facebook Sign-Up')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleAuthAction('Facebook Sign-Up')}>
                     <FacebookIcon className="mr-2 h-5 w-5" />
                     Facebook
                   </Button>
