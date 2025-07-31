@@ -56,7 +56,7 @@ function Breadcrumbs({ step }: { step: 'information' | 'shipping' | 'payment' })
     return (
         <nav aria-label="Breadcrumb">
             <ol className="flex items-center text-sm text-gray-500 mb-8 space-x-2">
-                <li><Link href="/" className="text-primary hover:underline">Cart</Link></li>
+                <li><Link href="/cart" className="text-primary hover:underline">Cart</Link></li>
                 {steps.map((s, index) => (
                     <li key={s} className="flex items-center space-x-2">
                         <ChevronLeft className="h-4 w-4 rotate-180 text-gray-400" />
