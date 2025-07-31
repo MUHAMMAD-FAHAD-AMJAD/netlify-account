@@ -73,13 +73,12 @@ export default function AuthPage() {
         <div className="text-center">
             <Link href="/" className="inline-block">
                 <Image 
-                  src="/logo.png" 
+                  src="https://placehold.co/250x60.png" 
                   alt="Maher Zarai Markaz" 
                   width={250} 
                   height={60}
                   className="object-contain h-[60px] mx-auto"
                   priority
-                  unoptimized
                 />
             </Link>
         </div>

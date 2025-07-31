@@ -37,13 +37,12 @@ function Logo() {
     return (
         <Link href="/" className="flex items-center">
             <Image 
-                src="/logo.png" 
+                src="https://placehold.co/200x50.png" 
                 alt="Maher Zarai Markaz" 
                 width={200} 
                 height={50}
                 className="object-contain h-[50px]"
                 priority
-                unoptimized
             />
         </Link>
     );
