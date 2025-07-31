@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppContext } from "@/context/AppContext";
-import { ChevronLeft, ShoppingCart } from "lucide-react";
+import { ChevronLeft, ShoppingCart, Lock, CreditCard, Calendar, User } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 function Logo() {
     return (
@@ -41,39 +42,46 @@ function Breadcrumbs({ step }: { step: 'information' | 'shipping' | 'payment' })
     const currentStepIndex = steps.indexOf(step);
 
     return (
-        <ol className="flex items-center text-sm text-gray-500 mb-6 space-x-2">
-            <li><Link href="/cart" className="text-primary hover:underline">Cart</Link></li>
-            {steps.map((s, index) => (
-                <li key={s} className="flex items-center space-x-2">
-                    <ChevronLeft className="h-4 w-4 rotate-180" />
-                    <span className={cn(
-                        "capitalize",
-                        index === currentStepIndex ? "font-medium text-black" : "",
-                        index > currentStepIndex ? "text-gray-500" : ""
-                    )}>
-                        {s}
-                    </span>
-                </li>
-            ))}
-        </ol>
+        <nav aria-label="Breadcrumb">
+            <ol className="flex items-center text-sm text-gray-500 mb-6 space-x-2">
+                <li><Link href="/cart" className="text-primary hover:underline">Cart</Link></li>
+                {steps.map((s, index) => (
+                    <li key={s} className="flex items-center space-x-2">
+                        <ChevronLeft className="h-4 w-4 rotate-180" />
+                        <span className={cn(
+                            "capitalize",
+                            index === currentStepIndex ? "font-medium text-black" : "",
+                            index > currentStepIndex ? "text-gray-500" : ""
+                        )}>
+                            {s}
+                        </span>
+                    </li>
+                ))}
+            </ol>
+        </nav>
     )
 }
 
 function InformationStep({ onContinue }: { onContinue: () => void }) {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        onContinue();
+    };
+
     return (
-        <div className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
             <div className="border rounded-lg p-3 flex justify-between items-center text-sm">
                 <div>
                     <span className="text-xs text-gray-600 block">Contact</span>
                     <p className="font-medium">demo@example.com</p>
                 </div>
-                <button className="text-xs text-primary hover:underline">Log out</button>
+                <Link href="/auth" className="text-xs text-primary hover:underline">Log out</Link>
             </div>
 
             <div>
                 <h2 className="text-lg font-medium mb-4">Shipping address</h2>
                 <div className="space-y-4">
-                    <Select>
+                    <Select required>
                         <SelectTrigger className="h-12 rounded-md">
                             <SelectValue placeholder="Country/Region" />
                         </SelectTrigger>
@@ -84,45 +92,68 @@ function InformationStep({ onContinue }: { onContinue: () => void }) {
                         </SelectContent>
                     </Select>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Input placeholder="First name" className="h-12 rounded-md" />
-                        <Input placeholder="Last name" className="h-12 rounded-md" />
+                        <Input placeholder="First name" className="h-12 rounded-md" required/>
+                        <Input placeholder="Last name" className="h-12 rounded-md" required/>
                     </div>
-                    <Input placeholder="Address" className="h-12 rounded-md" />
+                    <Input placeholder="Address" className="h-12 rounded-md" required/>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Input placeholder="City" className="h-12 rounded-md" />
+                        <Input placeholder="City" className="h-12 rounded-md" required/>
                         <Input placeholder="Postal code" className="h-12 rounded-md" />
                     </div>
-                    <Input placeholder="Phone" type="tel" className="h-12 rounded-md" />
+                    <Input placeholder="Phone" type="tel" className="h-12 rounded-md" required/>
                 </div>
             </div>
             
             <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
-                <Link href="/cart" className="flex items-center gap-1 text-primary hover:underline">
+                <Link href="/" className="flex items-center gap-1 text-primary hover:underline">
                     <ChevronLeft className="h-4 w-4" />
                     Return to cart
                 </Link>
                 <Button 
+                    type="submit"
                     className="w-full sm:w-auto h-14 rounded-md text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 px-8"
-                    onClick={onContinue}
                 >
                     Continue to shipping
                 </Button>
             </div>
-        </div>
+        </form>
     );
 }
 
-function ShippingStep({ onContinue }: { onContinue: () => void }) {
-    // Placeholder for Shipping content
+function ShippingStep({ onContinue, onBack }: { onContinue: () => void, onBack: () => void }) {
     return (
-        <div>
-            <h2 className="text-2xl font-bold mb-4">Shipping Information</h2>
-            <p>Shipping options will be displayed here.</p>
-             <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
-                <Link href="/cart" className="flex items-center gap-1 text-primary hover:underline">
+        <div className="space-y-6">
+             <div className="border rounded-lg p-4 text-sm">
+                <div className="flex justify-between items-center">
+                    <div className="flex gap-4">
+                        <span className="text-gray-500">Contact</span>
+                        <p>demo@example.com</p>
+                    </div>
+                     <button onClick={() => onBack()} className="text-xs text-primary hover:underline">Change</button>
+                </div>
+                 <Separator className="my-3"/>
+                 <div className="flex justify-between items-center">
+                    <div className="flex gap-4">
+                        <span className="text-gray-500">Ship to</span>
+                        <p>123 Fake Street, Anytown, 12345, Pakistan</p>
+                    </div>
+                     <button onClick={() => onBack()} className="text-xs text-primary hover:underline">Change</button>
+                </div>
+            </div>
+            
+            <div>
+                <h2 className="text-lg font-medium mb-4">Shipping method</h2>
+                <div className="border rounded-lg p-4 flex justify-between items-center text-sm">
+                    <p>Standard Shipping</p>
+                    <p className="font-semibold">FREE</p>
+                </div>
+            </div>
+
+            <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
+                <button onClick={() => onBack()} className="flex items-center gap-1 text-primary hover:underline">
                     <ChevronLeft className="h-4 w-4" />
-                    Return to cart
-                </Link>
+                    Return to information
+                </button>
                 <Button 
                     className="w-full sm:w-auto h-14 rounded-md text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 px-8"
                     onClick={onContinue}
@@ -134,24 +165,81 @@ function ShippingStep({ onContinue }: { onContinue: () => void }) {
     )
 }
 
-function PaymentStep() {
-    // Placeholder for Payment content
+function PaymentStep({ onBack }: { onBack: () => void }) {
+    const { toast } = useToast();
+
+    const handlePayNow = (e: React.FormEvent) => {
+        e.preventDefault();
+        toast({
+            title: "Order Placed!",
+            description: "Thank you for your purchase. Your order is being processed.",
+        });
+        // Here you would typically redirect to an order confirmation page.
+        // e.g. router.push('/order/confirmation');
+    }
+
     return (
-        <div>
-            <h2 className="text-2xl font-bold mb-4">Payment Information</h2>
-            <p>Payment options will be displayed here.</p>
+        <form onSubmit={handlePayNow} className="space-y-6">
+            <div className="border rounded-lg p-4 text-sm space-y-3">
+                <div className="flex justify-between items-center">
+                    <div className="flex gap-4 items-center">
+                        <span className="text-gray-500 w-16">Contact</span>
+                        <p>demo@example.com</p>
+                    </div>
+                    <button onClick={() => onBack()} className="text-xs text-primary hover:underline">Change</button>
+                </div>
+                 <Separator/>
+                 <div className="flex justify-between items-center">
+                    <div className="flex gap-4 items-center">
+                        <span className="text-gray-500 w-16">Ship to</span>
+                        <p>123 Fake Street, Anytown, 12345, Pakistan</p>
+                    </div>
+                     <button onClick={() => onBack()} className="text-xs text-primary hover:underline">Change</button>
+                </div>
+                 <Separator/>
+                 <div className="flex justify-between items-center">
+                    <div className="flex gap-4 items-center">
+                        <span className="text-gray-500 w-16">Method</span>
+                        <p>Standard Shipping - FREE</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 className="text-lg font-medium mb-4">Payment</h2>
+                <p className="text-sm text-gray-500">All transactions are secure and encrypted.</p>
+                <div className="border rounded-lg mt-2 bg-gray-50 p-4 space-y-4">
+                     <div className="relative">
+                        <Input id="card-number" placeholder="Card number" className="h-12 rounded-md bg-white pl-10" required />
+                        <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"/>
+                    </div>
+                    <Input placeholder="Name on card" className="h-12 rounded-md bg-white" required />
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="relative">
+                            <Input id="expiration" placeholder="Expiration date (MM / YY)" className="h-12 rounded-md bg-white pl-10" required />
+                            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"/>
+                        </div>
+                        <div className="relative">
+                             <Input id="cvc" placeholder="Security code" className="h-12 rounded-md bg-white pl-10" required />
+                             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
              <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
-                <Link href="/cart" className="flex items-center gap-1 text-primary hover:underline">
+                 <button type="button" onClick={() => onBack()} className="flex items-center gap-1 text-primary hover:underline">
                     <ChevronLeft className="h-4 w-4" />
-                    Return to cart
-                </Link>
+                    Return to shipping
+                </button>
                 <Button 
+                    type="submit"
                     className="w-full sm:w-auto h-14 rounded-md text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 px-8"
                 >
                     Pay now
                 </Button>
             </div>
-        </div>
+        </form>
     )
 }
 
@@ -163,11 +251,13 @@ export default function CheckoutPage() {
     (acc, item) => acc + item.product.price * item.quantity,
     0
   );
-  const shipping = 0; // It's free in the reference screenshot
+  const shipping = 0;
   const total = subtotal + shipping;
   
   const handleContinueToShipping = () => setStep('shipping');
   const handleContinueToPayment = () => setStep('payment');
+  const handleBackToInformation = () => setStep('information');
+  const handleBackToShipping = () => setStep('shipping');
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-white text-black">
@@ -181,8 +271,8 @@ export default function CheckoutPage() {
             <Breadcrumbs step={step} />
 
             {step === 'information' && <InformationStep onContinue={handleContinueToShipping} />}
-            {step === 'shipping' && <ShippingStep onContinue={handleContinueToPayment} />}
-            {step === 'payment' && <PaymentStep />}
+            {step === 'shipping' && <ShippingStep onContinue={handleContinueToPayment} onBack={handleBackToInformation}/>}
+            {step === 'payment' && <PaymentStep onBack={handleBackToShipping} />}
 
             <footer className="mt-12 pt-6 border-t">
               <p className="text-xs text-gray-500">All rights reserved Maher Zarai Markaz</p>
@@ -192,10 +282,10 @@ export default function CheckoutPage() {
 
       {/* Right Side - Order Summary */}
       <aside className="w-full lg:w-[45%] bg-gray-50 p-4 sm:p-8 lg:p-12 border-l order-1 lg:order-2">
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-lg mx-auto lg:mx-0 lg:sticky lg:top-16">
             <div className="lg:hidden flex items-center justify-between mb-8">
                  <Logo />
-                 <Link href="/cart">
+                 <Link href="/cart" aria-label="Open Cart">
                     <Button variant="ghost" size="icon" className="relative">
                         <ShoppingCart className="h-6 w-6" />
                         <span className="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
@@ -205,7 +295,6 @@ export default function CheckoutPage() {
                 </Link>
             </div>
             
-            {/* Cart Items */}
             <div className="space-y-4">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex items-center gap-4">
@@ -224,7 +313,7 @@ export default function CheckoutPage() {
                   </div>
                   <div className="flex-1">
                     <p className="font-medium text-sm">{item.product.name}</p>
-                    {/* Add sub-description if needed */}
+                    <p className="text-xs text-gray-500">{item.product.brand}</p>
                   </div>
                   <p className="font-semibold text-sm">Rs. {(item.product.price * item.quantity).toLocaleString()}</p>
                 </div>
@@ -233,7 +322,6 @@ export default function CheckoutPage() {
 
             <Separator className="my-6" />
             
-            {/* Coupon Code */}
             <div className="flex gap-2">
                 <Input placeholder="Discount code" className="bg-white rounded-md h-11" />
                 <Button variant="outline" className="h-11 border-gray-300 text-gray-600 hover:bg-gray-200 px-6">Apply</Button>
@@ -241,7 +329,6 @@ export default function CheckoutPage() {
 
             <Separator className="my-6" />
 
-            {/* Totals */}
             <div className="space-y-2 text-base">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Subtotal</span>
@@ -267,3 +354,5 @@ export default function CheckoutPage() {
     </div>
   );
 }
+
+    

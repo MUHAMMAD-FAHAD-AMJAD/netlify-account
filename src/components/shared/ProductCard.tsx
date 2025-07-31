@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -9,7 +10,6 @@ import type { Product } from '@/lib/types';
 import { Star, StarHalf, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useAppContext } from '@/context/AppContext';
 
 interface ProductCardProps {
   product: Product;
@@ -54,12 +54,12 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
 
   return (
     <Card
-      className="group relative overflow-hidden rounded-[20px] border-none shadow-md transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col"
+      className="group relative overflow-hidden rounded-2xl border-none shadow-md transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col bg-white"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Link href={`/product/${product.id}`} onClick={onViewProduct} className="absolute inset-0 z-10" aria-label={`View ${product.name}`}/>
-      <div className="aspect-square overflow-hidden bg-gray-50 relative">
+      <div className="aspect-square overflow-hidden relative">
          {product.isSoldOut && (
             <Badge
             variant="secondary"
@@ -85,40 +85,42 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
           className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
         />
       </div>
-      <CardContent className="p-4 bg-white flex flex-col flex-1">
+      <CardContent className="p-4 flex flex-col flex-1">
         <p className="text-sm text-muted-foreground mb-1">{product.brand}</p>
-        <h3 className="font-bold text-lg leading-tight truncate flex-1">{product.name}</h3>
+        <h3 className="font-semibold text-base leading-snug flex-1 text-balance">{product.name}</h3>
         <div className="flex items-center mt-2">
             {renderStars()}
           <span className="ml-2 text-xs text-muted-foreground">({product.reviews} reviews)</span>
         </div>
-        <div className="flex items-baseline justify-between mt-4">
-          <div className="flex items-baseline gap-2">
-            <p className="text-2xl font-black text-gray-900">
-                Rs. {product.price.toLocaleString()}
-            </p>
-            {product.originalPrice && <p className="text-base font-medium text-muted-foreground line-through">Rs. {product.originalPrice.toLocaleString()}</p>}
-          </div>
-          <Button
-            size="icon"
-            onClick={(e) => {
-                e.stopPropagation(); // prevent link navigation
-                e.preventDefault();
-                onAddToCart();
-            }}
-            className={cn(
-              "rounded-full h-10 w-10 transition-all duration-300 ease-in-out z-20",
-              product.isSoldOut
-                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                : "bg-black text-white border-2 border-transparent hover:bg-white hover:text-black hover:border-black"
-            )}
-            disabled={product.isSoldOut}
-            aria-label="Add to cart"
-          >
-            <ShoppingCart className="h-5 w-5"/>
-          </Button>
+        <div className="flex items-center justify-between mt-4">
+            <div className="flex items-baseline gap-2">
+                <p className="text-xl font-bold text-gray-900">
+                    Rs. {product.price.toLocaleString()}
+                </p>
+                {product.originalPrice && <p className="text-sm font-medium text-muted-foreground line-through">Rs. {product.originalPrice.toLocaleString()}</p>}
+            </div>
+            <Button
+                size="icon"
+                onClick={(e) => {
+                    e.stopPropagation(); // prevent link navigation
+                    e.preventDefault();
+                    onAddToCart();
+                }}
+                className={cn(
+                  "rounded-full h-10 w-10 transition-all duration-300 ease-in-out z-20",
+                  product.isSoldOut
+                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    : "bg-black text-white border-2 border-transparent hover:bg-white hover:text-black hover:border-black"
+                )}
+                disabled={product.isSoldOut}
+                aria-label="Add to cart"
+            >
+                <ShoppingCart className="h-5 w-5"/>
+            </Button>
         </div>
       </CardContent>
     </Card>
   );
 }
+
+    

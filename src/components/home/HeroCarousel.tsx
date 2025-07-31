@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from 'react';
@@ -14,6 +15,7 @@ import {
 import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const slides = [
   {
@@ -84,9 +86,11 @@ export default function HeroCarousel() {
                   >
                     <h1 className="text-5xl md:text-7xl font-black mb-4 text-balance">{slide.title}</h1>
                     <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-balance">{slide.description}</p>
-                    <Button size="lg" className="rounded-full h-14 px-8 text-lg bg-white text-black hover:bg-gray-200">
-                      Explore Products <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                    <Link href="/products/all" passHref>
+                      <Button asChild size="lg" className="rounded-full h-14 px-8 text-lg bg-white text-black hover:bg-gray-200">
+                        <span>Explore Products <ArrowRight className="ml-2 h-5 w-5" /></span>
+                      </Button>
+                    </Link>
                   </motion.div>
                 </div>
               </div>
@@ -111,3 +115,5 @@ export default function HeroCarousel() {
     </section>
   );
 }
+
+    

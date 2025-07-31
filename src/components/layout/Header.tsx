@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -29,8 +30,6 @@ export default function Header() {
     e.preventDefault();
     const searchTerm = e.currentTarget.search.value;
     if (searchTerm) {
-      // In a real app, you'd navigate to a search results page
-      // For now, we can just log it and show a toast.
       alert(`Searching for: ${searchTerm}`);
       setIsSearchOpen(false);
     }
@@ -42,14 +41,10 @@ export default function Header() {
         <SocialBar />
         <NotificationMarquee />
         <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
-          {/* Mobile Menu Trigger */}
-          <div className="lg:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
-              <Menu className="h-6 w-6" />
-            </Button>
-          </div>
+          <Button variant="ghost" size="icon" onClick={toggleMobileMenu} className="lg:hidden">
+            <Menu className="h-6 w-6" />
+          </Button>
 
-          {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
                 <Image 
@@ -65,14 +60,15 @@ export default function Header() {
             </Link>
           </div>
           
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 justify-center">
             <MainNav closeMobileMenu={() => setIsMobileMenuOpen(false)} />
           </div>
 
-          {/* Icons */}
           <div className="flex items-center justify-end gap-2">
             <div className="relative hidden md:block">
+              <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
+                <Search className="h-6 w-6" />
+              </Button>
               <AnimatePresence>
                 {isSearchOpen && (
                   <motion.div
@@ -80,7 +76,7 @@ export default function Header() {
                     animate={{ width: 200, opacity: 1 }}
                     exit={{ width: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute right-full mr-2"
+                    className="absolute top-1/2 right-full -translate-y-1/2 mr-2"
                   >
                     <form onSubmit={handleSearchSubmit}>
                       <Input
@@ -95,9 +91,6 @@ export default function Header() {
                   </motion.div>
                 )}
               </AnimatePresence>
-              <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)}>
-                <Search className="h-6 w-6" />
-              </Button>
             </div>
             <Link href="/auth">
               <Button variant="ghost" size="icon">
@@ -153,3 +146,5 @@ export default function Header() {
     </>
   );
 }
+
+    
