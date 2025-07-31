@@ -1,8 +1,9 @@
+
 import { NextResponse } from 'next/server';
 
 // This is the URL of your backend service deployed on Render.
 // IMPORTANT: You will need to replace this with your actual Render URL after you deploy the backend.
-const BACKEND_URL = process.env.BACKEND_URL || 'https://your-render-backend-url.onrender.com';
+const BACKEND_URL = 'https://your-render-backend-url.onrender.com';
 
 /**
  * @swagger
@@ -25,6 +26,10 @@ const BACKEND_URL = process.env.BACKEND_URL || 'https://your-render-backend-url.
  *         description: Internal Server Error if the backend is unreachable or returns an error.
  */
 export async function GET() {
+  if (BACKEND_URL === 'https://your-render-backend-url.onrender.com') {
+    return new NextResponse('Backend URL has not been configured. Please update src/app/api/products/route.ts', { status: 503 });
+  }
+  
   try {
     // Fetch data from the external backend
     const response = await fetch(`${BACKEND_URL}/api/products`);
