@@ -87,28 +87,18 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
     <NavigationMenu>
       <NavigationMenuList>
         {navLinks.map((link) => (
-            link.subLinks ? (
-              <NavigationMenuItem key={link.name}>
-                <NavigationMenuTrigger className="text-base font-medium bg-transparent transition-colors hover:text-white focus:text-white data-[active]:text-white data-[state=open]:text-white hover:bg-black focus:bg-black rounded-xl">
-                  {link.name}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[200px] gap-1 p-4 md:w-[250px] lg:w-[300px] rounded-2xl shadow-lg">
-                    {link.subLinks.map((sub) => (
-                      <ListItem key={sub.title} title={sub.title} href={sub.href} />
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ) : (
-                 'href' in link && <NavigationMenuItem key={link.name}>
-                    <Link href={link.href!} legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-base font-medium bg-transparent transition-colors hover:text-white focus:text-white hover:bg-black focus:bg-black rounded-xl")}>
-                        {link.name}
-                        </NavigationMenuLink>
-                    </Link>
-                </NavigationMenuItem>
-            )
+          <NavigationMenuItem key={link.name}>
+            <NavigationMenuTrigger className="text-base font-medium bg-transparent transition-colors hover:text-white focus:text-white data-[active]:text-white data-[state=open]:text-white hover:bg-black focus:bg-black rounded-xl">
+              {link.name}
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[200px] gap-1 p-4 md:w-[250px] lg:w-[300px]">
+                {link.subLinks.map((sub) => (
+                  <ListItem key={sub.title} title={sub.title} href={sub.href} />
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
         ))}
       </NavigationMenuList>
     </NavigationMenu>
@@ -136,4 +126,3 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
   }
 );
 ListItem.displayName = "ListItem";
-
