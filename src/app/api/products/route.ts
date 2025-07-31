@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 // IMPORTANT: After you deploy your backend to Render, you MUST replace this URL
 // with the actual URL of your Render service.
 // For example: 'https://your-backend-name.onrender.com'
-const BACKEND_URL = 'https://your-render-backend-url.onrender.com';
+const BACKEND_URL = 'https://maher-zarai-backend.onrender.com';
 
 /**
  * @swagger
@@ -29,19 +29,30 @@ const BACKEND_URL = 'https://your-render-backend-url.onrender.com';
  *         description: Internal Server Error if the backend returns an error.
  */
 export async function GET() {
-  if (BACKEND_URL === 'https://your-render-backend-url.onrender.com') {
+  if (BACKEND_URL === 'https://your-render-backend-url.onrender.com' || !BACKEND_URL) {
     const errorMessage = 'Backend URL has not been configured. Please update the BACKEND_URL in src/app/api/products/route.ts with your live Render backend URL.';
     console.error(errorMessage);
-    return new NextResponse(errorMessage, { status: 503 });
+    // Returning mock data for local development if backend is not configured
+    try {
+        const { mockProducts } = await import('@/lib/products');
+        console.warn("Serving mock data because backend URL is not configured.");
+        return NextResponse.json(mockProducts);
+    } catch (e) {
+         return new NextResponse(errorMessage, { status: 503 });
+    }
   }
   
   try {
     // Fetch data from the external backend
-    const response = await fetch(`${BACKEND_URL}/api/products`);
+    const response = await fetch(`${BACKEND_URL}/api/products`, {
+      // Revalidate data every 60 seconds
+      next: { revalidate: 60 }
+    });
     
     if (!response.ok) {
       // If the backend returns an error, forward that error to the client
-      console.error(`Error from backend: ${response.status} ${response.statusText}`);
+      const errorText = await response.text();
+      console.error(`Error from backend: ${response.status} ${response.statusText} - ${errorText}`);
       return new NextResponse(`Error from backend: ${response.statusText}`, { status: response.status });
     }
 
@@ -56,3 +67,6 @@ export async function GET() {
     return new NextResponse('Failed to connect to the backend service.', { status: 503 }); // 503 Service Unavailable
   }
 }
+
+// This forces the route to be dynamic, ensuring it runs on the server at request time.
+export const dynamic = 'force-dynamic';

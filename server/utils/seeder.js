@@ -20,10 +20,10 @@ const importData = async () => {
 
     await Product.insertMany(productsToInsert);
 
-    console.log('Data Imported!');
+    console.log('Data Imported Successfully!');
     process.exit();
   } catch (error) {
-    console.error(`${error}`);
+    console.error(`Error during data import: ${error}`);
     process.exit(1);
   }
 };
@@ -32,10 +32,10 @@ const destroyData = async () => {
   try {
     await Product.deleteMany();
 
-    console.log('Data Destroyed!');
+    console.log('Data Destroyed Successfully!');
     process.exit();
   } catch (error) {
-    console.error(`${error}`);
+    console.error(`Error during data destruction: ${error}`);
     process.exit(1);
   }
 };
@@ -45,5 +45,3 @@ if (process.argv[2] === '-d') {
 } else {
   importData();
 }
-
-    
