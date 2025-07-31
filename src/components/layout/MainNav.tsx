@@ -10,6 +10,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
@@ -100,6 +101,7 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
+      <NavigationMenuViewport />
     </NavigationMenu>
   );
 }
