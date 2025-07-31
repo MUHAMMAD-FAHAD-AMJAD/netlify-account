@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -10,6 +11,7 @@ import MainNav from './MainNav';
 import CartSidebar from '../cart/CartSidebar';
 import { Badge } from '../ui/badge';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -31,8 +33,15 @@ export default function Header() {
           </Button>
 
           {/* Logo */}
-          <Link href="/" className="text-2xl font-black tracking-tighter text-gray-900">
-            MAHER ZARAI MARKAZ
+          <Link href="/" className="flex items-center">
+            <Image 
+              src="/logo.png" 
+              alt="Maher Zarai Markaz" 
+              width={180} 
+              height={40}
+              className="object-contain"
+              data-ai-hint="logo"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -89,8 +98,15 @@ export default function Header() {
           >
             <div className="container mx-auto p-4">
               <div className="flex justify-between items-center mb-8">
-                 <Link href="/" className="text-xl font-black tracking-tighter text-gray-900" onClick={toggleMobileMenu}>
-                    MAHER ZARAI MARKAZ
+                 <Link href="/" className="flex items-center" onClick={toggleMobileMenu}>
+                    <Image 
+                      src="/logo.png" 
+                      alt="Maher Zarai Markaz" 
+                      width={160} 
+                      height={35}
+                      className="object-contain"
+                      data-ai-hint="logo"
+                    />
                  </Link>
                 <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
                   <X className="h-6 w-6" />
