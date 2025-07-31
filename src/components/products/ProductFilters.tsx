@@ -1,5 +1,7 @@
+
 "use client";
 
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -11,75 +13,119 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 const brands = ["Syngenta", "FMC", "Engro", "Bayer", "Maher Seeds", "Other"];
 const stockStatus = ["In Stock", "Out of Stock"];
+const sortOptions = [
+  { value: "featured", label: "Featured" },
+  { value: "price-asc", label: "Price: Low to High" },
+  { value: "price-desc", label: "Price: High to Low" },
+  { value: "newest", label: "Newest Arrivals" },
+];
 
 export default function ProductFilters() {
+  const [priceRange, setPriceRange] = useState([1000, 5000]);
+
   return (
-    <div className="space-y-6 sticky top-24">
-       <Accordion type="multiple" defaultValue={["brands", "price", "stock"]} className="w-full">
-        <AccordionItem value="brands">
-          <AccordionTrigger className="text-base font-medium">Brands</AccordionTrigger>
-          <AccordionContent>
+    <div className="space-y-8 sticky top-28">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Filters</h2>
+        <Button variant="ghost" className="text-sm text-primary hover:text-primary/80">Clear all</Button>
+      </div>
+      
+       <Accordion type="multiple" defaultValue={["brands", "price", "stock", "sort"]} className="w-full space-y-4">
+        
+        <AccordionItem value="brands" className="border-b-0">
+          <AccordionTrigger className="text-lg font-semibold py-2 hover:no-underline">Brands</AccordionTrigger>
+          <AccordionContent className="pt-4">
             <div className="space-y-3">
               {brands.map(brand => (
-                <div key={brand} className="flex items-center space-x-2">
-                  <Checkbox id={`brand-${brand}`} />
-                  <Label htmlFor={`brand-${brand}`} className="font-normal">{brand}</Label>
+                <div key={brand} className="flex items-center space-x-3">
+                  <Checkbox id={`brand-${brand}`} className="h-5 w-5 rounded"/>
+                  <Label htmlFor={`brand-${brand}`} className="font-normal text-base cursor-pointer">{brand}</Label>
                 </div>
               ))}
             </div>
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="price">
-          <AccordionTrigger className="text-base font-medium">Price Range</AccordionTrigger>
-          <AccordionContent>
+        
+        <Separator />
+
+        <AccordionItem value="price" className="border-b-0">
+          <AccordionTrigger className="text-lg font-semibold py-2 hover:no-underline">Price Range</AccordionTrigger>
+          <AccordionContent className="pt-4">
             <div className="p-1">
-                <Slider defaultValue={[1000, 5000]} max={10000} step={100} />
-                <div className="flex justify-between text-sm text-muted-foreground mt-3">
-                    <span>Rs. 1,000</span>
-                    <span>Rs. 5,000</span>
+                <Slider 
+                  value={priceRange} 
+                  onValueChange={setPriceRange}
+                  max={10000} 
+                  step={100} 
+                  className="mb-4"
+                />
+                <div className="flex justify-between items-center gap-4 text-sm text-muted-foreground mt-3">
+                    <div className="flex items-center gap-2">
+                        <Label htmlFor="min-price">Min</Label>
+                        <Input 
+                          id="min-price"
+                          type="number"
+                          value={priceRange[0]}
+                          onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
+                          className="w-24 h-9"
+                        />
+                    </div>
+                     <div className="flex items-center gap-2">
+                        <Label htmlFor="max-price">Max</Label>
+                        <Input 
+                          id="max-price"
+                          type="number"
+                          value={priceRange[1]}
+                          onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+                          className="w-24 h-9"
+                        />
+                    </div>
                 </div>
             </div>
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="stock">
-          <AccordionTrigger className="text-base font-medium">Availability</AccordionTrigger>
-          <AccordionContent>
+        
+        <Separator />
+
+        <AccordionItem value="stock" className="border-b-0">
+          <AccordionTrigger className="text-lg font-semibold py-2 hover:no-underline">Availability</AccordionTrigger>
+          <AccordionContent className="pt-4">
             <div className="space-y-3">
               {stockStatus.map(status => (
-                <div key={status} className="flex items-center space-x-2">
-                  <Checkbox id={`stock-${status}`} />
-                  <Label htmlFor={`stock-${status}`} className="font-normal">{status}</Label>
+                <div key={status} className="flex items-center space-x-3">
+                  <Checkbox id={`stock-${status}`} className="h-5 w-5 rounded"/>
+                  <Label htmlFor={`stock-${status}`} className="font-normal text-base cursor-pointer">{status}</Label>
                 </div>
               ))}
             </div>
+          </AccordionContent>
+        </AccordionItem>
+
+        <Separator />
+
+        <AccordionItem value="sort" className="border-b-0">
+          <AccordionTrigger className="text-lg font-semibold py-2 hover:no-underline">Sort By</AccordionTrigger>
+          <AccordionContent className="pt-4">
+            <RadioGroup defaultValue="featured" className="space-y-3">
+                {sortOptions.map(option => (
+                    <div key={option.value} className="flex items-center space-x-3">
+                        <RadioGroupItem value={option.value} id={`sort-${option.value}`} className="h-5 w-5"/>
+                        <Label htmlFor={`sort-${option.value}`} className="font-normal text-base cursor-pointer">{option.label}</Label>
+                    </div>
+                ))}
+            </RadioGroup>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-       <div className="space-y-3">
-          <h3 className="text-base font-medium">Sort By</h3>
-            <RadioGroup defaultValue="featured">
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="featured" id="sort-featured" />
-                    <Label htmlFor="sort-featured" className="font-normal">Featured</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="price-asc" id="sort-price-asc" />
-                    <Label htmlFor="sort-price-asc" className="font-normal">Price: Low to High</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="price-desc" id="sort-price-desc" />
-                    <Label htmlFor="sort-price-desc" className="font-normal">Price: High to Low</Label>
-                </div>
-                 <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="newest" id="sort-newest" />
-                    <Label htmlFor="sort-newest" className="font-normal">Newest Arrivals</Label>
-                </div>
-            </RadioGroup>
-        </div>
-        <Button className="w-full h-11" variant="outline">Clear Filters</Button>
     </div>
   );
+}
+
+
+function Separator() {
+    return <div className="border-t border-gray-200" />;
 }
