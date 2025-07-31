@@ -37,13 +37,13 @@ function Logo() {
     return (
         <Link href="/" className="flex items-center">
             <Image 
-                src="https://placehold.co/200x50.png" 
+                src="/logo.png" 
                 alt="Maher Zarai Markaz" 
                 width={200} 
                 height={50}
                 className="object-contain h-[50px]"
                 priority
-                data-ai-hint="logo"
+                unoptimized
             />
         </Link>
     );
@@ -94,6 +94,7 @@ function InformationStep({ onContinue, shippingInfo, setShippingInfo }: { onCont
                 <h2 className="text-lg font-semibold mb-2">Contact Information</h2>
                  <Input 
                     id="email" 
+                    name="email"
                     placeholder="Email" 
                     type="email" 
                     className="h-12 rounded-lg" 
@@ -104,8 +105,8 @@ function InformationStep({ onContinue, shippingInfo, setShippingInfo }: { onCont
             <div>
                 <h2 className="text-lg font-semibold mb-4">Shipping address</h2>
                 <div className="space-y-4">
-                    <Select required onValueChange={(value) => handleChange(value, 'country')} value={shippingInfo.country}>
-                        <SelectTrigger className="h-12 rounded-lg">
+                    <Select required onValueChange={(value) => handleChange(value, 'country')} value={shippingInfo.country} name="country">
+                        <SelectTrigger className="h-12 rounded-lg" id="country">
                             <SelectValue placeholder="Country/Region" />
                         </SelectTrigger>
                         <SelectContent>
@@ -115,15 +116,15 @@ function InformationStep({ onContinue, shippingInfo, setShippingInfo }: { onCont
                         </SelectContent>
                     </Select>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Input id="firstName" placeholder="First name" className="h-12 rounded-lg" required value={shippingInfo.firstName} onChange={(e) => handleChange(e, 'firstName')}/>
-                        <Input id="lastName" placeholder="Last name" className="h-12 rounded-lg" required value={shippingInfo.lastName} onChange={(e) => handleChange(e, 'lastName')}/>
+                        <Input id="firstName" name="firstName" placeholder="First name" className="h-12 rounded-lg" required value={shippingInfo.firstName} onChange={(e) => handleChange(e, 'firstName')}/>
+                        <Input id="lastName" name="lastName" placeholder="Last name" className="h-12 rounded-lg" required value={shippingInfo.lastName} onChange={(e) => handleChange(e, 'lastName')}/>
                     </div>
-                    <Input id="address" placeholder="Address" className="h-12 rounded-lg" required value={shippingInfo.address} onChange={(e) => handleChange(e, 'address')}/>
+                    <Input id="address" name="address" placeholder="Address" className="h-12 rounded-lg" required value={shippingInfo.address} onChange={(e) => handleChange(e, 'address')}/>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Input id="city" placeholder="City" className="h-12 rounded-lg" required value={shippingInfo.city} onChange={(e) => handleChange(e, 'city')}/>
-                        <Input id="postalCode" placeholder="Postal code" className="h-12 rounded-lg" value={shippingInfo.postalCode} onChange={(e) => handleChange(e, 'postalCode')}/>
+                        <Input id="city" name="city" placeholder="City" className="h-12 rounded-lg" required value={shippingInfo.city} onChange={(e) => handleChange(e, 'city')}/>
+                        <Input id="postalCode" name="postalCode" placeholder="Postal code" className="h-12 rounded-lg" value={shippingInfo.postalCode} onChange={(e) => handleChange(e, 'postalCode')}/>
                     </div>
-                    <Input id="phone" placeholder="Phone" type="tel" className="h-12 rounded-lg" required value={shippingInfo.phone} onChange={(e) => handleChange(e, 'phone')}/>
+                    <Input id="phone" name="phone" placeholder="Phone" type="tel" className="h-12 rounded-lg" required value={shippingInfo.phone} onChange={(e) => handleChange(e, 'phone')}/>
                 </div>
             </div>
             

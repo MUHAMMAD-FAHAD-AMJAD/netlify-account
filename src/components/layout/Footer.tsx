@@ -1,6 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Facebook, Instagram, Youtube, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -9,7 +12,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* About Section */}
           <div>
-            <h3 className="text-xl font-bold mb-4">MAHER ZARAI MARKAZ</h3>
+            <Link href="/" className="mb-4 inline-block">
+              <Image 
+                src="/logo.png"
+                alt="Maher Zarai Markaz"
+                width={200}
+                height={50}
+                className="object-contain h-[50px]"
+                unoptimized
+              />
+            </Link>
             <p className="text-muted-foreground mb-4">
               Your trusted partner in agriculture, providing top-quality products for a bountiful harvest since 1995.
             </p>
