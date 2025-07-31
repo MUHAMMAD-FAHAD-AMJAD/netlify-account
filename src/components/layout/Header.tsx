@@ -76,9 +76,11 @@ export default function Header() {
              <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
               <Search className="h-6 w-6" />
             </Button>
-            <Button variant="ghost" size="icon">
-              <User className="h-6 w-6" />
-            </Button>
+            <Link href="/auth">
+              <Button variant="ghost" size="icon">
+                <User className="h-6 w-6" />
+              </Button>
+            </Link>
             <Button variant="ghost" size="icon" className="relative" onClick={() => setIsCartOpen(true)}>
               <ShoppingCart className="h-6 w-6" />
               {cartItemCount > 0 && (
