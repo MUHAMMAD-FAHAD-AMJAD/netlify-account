@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 
 async function getProducts(category?: string, subcategory?: string): Promise<Product[]> {
   try {
+    // This now fetches from the API route, simulating a real backend call.
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`, { cache: 'no-store' });
     if (!res.ok) {
       throw new Error('Failed to fetch products');
@@ -21,7 +22,7 @@ async function getProducts(category?: string, subcategory?: string): Promise<Pro
 
     const filtered = products.filter(p => {
       const categoryMatch = p.category.toLowerCase() === category.toLowerCase();
-      const subcategoryMatch = subcategory ? p.subcategory.toLowerCase() === subcategory.toLowerCase() : true;
+      const subcategoryMatch = subcategory ? p.subcategory?.toLowerCase() === subcategory.toLowerCase() : true;
       return categoryMatch && subcategoryMatch;
     });
 
@@ -42,7 +43,7 @@ export default async function CategoryPage({ params }: { params: { slug: string[
     notFound();
   }
 
-  const [category, subcategory] = slug;
+  const [category, subcategory] = slug.map(s => decodeURIComponent(s));
 
   const filteredProducts = await getProducts(category, subcategory);
 
@@ -71,20 +72,22 @@ export default async function CategoryPage({ params }: { params: { slug: string[
 // This function is needed by Next.js to know which dynamic routes to pre-render.
 // We can generate this from our product data.
 export async function generateStaticParams() {
+  // This also needs to fetch from the API now.
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`);
+  if(!res.ok) return [];
+
   const products: Product[] = await res.json();
 
   const paths = new Set<string>();
 
   products.forEach(p => {
-    paths.add(`/products/${p.category}`);
+    paths.add(`${p.category}`);
     if (p.subcategory) {
-      paths.add(`/products/${p.category}/${p.subcategory}`);
+      paths.add(`${p.category}/${p.subcategory}`);
     }
   });
 
-  return Array.from(paths).map(path => {
-    const slug = path.split('/').filter(s => s && s !== 'products');
-    return { slug };
-  });
+  return Array.from(paths).map(path => ({
+    slug: path.split('/'),
+  }));
 }
