@@ -148,5 +148,3 @@ export default function MainNav({ isMobile = false, closeMobileMenu }: MainNavPr
     </nav>
   );
 }
-
-    

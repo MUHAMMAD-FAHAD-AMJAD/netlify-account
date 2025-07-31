@@ -122,5 +122,3 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
     </Card>
   );
 }
-
-    

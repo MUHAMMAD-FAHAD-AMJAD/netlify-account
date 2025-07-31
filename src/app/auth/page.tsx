@@ -99,7 +99,7 @@ export default function AuthPage() {
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="login-email">Email address</Label>
-                      <Input id="login-email" type="email" placeholder="you@example.com" required className="h-12 rounded-lg"/>
+                      <Input id="login-email" name="email" type="email" placeholder="you@example.com" required className="h-12 rounded-lg"/>
                     </div>
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
@@ -108,7 +108,7 @@ export default function AuthPage() {
                           Forgot password?
                         </a>
                       </div>
-                      <Input id="login-password" type="password" required className="h-12 rounded-lg"/>
+                      <Input id="login-password" name="password" type="password" required className="h-12 rounded-lg"/>
                     </div>
                     <Button type="submit" className="w-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800 rounded-lg">
                       Log In
@@ -147,19 +147,19 @@ export default function AuthPage() {
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <Label htmlFor="signup-name">Full name</Label>
-                        <Input id="signup-name" placeholder="John Doe" required className="h-12 rounded-lg"/>
+                        <Input id="signup-name" name="name" placeholder="John Doe" required className="h-12 rounded-lg"/>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="signup-email">Email address</Label>
-                        <Input id="signup-email" type="email" placeholder="you@example.com" required className="h-12 rounded-lg"/>
+                        <Input id="signup-email" name="email" type="email" placeholder="you@example.com" required className="h-12 rounded-lg"/>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="signup-password">Password</Label>
-                        <Input id="signup-password" type="password" required className="h-12 rounded-lg"/>
+                        <Input id="signup-password" name="password" type="password" required className="h-12 rounded-lg"/>
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="signup-confirm-password">Confirm Password</Label>
-                        <Input id="signup-confirm-password" type="password" required className="h-12 rounded-lg"/>
+                        <Input id="signup-confirm-password" name="confirmPassword" type="password" required className="h-12 rounded-lg"/>
                       </div>
                       <Button type="submit" className="w-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800 rounded-lg">
                         Create Account
