@@ -7,13 +7,28 @@ import ProductGrid from '@/components/products/ProductGrid';
 import ProductFilters from '@/components/products/ProductFilters';
 import { notFound } from 'next/navigation';
 
+// Helper function to get the base URL for API requests
+function getBaseUrl() {
+  if (process.env.NEXT_PUBLIC_URL) {
+    return process.env.NEXT_PUBLIC_URL;
+  }
+  // If the app is running on Vercel, use the Vercel URL
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  // Fallback for local development
+  return 'http://localhost:3000';
+}
+
 async function getProducts(category?: string, subcategory?: string): Promise<Product[]> {
   try {
-    // This now fetches from the API route, simulating a real backend call.
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`, { cache: 'no-store' });
+    const baseUrl = getBaseUrl();
+    const res = await fetch(`${baseUrl}/api/products`, { cache: 'no-store' });
+    
     if (!res.ok) {
-      throw new Error('Failed to fetch products');
+      throw new Error(`Failed to fetch products: ${res.statusText}`);
     }
+    
     const products: Product[] = await res.json();
     
     if (!category) {
@@ -28,9 +43,7 @@ async function getProducts(category?: string, subcategory?: string): Promise<Pro
 
     return filtered;
   } catch (error) {
-    console.error(error);
-    // In a real app, you might want to show an error page to the user.
-    // For now, we'll return an empty array.
+    console.error('Error in getProducts:', error);
     return [];
   }
 }
@@ -72,22 +85,34 @@ export default async function CategoryPage({ params }: { params: { slug: string[
 // This function is needed by Next.js to know which dynamic routes to pre-render.
 // We can generate this from our product data.
 export async function generateStaticParams() {
-  // This also needs to fetch from the API now.
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`);
-  if(!res.ok) return [];
-
-  const products: Product[] = await res.json();
-
-  const paths = new Set<string>();
-
-  products.forEach(p => {
-    paths.add(`${p.category}`);
-    if (p.subcategory) {
-      paths.add(`${p.category}/${p.subcategory}`);
+  try {
+    const baseUrl = getBaseUrl();
+    const res = await fetch(`${baseUrl}/api/products`);
+    
+    if(!res.ok) {
+      console.error(`Failed to fetch products for static params: ${res.statusText}`);
+      return [];
     }
-  });
 
-  return Array.from(paths).map(path => ({
-    slug: path.split('/'),
-  }));
+    const products: Product[] = await res.json();
+
+    const paths = new Set<string>();
+
+    products.forEach(p => {
+      // Ensure category is a string before processing
+      if (typeof p.category === 'string' && p.category) {
+        paths.add(p.category.toLowerCase());
+        if (typeof p.subcategory === 'string' && p.subcategory) {
+          paths.add(`${p.category.toLowerCase()}/${p.subcategory.toLowerCase()}`);
+        }
+      }
+    });
+    
+    return Array.from(paths).map(path => ({
+      slug: path.split('/'),
+    }));
+  } catch (error) {
+     console.error('Error in generateStaticParams:', error);
+     return [];
+  }
 }
