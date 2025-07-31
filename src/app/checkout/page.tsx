@@ -21,6 +21,17 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 
+interface ShippingInfo {
+    email: string;
+    country: string;
+    firstName: string;
+    lastName: string;
+    address: string;
+    city: string;
+    postalCode: string;
+    phone: string;
+}
+
 function Logo() {
     return (
         <Link href="/" className="flex items-center">
@@ -45,7 +56,7 @@ function Breadcrumbs({ step }: { step: 'information' | 'shipping' | 'payment' })
     return (
         <nav aria-label="Breadcrumb">
             <ol className="flex items-center text-sm text-gray-500 mb-8 space-x-2">
-                <li><Link href="/cart" className="text-primary hover:underline">Cart</Link></li>
+                <li><Link href="/" className="text-primary hover:underline">Cart</Link></li>
                 {steps.map((s, index) => (
                     <li key={s} className="flex items-center space-x-2">
                         <ChevronLeft className="h-4 w-4 rotate-180 text-gray-400" />
@@ -63,18 +74,38 @@ function Breadcrumbs({ step }: { step: 'information' | 'shipping' | 'payment' })
     )
 }
 
-function InformationStep({ onContinue }: { onContinue: () => void }) {
+function InformationStep({ onContinue, shippingInfo, setShippingInfo }: { onContinue: () => void, shippingInfo: ShippingInfo, setShippingInfo: React.Dispatch<React.SetStateAction<ShippingInfo>> }) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onContinue();
     };
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | string, field: keyof ShippingInfo | 'country') => {
+        if (typeof e === 'string') {
+             setShippingInfo(prev => ({...prev, country: e}));
+        } else {
+            const { id, value } = e.target;
+            setShippingInfo(prev => ({...prev, [id]: value}));
+        }
+    }
+
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
+             <div>
+                <h2 className="text-lg font-semibold mb-2">Contact Information</h2>
+                 <Input 
+                    id="email" 
+                    placeholder="Email" 
+                    type="email" 
+                    className="h-12 rounded-lg" 
+                    value={shippingInfo.email} 
+                    onChange={(e) => handleChange(e, 'email')}
+                    required/>
+            </div>
             <div>
                 <h2 className="text-lg font-semibold mb-4">Shipping address</h2>
                 <div className="space-y-4">
-                    <Select required>
+                    <Select required onValueChange={(value) => handleChange(value, 'country')} value={shippingInfo.country}>
                         <SelectTrigger className="h-12 rounded-lg">
                             <SelectValue placeholder="Country/Region" />
                         </SelectTrigger>
@@ -85,15 +116,15 @@ function InformationStep({ onContinue }: { onContinue: () => void }) {
                         </SelectContent>
                     </Select>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Input placeholder="First name" className="h-12 rounded-lg" required/>
-                        <Input placeholder="Last name" className="h-12 rounded-lg" required/>
+                        <Input id="firstName" placeholder="First name" className="h-12 rounded-lg" required value={shippingInfo.firstName} onChange={(e) => handleChange(e, 'firstName')}/>
+                        <Input id="lastName" placeholder="Last name" className="h-12 rounded-lg" required value={shippingInfo.lastName} onChange={(e) => handleChange(e, 'lastName')}/>
                     </div>
-                    <Input placeholder="Address" className="h-12 rounded-lg" required/>
+                    <Input id="address" placeholder="Address" className="h-12 rounded-lg" required value={shippingInfo.address} onChange={(e) => handleChange(e, 'address')}/>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <Input placeholder="City" className="h-12 rounded-lg" required/>
-                        <Input placeholder="Postal code" className="h-12 rounded-lg" />
+                        <Input id="city" placeholder="City" className="h-12 rounded-lg" required value={shippingInfo.city} onChange={(e) => handleChange(e, 'city')}/>
+                        <Input id="postalCode" placeholder="Postal code" className="h-12 rounded-lg" value={shippingInfo.postalCode} onChange={(e) => handleChange(e, 'postalCode')}/>
                     </div>
-                    <Input placeholder="Phone" type="tel" className="h-12 rounded-lg" required/>
+                    <Input id="phone" placeholder="Phone" type="tel" className="h-12 rounded-lg" required value={shippingInfo.phone} onChange={(e) => handleChange(e, 'phone')}/>
                 </div>
             </div>
             
@@ -113,22 +144,22 @@ function InformationStep({ onContinue }: { onContinue: () => void }) {
     );
 }
 
-function ShippingStep({ onContinue, onBack }: { onContinue: () => void, onBack: () => void }) {
+function ShippingStep({ onContinue, onBack, shippingInfo }: { onContinue: () => void, onBack: () => void, shippingInfo: ShippingInfo }) {
     return (
         <div className="space-y-6">
              <div className="border rounded-lg p-4 text-sm space-y-3">
                 <div className="flex justify-between items-center">
-                    <div className="flex gap-4 items-center">
+                    <div className="flex gap-4 items-center flex-wrap">
                         <span className="text-gray-500 w-16">Contact</span>
-                        <p>demo@example.com</p>
+                        <p>{shippingInfo.email}</p>
                     </div>
                      <button onClick={onBack} className="text-xs text-primary hover:underline">Change</button>
                 </div>
                  <Separator/>
                  <div className="flex justify-between items-center">
-                    <div className="flex gap-4 items-center">
+                    <div className="flex gap-4 items-start flex-wrap">
                         <span className="text-gray-500 w-16">Ship to</span>
-                        <p>123 Fake Street, Anytown, 12345, Pakistan</p>
+                        <p className="flex-1">{shippingInfo.address}, {shippingInfo.city} {shippingInfo.postalCode}, {shippingInfo.country}</p>
                     </div>
                      <button onClick={onBack} className="text-xs text-primary hover:underline">Change</button>
                 </div>
@@ -158,7 +189,7 @@ function ShippingStep({ onContinue, onBack }: { onContinue: () => void, onBack: 
     )
 }
 
-function PaymentStep({ onBack, onPay }: { onBack: () => void, onPay: () => void }) {
+function PaymentStep({ onBack, onPay, shippingInfo }: { onBack: () => void, onPay: () => void, shippingInfo: ShippingInfo }) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onPay();
@@ -168,19 +199,19 @@ function PaymentStep({ onBack, onPay }: { onBack: () => void, onPay: () => void 
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="border rounded-lg p-4 text-sm space-y-3">
                 <div className="flex justify-between items-center">
-                    <div className="flex gap-4 items-center">
+                    <div className="flex gap-4 items-center flex-wrap">
                         <span className="text-gray-500 w-16">Contact</span>
-                        <p>demo@example.com</p>
+                        <p>{shippingInfo.email}</p>
                     </div>
-                    <button type="button" onClick={() => onBack()} className="text-xs text-primary hover:underline">Change</button>
+                    <button type="button" onClick={onBack} className="text-xs text-primary hover:underline">Change</button>
                 </div>
                  <Separator/>
                  <div className="flex justify-between items-center">
-                    <div className="flex gap-4 items-center">
+                    <div className="flex gap-4 items-start flex-wrap">
                         <span className="text-gray-500 w-16">Ship to</span>
-                        <p>123 Fake Street, Anytown, 12345, Pakistan</p>
+                        <p className="flex-1">{shippingInfo.address}, {shippingInfo.city} {shippingInfo.postalCode}, {shippingInfo.country}</p>
                     </div>
-                     <button type="button" onClick={() => onBack()} className="text-xs text-primary hover:underline">Change</button>
+                     <button type="button" onClick={onBack} className="text-xs text-primary hover:underline">Change</button>
                 </div>
                  <Separator/>
                  <div className="flex justify-between items-center">
@@ -214,7 +245,7 @@ function PaymentStep({ onBack, onPay }: { onBack: () => void, onPay: () => void 
             </div>
 
              <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
-                 <button type="button" onClick={() => onBack()} className="flex items-center gap-1 text-primary hover:underline">
+                 <button type="button" onClick={onBack} className="flex items-center gap-1 text-primary hover:underline">
                     <ChevronLeft className="h-4 w-4" />
                     Return to shipping
                 </button>
@@ -230,8 +261,18 @@ function PaymentStep({ onBack, onPay }: { onBack: () => void, onPay: () => void 
 }
 
 export default function CheckoutPage() {
-  const { cartItems } = useAppContext();
+  const { cartItems, setIsCartOpen } = useAppContext();
   const [step, setStep] = useState<'information' | 'shipping' | 'payment'>('information');
+  const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
+    email: '',
+    country: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    postalCode: '',
+    phone: ''
+  });
   const { toast } = useToast();
   const router = useRouter();
 
@@ -253,6 +294,7 @@ export default function CheckoutPage() {
     });
     // In a real app, you would clear the cart here as well.
     router.push('/');
+    setIsCartOpen(false);
   }
 
   return (
@@ -266,9 +308,9 @@ export default function CheckoutPage() {
            
             <Breadcrumbs step={step} />
 
-            {step === 'information' && <InformationStep onContinue={handleContinueToShipping} />}
-            {step === 'shipping' && <ShippingStep onContinue={handleContinueToPayment} onBack={handleBackToInformation}/>}
-            {step === 'payment' && <PaymentStep onBack={handleBackToShipping} onPay={handlePay}/>}
+            {step === 'information' && <InformationStep onContinue={handleContinueToShipping} shippingInfo={shippingInfo} setShippingInfo={setShippingInfo} />}
+            {step === 'shipping' && <ShippingStep onContinue={handleContinueToPayment} onBack={handleBackToInformation} shippingInfo={shippingInfo}/>}
+            {step === 'payment' && <PaymentStep onBack={handleBackToShipping} onPay={handlePay} shippingInfo={shippingInfo}/>}
 
             <footer className="mt-12 pt-6 border-t">
               <p className="text-xs text-gray-500">All rights reserved Maher Zarai Markaz</p>
@@ -282,7 +324,7 @@ export default function CheckoutPage() {
             <div className="lg:hidden flex items-center justify-between mb-8">
                  <Logo />
                  <Link href="/cart" aria-label="Open Cart">
-                    <Button variant="ghost" size="icon" className="relative">
+                    <Button variant="ghost" size="icon" className="relative" onClick={() => setIsCartOpen(true)}>
                         <ShoppingCart className="h-6 w-6" />
                         {cartItems.length > 0 && (
                           <span className="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
@@ -294,7 +336,7 @@ export default function CheckoutPage() {
             </div>
             
             <div className="space-y-4">
-              {cartItems.map((item) => (
+              {cartItems.length > 0 ? cartItems.map((item) => (
                 <div key={item.id} className="flex items-center gap-4">
                   <div className="relative">
                     <Image
@@ -315,7 +357,11 @@ export default function CheckoutPage() {
                   </div>
                   <p className="font-semibold text-sm">Rs. {(item.product.price * item.quantity).toLocaleString()}</p>
                 </div>
-              ))}
+              )) : (
+                <div className="text-center py-10 text-gray-500">
+                    Your cart is empty.
+                </div>
+              )}
             </div>
 
             <Separator className="my-6" />

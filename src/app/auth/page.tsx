@@ -22,9 +22,12 @@ function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
+        <circle cx="12" cy="12" r="10" />
         <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-        <path d="M12 22c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" />
-        <path d="M12 22a10 10 0 0 0 9.9-10h-19.8A10 10 0 0 0 12 22z" />
+        <path d="M12 2a10 10 0 0 0-7.071 2.929" />
+        <path d="M12 22a10 10 0 0 1-7.071-17.071" />
+        <path d="M2 12h20" />
+        <path d="M12 2v20" />
       </svg>
     );
 }
@@ -37,11 +40,8 @@ function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        fill="currentColor"
+        className="text-blue-600"
       >
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
       </svg>
@@ -73,7 +73,7 @@ export default function AuthPage() {
             <TabsTrigger value="signup" className="py-3 text-base">Sign Up</TabsTrigger>
           </TabsList>
           <TabsContent value="login">
-            <Card className="rounded-2xl">
+            <Card className="rounded-2xl shadow-lg">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl font-bold">Welcome Back!</CardTitle>
                 <CardDescription>Log in to access your account and continue shopping.</CardDescription>
@@ -121,7 +121,7 @@ export default function AuthPage() {
             </Card>
           </TabsContent>
           <TabsContent value="signup">
-            <Card className="rounded-2xl">
+            <Card className="rounded-2xl shadow-lg">
               <CardHeader className="text-center">
                 <CardTitle className="text-3xl font-bold">Create an Account</CardTitle>
                 <CardDescription>Join us and get access to exclusive products and offers.</CardDescription>

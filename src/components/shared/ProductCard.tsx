@@ -34,7 +34,7 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
   const renderStars = () => {
     const stars = [];
     const fullStars = Math.floor(product.rating);
-    const hasHalfStar = product.rating % 1 !== 0;
+    const hasHalfStar = product.rating - fullStars >= 0.5;
 
     for (let i = 0; i < fullStars; i++) {
       stars.push(<Star key={`full_${i}`} className="w-4 h-4 text-yellow-400 fill-yellow-400" />);
