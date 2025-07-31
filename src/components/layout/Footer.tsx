@@ -14,11 +14,12 @@ export default function Footer() {
           <div>
             <Link href="/" className="mb-4 inline-block">
               <Image 
-                src="https://placehold.co/200x50.png"
+                src="/logo.png"
                 alt="Maher Zarai Markaz"
                 width={200}
                 height={50}
                 className="object-contain h-[50px]"
+                unoptimized
               />
             </Link>
             <p className="text-muted-foreground mb-4">

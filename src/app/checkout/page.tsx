@@ -37,12 +37,13 @@ function Logo() {
     return (
         <Link href="/" className="flex items-center">
             <Image 
-                src="https://placehold.co/200x50.png" 
+                src="/logo.png"
                 alt="Maher Zarai Markaz" 
                 width={200} 
                 height={50}
                 className="object-contain h-[50px]"
                 priority
+                unoptimized
             />
         </Link>
     );
@@ -105,7 +106,7 @@ function InformationStep({ onContinue, shippingInfo, setShippingInfo }: { onCont
                 <h2 className="text-lg font-semibold mb-4">Shipping address</h2>
                 <div className="space-y-4">
                     <Select required onValueChange={(value) => handleChange(value, 'country')} value={shippingInfo.country} name="country">
-                        <SelectTrigger className="h-12 rounded-lg" id="country">
+                        <SelectTrigger className="h-12 rounded-lg" id="country" name="country">
                             <SelectValue placeholder="Country/Region" />
                         </SelectTrigger>
                         <SelectContent>

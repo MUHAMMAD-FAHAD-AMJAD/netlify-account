@@ -48,12 +48,13 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
                 <Image 
-                  src="https://placehold.co/180x45.png" 
+                  src="/logo.png"
                   alt="Maher Zarai Markaz" 
                   width={180} 
                   height={45}
                   className="object-contain h-[45px]"
                   priority
+                  unoptimized
                 />
             </Link>
           </div>
@@ -121,11 +122,12 @@ export default function Header() {
               <div className="flex justify-between items-center mb-8">
                  <Link href="/" className="flex items-center" onClick={toggleMobileMenu}>
                     <Image 
-                      src="https://placehold.co/160x35.png" 
+                      src="/logo.png"
                       alt="Maher Zarai Markaz" 
                       width={160} 
                       height={35}
                       className="object-contain"
+                      unoptimized
                     />
                  </Link>
                 <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
