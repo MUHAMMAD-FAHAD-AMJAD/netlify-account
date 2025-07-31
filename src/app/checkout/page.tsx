@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppContext } from "@/context/AppContext";
-import { ChevronLeft, ShoppingCart, CreditCard, Calendar, Lock, Banknote, Landmark } from "lucide-react";
+import { ChevronLeft, ShoppingCart, Banknote } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -37,7 +37,7 @@ function Logo() {
     return (
         <Link href="/" className="flex items-center">
             <Image 
-                src="/1.png" 
+                src="/logo.png" 
                 alt="Maher Zarai Markaz" 
                 width={200} 
                 height={50}
@@ -189,7 +189,7 @@ function ShippingStep({ onContinue, onBack, shippingInfo }: { onContinue: () => 
     )
 }
 
-function PaymentStep({ onBack, onPay, shippingInfo }: { onBack: () => void, onPay: () => void, shippingInfo: ShippingInfo }) {
+function PaymentStep({ onBack, onPay, shippingInfo }: { onBack: (step: 'information' | 'shipping') => void, onPay: () => void, shippingInfo: ShippingInfo }) {
     const [paymentMethod, setPaymentMethod] = useState("payfast");
     
     const handleSubmit = (e: React.FormEvent) => {
@@ -234,9 +234,9 @@ function PaymentStep({ onBack, onPay, shippingInfo }: { onBack: () => void, onPa
                             <RadioGroupItem value="payfast" id="payfast" />
                             <span className="font-medium flex-1">PAYFAST (Pay via Debit/Credit/Wallet/Bank Account)</span>
                             <div className="flex items-center gap-1">
-                                <Image src="https://placehold.co/40x25.png?text=VISA" alt="Visa" width={40} height={25} className="object-contain" data-ai-hint="visa logo" />
-                                <Image src="https://placehold.co/40x25.png?text=MC" alt="Mastercard" width={40} height={25} className="object-contain" data-ai-hint="mastercard logo" />
-                                <Image src="https://placehold.co/40x25.png?text=UP" alt="UnionPay" width={40} height={25} className="object-contain" data-ai-hint="unionpay logo" />
+                                <Image src="https://placehold.co/40x25.png" alt="Visa" width={40} height={25} className="object-contain" data-ai-hint="visa logo" />
+                                <Image src="https://placehold.co/40x25.png" alt="Mastercard" width={40} height={25} className="object-contain" data-ai-hint="mastercard logo" />
+                                <Image src="https://placehold.co/40x25.png" alt="UnionPay" width={40} height={25} className="object-contain" data-ai-hint="unionpay logo" />
                             </div>
                         </Label>
                          {paymentMethod === 'payfast' && (
@@ -454,3 +454,5 @@ export default function CheckoutPage() {
     </div>
   );
 }
+
+    
