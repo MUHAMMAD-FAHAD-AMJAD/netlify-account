@@ -35,7 +35,7 @@ export default function Header() {
           <div className="flex-1 lg:flex-none">
             <Link href="/" className="flex items-center">
                 <Image 
-                  src="/logo.png" 
+                  src="/1.png" 
                   alt="Maher Zarai Markaz" 
                   width={180} 
                   height={45}
@@ -104,7 +104,7 @@ export default function Header() {
               <div className="flex justify-between items-center mb-8">
                  <Link href="/" className="flex items-center" onClick={toggleMobileMenu}>
                     <Image 
-                      src="/logo.png" 
+                      src="/1.png" 
                       alt="Maher Zarai Markaz" 
                       width={160} 
                       height={35}
