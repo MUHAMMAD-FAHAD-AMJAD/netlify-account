@@ -1,4 +1,3 @@
-
 import type { Product } from './types';
 
 // This file is now just a mirror of the backend data for local development.
@@ -412,5 +411,3 @@ export const mockProducts: Product[] = [
     description: "Iprodione 20% w/v (18.5% w/w) + Tebuconazole 5% w/v (4.6% w/w)"
   }
 ];
-
-    

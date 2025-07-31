@@ -419,5 +419,3 @@ const mockProducts = [
 ];
 
 module.exports = { mockProducts };
-
-    
