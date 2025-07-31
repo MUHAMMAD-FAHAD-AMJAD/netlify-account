@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppContext } from "@/context/AppContext";
-import { ChevronLeft, ShoppingCart, Lock, CreditCard, Calendar } from "lucide-react";
+import { ChevronLeft, ShoppingCart, CreditCard, Calendar, Lock, Banknote, Landmark } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
@@ -50,22 +51,21 @@ function Logo() {
 }
 
 function Breadcrumbs({ step }: { step: 'information' | 'shipping' | 'payment' }) {
-    const steps = ['information', 'shipping', 'payment'];
+    const steps = ['cart', 'information', 'shipping', 'payment'];
     const currentStepIndex = steps.indexOf(step);
 
     return (
         <nav aria-label="Breadcrumb">
             <ol className="flex items-center text-sm text-gray-500 mb-8 space-x-2">
-                <li><Link href="/cart" className="text-primary hover:underline">Cart</Link></li>
                 {steps.map((s, index) => (
-                    <li key={s} className="flex items-center space-x-2">
-                        <ChevronLeft className="h-4 w-4 rotate-180 text-gray-400" />
+                   <li key={s} className="flex items-center space-x-2">
+                        {index > 0 && <ChevronLeft className="h-4 w-4 rotate-180 text-gray-400" />}
                         <span className={cn(
                             "capitalize",
-                            index === currentStepIndex ? "font-medium text-black" : "",
-                            index > currentStepIndex ? "text-gray-500" : ""
+                            s === step ? "font-medium text-black" : "",
+                            index > currentStepIndex ? "text-gray-500" : "text-primary"
                         )}>
-                            {s}
+                            {s === 'cart' ? <Link href="/cart">Cart</Link> : s}
                         </span>
                     </li>
                 ))}
@@ -190,6 +190,8 @@ function ShippingStep({ onContinue, onBack, shippingInfo }: { onContinue: () => 
 }
 
 function PaymentStep({ onBack, onPay, shippingInfo }: { onBack: () => void, onPay: () => void, shippingInfo: ShippingInfo }) {
+    const [paymentMethod, setPaymentMethod] = useState("payfast");
+    
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onPay();
@@ -203,15 +205,15 @@ function PaymentStep({ onBack, onPay, shippingInfo }: { onBack: () => void, onPa
                         <span className="text-gray-500 w-16">Contact</span>
                         <p>{shippingInfo.email}</p>
                     </div>
-                    <button type="button" onClick={onBack} className="text-xs text-primary hover:underline">Change</button>
+                    <button type="button" onClick={() => onBack('information')} className="text-xs text-primary hover:underline">Change</button>
                 </div>
                  <Separator/>
                  <div className="flex justify-between items-center">
                     <div className="flex gap-4 items-start flex-wrap">
                         <span className="text-gray-500 w-16">Ship to</span>
-                        <p className="flex-1">{shippingInfo.address}, {shippingInfo.city} {shippingInfo.postalCode}, {shippingInfo.country}</p>
+                        <p className="flex-1">{`${shippingInfo.address}, ${shippingInfo.city} ${shippingInfo.postalCode}, ${shippingInfo.country}`}</p>
                     </div>
-                     <button type="button" onClick={onBack} className="text-xs text-primary hover:underline">Change</button>
+                     <button type="button" onClick={() => onBack('information')} className="text-xs text-primary hover:underline">Change</button>
                 </div>
                  <Separator/>
                  <div className="flex justify-between items-center">
@@ -219,33 +221,84 @@ function PaymentStep({ onBack, onPay, shippingInfo }: { onBack: () => void, onPa
                         <span className="text-gray-500 w-16">Method</span>
                         <p>Standard Shipping - FREE</p>
                     </div>
+                    <button type="button" onClick={() => onBack('shipping')} className="text-xs text-primary hover:underline">Change</button>
                 </div>
             </div>
 
             <div>
                 <h2 className="text-lg font-semibold mb-4">Payment</h2>
                 <p className="text-sm text-gray-500">All transactions are secure and encrypted.</p>
-                <div className="border rounded-lg mt-2 bg-gray-50 p-4 space-y-4">
-                     <div className="relative">
-                        <Input id="card-number" placeholder="Card number" className="h-12 rounded-lg bg-white pl-10" required />
-                        <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"/>
+                <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod} className="border rounded-lg mt-2">
+                    <div>
+                        <Label htmlFor="payfast" className={cn("flex items-center gap-4 p-4 border-b cursor-pointer rounded-t-lg", paymentMethod === 'payfast' && "bg-primary/5 border-primary ring-1 ring-primary")}>
+                            <RadioGroupItem value="payfast" id="payfast" />
+                            <span className="font-medium flex-1">PAYFAST (Pay via Debit/Credit/Wallet/Bank Account)</span>
+                            <div className="flex items-center gap-1">
+                                <Image src="https://placehold.co/40x25.png?text=VISA" alt="Visa" width={40} height={25} className="object-contain" data-ai-hint="visa logo" />
+                                <Image src="https://placehold.co/40x25.png?text=MC" alt="Mastercard" width={40} height={25} className="object-contain" data-ai-hint="mastercard logo" />
+                                <Image src="https://placehold.co/40x25.png?text=UP" alt="UnionPay" width={40} height={25} className="object-contain" data-ai-hint="unionpay logo" />
+                            </div>
+                        </Label>
+                         {paymentMethod === 'payfast' && (
+                            <div className="p-6 bg-gray-50/80 text-center text-sm text-gray-600 space-y-4">
+                               <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="48"
+                                  height="48"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="1"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  className="mx-auto text-gray-400"
+                                >
+                                  <rect width="18" height="14" x="3" y="5" rx="2" />
+                                  <line x1="3" x2="21" y1="9" y2="9" />
+                                  <line x1="16" x2="16.01" y1="19" y2="19" />
+                                  <path d="m15 13-3 3 3 3" />
+                                  <path d="M12.5 16H21" />
+                                </svg>
+                                <p>After clicking "Pay now", you will be redirected to PAYFAST (Pay via Debit/Credit/Wallet/Bank Account) to complete your purchase securely.</p>
+                            </div>
+                        )}
                     </div>
-                    <Input placeholder="Name on card" className="h-12 rounded-lg bg-white" required />
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="relative">
-                            <Input id="expiration" placeholder="Expiration date (MM / YY)" className="h-12 rounded-lg bg-white pl-10" required />
-                            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"/>
-                        </div>
-                        <div className="relative">
-                             <Input id="cvc" placeholder="Security code" className="h-12 rounded-lg bg-white pl-10" required />
-                             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"/>
-                        </div>
+                    <div>
+                       <Label htmlFor="cod" className={cn("flex items-center gap-4 p-4 cursor-pointer rounded-b-lg", paymentMethod === 'cod' && "bg-primary/5 border-primary ring-1 ring-primary")}>
+                            <RadioGroupItem value="cod" id="cod" />
+                            <span className="font-medium flex-1">Cash on Delivery (COD)</span>
+                            <Banknote className="h-6 w-6 text-gray-500"/>
+                        </Label>
+                        {paymentMethod === 'cod' && (
+                             <div className="p-6 bg-gray-50/80 text-sm text-gray-600">
+                                <p>You will pay in cash to the delivery person when your order arrives.</p>
+                            </div>
+                        )}
                     </div>
-                </div>
+                </RadioGroup>
+            </div>
+            
+             <div>
+                <h2 className="text-lg font-semibold mb-4">Billing address</h2>
+                <RadioGroup defaultValue="same-as-shipping" className="border rounded-lg mt-2">
+                     <div>
+                        <Label htmlFor="same-as-shipping" className="flex items-center gap-4 p-4 border-b cursor-pointer rounded-t-lg bg-primary/5 border-primary ring-1 ring-primary">
+                            <RadioGroupItem value="same-as-shipping" id="same-as-shipping" />
+                            <span className="font-medium flex-1">Same as shipping address</span>
+                        </Label>
+                    </div>
+                    <div>
+                       <Label htmlFor="different-billing" className="flex items-center gap-4 p-4 cursor-pointer rounded-b-lg text-gray-500">
+                            <RadioGroupItem value="different-billing" id="different-billing" disabled />
+                            <span className="font-medium flex-1">Use a different billing address</span>
+                        </Label>
+                    </div>
+                </RadioGroup>
             </div>
 
+
              <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 mt-8">
-                 <button type="button" onClick={onBack} className="flex items-center gap-1 text-primary hover:underline">
+                 <button type="button" onClick={() => onBack('shipping')} className="flex items-center gap-1 text-primary hover:underline">
                     <ChevronLeft className="h-4 w-4" />
                     Return to shipping
                 </button>
@@ -285,8 +338,11 @@ export default function CheckoutPage() {
   
   const handleContinueToShipping = () => setStep('shipping');
   const handleContinueToPayment = () => setStep('payment');
-  const handleBackToInformation = () => setStep('information');
-  const handleBackToShipping = () => setStep('shipping');
+
+  const handleBack = (toStep: 'information' | 'shipping') => {
+    setStep(toStep);
+  }
+
   const handlePay = () => {
     toast({
         title: "Order Placed!",
@@ -309,8 +365,8 @@ export default function CheckoutPage() {
             <Breadcrumbs step={step} />
 
             {step === 'information' && <InformationStep onContinue={handleContinueToShipping} shippingInfo={shippingInfo} setShippingInfo={setShippingInfo} />}
-            {step === 'shipping' && <ShippingStep onContinue={handleContinueToPayment} onBack={handleBackToInformation} shippingInfo={shippingInfo}/>}
-            {step === 'payment' && <PaymentStep onBack={handleBackToShipping} onPay={handlePay} shippingInfo={shippingInfo}/>}
+            {step === 'shipping' && <ShippingStep onContinue={handleContinueToPayment} onBack={() => handleBack('information')} shippingInfo={shippingInfo}/>}
+            {step === 'payment' && <PaymentStep onBack={handleBack} onPay={handlePay} shippingInfo={shippingInfo}/>}
 
             <footer className="mt-12 pt-6 border-t">
               <p className="text-xs text-gray-500">All rights reserved Maher Zarai Markaz</p>
@@ -398,5 +454,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-
-    
