@@ -37,7 +37,7 @@ function Logo() {
     return (
         <Link href="/" className="flex items-center">
             <Image 
-                src="/logo.png" 
+                src="/1.png" 
                 alt="Maher Zarai Markaz" 
                 width={200} 
                 height={50}

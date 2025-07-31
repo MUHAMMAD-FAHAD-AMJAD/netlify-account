@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from '@/hooks/use-toast';
+import Image from 'next/image';
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
@@ -67,7 +68,21 @@ export default function AuthPage() {
 
   return (
     <div className="flex min-h-[calc(100vh-200px)] items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md space-y-8">
+        <div className="text-center">
+            <Link href="/" className="inline-block">
+                <Image 
+                  src="/1.png" 
+                  alt="Maher Zarai Markaz" 
+                  width={250} 
+                  height={60}
+                  className="object-contain h-[60px] mx-auto"
+                  priority
+                  unoptimized
+                  data-ai-hint="logo"
+                />
+            </Link>
+        </div>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="login" className="py-3 text-base">Login</TabsTrigger>
