@@ -1,8 +1,9 @@
+
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const connectDB = require('../config/db');
 const Product = require('../models/Product');
-const { mockProducts } = require('../../src/lib/products.ts');
+const { mockProducts } = require('./product-data.js');
 
 dotenv.config({ path: './server/.env' });
 
@@ -44,3 +45,5 @@ if (process.argv[2] === '-d') {
 } else {
   importData();
 }
+
+    
