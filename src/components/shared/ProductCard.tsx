@@ -46,7 +46,7 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
 
     const remainingStars = 5 - stars.length;
     for (let i = 0; i < remainingStars; i++) {
-      stars.push(<Star key={`empty_${i}`} className="w-4 h-4 text-gray-300" />);
+      stars.push(<Star key={`empty_${i}`} className="w-4 h-4 text-gray-300 fill-gray-300" />);
     }
 
     return stars;
@@ -122,3 +122,5 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
     </Card>
   );
 }
+
+    

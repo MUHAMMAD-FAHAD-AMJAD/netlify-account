@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
@@ -39,6 +40,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         title: "Added to cart",
         description: `${product.name} (x${quantity}) has been added to your cart.`,
     })
+    setIsCartOpen(true);
   };
 
   const removeFromCart = (itemId: string) => {
@@ -88,3 +90,5 @@ export function useAppContext() {
   }
   return context;
 }
+
+    

@@ -85,7 +85,7 @@ function InformationStep({ onContinue, shippingInfo, setShippingInfo }: { onCont
              setShippingInfo(prev => ({...prev, country: e}));
         } else {
             const { id, value } = e.target;
-            setShippingInfo(prev => ({...prev, [id]: value}));
+            setShippingInfo(prev => ({...prev, [id as keyof ShippingInfo]: value}));
         }
     }
 
@@ -398,3 +398,5 @@ export default function CheckoutPage() {
     </div>
   );
 }
+
+    
