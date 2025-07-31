@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -14,24 +15,44 @@ import {
 import { cn } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
-const products = [
-    { title: "Insecticides", href: "/products/insecticides", description: "Effective solutions to protect your crops from pests." },
-    { title: "Weedicides", href: "/products/weedicides", description: "Control and eliminate unwanted weeds efficiently." },
-    { title: "Fungicides", href: "/products/fungicides", description: "Prevent and treat fungal diseases in your plants." },
-    { title: "Micro Nutrients", href: "/products/micronutrients", description: "Essential nutrients for optimal plant growth." },
-    { title: "Granules", href: "/products/granules", description: "Slow-release granules for sustained nutrient supply." },
-    { title: "Fertilizers", href: "/products/fertilizers", description: "Boost your soil's fertility for a richer harvest." },
+const insecticides = [
+    { title: "Contact Insecticides", href: "/products/insecticides/contact"},
+    { title: "Systemic Insecticides", href: "/products/insecticides/systemic"},
+    { title: "Biological Control", href: "/products/insecticides/biological"},
+]
+
+const herbicides = [
+    { title: "Pre-emergence", href: "/products/herbicides/pre-emergence"},
+    { title: "Post-emergence", href: "/products/herbicides/post-emergence"},
+    { title: "Non-selective", href: "/products/herbicides/non-selective"},
+]
+
+const fungicides = [
+    { title: "Preventive", href: "/products/fungicides/preventive"},
+    { title: "Curative", href: "/products/fungicides/curative"},
+    { title: "Systemic", href: "/products/fungicides/systemic"},
+]
+
+const fertilizers = [
+    { title: "NPK", href: "/products/fertilizers/npk"},
+    { title: "Urea", href: "/products/fertilizers/urea"},
+    { title: "DAP", href: "/products/fertilizers/dap"},
+    { title: "Organic", href: "/products/fertilizers/organic"},
+]
+
+const seeds = [
+    { title: "Wheat", href: "/products/seeds/wheat"},
+    { title: "Rice", href: "/products/seeds/rice"},
+    { title: "Cotton", href: "/products/seeds/cotton"},
+    { title: "Vegetables", href: "/products/seeds/vegetables"},
 ]
 
 const navLinks = [
-    { name: "Home", href: "/" },
-    { 
-        name: "Products", 
-        subLinks: products
-    },
-    { name: "Solutions", href: "/solutions" },
-    { name: "Company", href: "/company" },
-    { name: "Support", href: "/support" },
+    { name: "Insecticides", subLinks: insecticides },
+    { name: "Herbicides", subLinks: herbicides },
+    { name: "Fungicides", subLinks: fungicides },
+    { name: "Fertilizers", subLinks: fertilizers },
+    { name: "Seeds", subLinks: seeds },
 ];
 
 export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
@@ -41,8 +62,8 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
         {navLinks.map((link) => (
           link.subLinks ? (
             <Accordion type="single" collapsible className="w-full" key={link.name}>
-              <AccordionItem value={link.name}>
-                <AccordionTrigger className="text-lg font-semibold py-2">{link.name}</AccordionTrigger>
+              <AccordionItem value={link.name} className="border-b-0">
+                <AccordionTrigger className="text-lg font-medium py-3 hover:no-underline">{link.name}</AccordionTrigger>
                 <AccordionContent>
                   <ul className="pl-4 space-y-2">
                     {link.subLinks.map((sub) => (
@@ -55,7 +76,7 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
               </AccordionItem>
             </Accordion>
           ) : (
-            <Link href={link.href!} key={link.name} className="text-lg font-semibold py-2 hover:text-primary">{link.name}</Link>
+            <Link href={link.href!} key={link.name} className="text-lg font-medium py-3 hover:text-primary">{link.name}</Link>
           )
         ))}
       </div>
@@ -68,15 +89,13 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
         {navLinks.map((link) => (
             link.subLinks ? (
               <NavigationMenuItem key={link.name}>
-                <NavigationMenuTrigger className="text-base font-medium transition-colors hover:text-black focus:text-black data-[active]:text-black data-[state=open]:text-black hover:bg-black hover:text-white focus:bg-black focus:text-white rounded-full">
+                <NavigationMenuTrigger className="text-base font-medium bg-transparent transition-colors hover:text-white focus:text-white data-[active]:text-white data-[state=open]:text-white hover:bg-black focus:bg-black rounded-xl">
                   {link.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[200px] gap-3 p-4 md:w-[250px] lg:w-[300px]">
+                  <ul className="grid w-[200px] gap-1 p-4 md:w-[250px] lg:w-[300px] rounded-2xl shadow-lg">
                     {link.subLinks.map((sub) => (
-                      <ListItem key={sub.title} title={sub.title} href={sub.href}>
-                        {sub.description}
-                      </ListItem>
+                      <ListItem key={sub.title} title={sub.title} href={sub.href} />
                     ))}
                   </ul>
                 </NavigationMenuContent>
@@ -84,7 +103,7 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
             ) : (
                  <NavigationMenuItem key={link.name}>
                     <Link href={link.href!} legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-base font-medium transition-colors hover:text-black focus:text-black data-[active]:text-black data-[state=open]:text-black hover:bg-black hover:text-white focus:bg-black focus:text-white rounded-full")}>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-base font-medium bg-transparent transition-colors hover:text-white focus:text-white hover:bg-black focus:bg-black rounded-xl")}>
                         {link.name}
                         </NavigationMenuLink>
                     </Link>

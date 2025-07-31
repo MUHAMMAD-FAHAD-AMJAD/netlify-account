@@ -33,24 +33,28 @@ export default function Header() {
           </Button>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <Image 
-              src="/logo.png" 
-              alt="Maher Zarai Markaz" 
-              width={180} 
-              height={40}
-              className="object-contain"
-              data-ai-hint="logo"
-            />
-          </Link>
+          <div className="flex-1 flex justify-start lg:justify-center">
+            <Link href="/" className="flex items-center">
+                <Image 
+                  src="/logo.png" 
+                  alt="Maher Zarai Markaz" 
+                  width={180} 
+                  height={45}
+                  className="object-contain h-[45px]"
+                  priority
+                  data-ai-hint="logo"
+                />
+            </Link>
+          </div>
+          
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex justify-center flex-1">
+          <div className="hidden lg:flex justify-center absolute left-1/2 -translate-x-1/2">
             <MainNav />
           </div>
 
           {/* Icons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-1 justify-end">
             <AnimatePresence>
               {isSearchOpen && (
                 <motion.div
