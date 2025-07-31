@@ -1,18 +1,50 @@
-import { mockProducts } from '@/lib/products';
+
+'use server';
+
 import type { Product } from '@/lib/types';
 import Breadcrumbs from '@/components/products/Breadcrumbs';
 import ProductGrid from '@/components/products/ProductGrid';
 import ProductFilters from '@/components/products/ProductFilters';
+import { notFound } from 'next/navigation';
 
-export default function CategoryPage({ params }: { params: { slug: string[] } }) {
+async function getProducts(category?: string, subcategory?: string): Promise<Product[]> {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`, { cache: 'no-store' });
+    if (!res.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    const products: Product[] = await res.json();
+    
+    if (!category) {
+      return products;
+    }
+
+    const filtered = products.filter(p => {
+      const categoryMatch = p.category.toLowerCase() === category.toLowerCase();
+      const subcategoryMatch = subcategory ? p.subcategory.toLowerCase() === subcategory.toLowerCase() : true;
+      return categoryMatch && subcategoryMatch;
+    });
+
+    return filtered;
+  } catch (error) {
+    console.error(error);
+    // In a real app, you might want to show an error page to the user.
+    // For now, we'll return an empty array.
+    return [];
+  }
+}
+
+
+export default async function CategoryPage({ params }: { params: { slug: string[] } }) {
   const { slug } = params;
+
+  if (!slug || slug.length === 0) {
+    notFound();
+  }
+
   const [category, subcategory] = slug;
 
-  const filteredProducts = mockProducts.filter(p => {
-    const categoryMatch = category ? p.category.toLowerCase() === category.toLowerCase() : true;
-    const subcategoryMatch = subcategory ? p.subcategory.toLowerCase() === subcategory.toLowerCase() : true;
-    return categoryMatch && subcategoryMatch;
-  });
+  const filteredProducts = await getProducts(category, subcategory);
 
   const title = subcategory ? subcategory.replace(/-/g, ' ') : category.replace(/-/g, ' ');
 
@@ -34,4 +66,25 @@ export default function CategoryPage({ params }: { params: { slug: string[] } })
       </div>
     </div>
   );
+}
+
+// This function is needed by Next.js to know which dynamic routes to pre-render.
+// We can generate this from our product data.
+export async function generateStaticParams() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/products`);
+  const products: Product[] = await res.json();
+
+  const paths = new Set<string>();
+
+  products.forEach(p => {
+    paths.add(`/products/${p.category}`);
+    if (p.subcategory) {
+      paths.add(`/products/${p.category}/${p.subcategory}`);
+    }
+  });
+
+  return Array.from(paths).map(path => {
+    const slug = path.split('/').filter(s => s && s !== 'products');
+    return { slug };
+  });
 }
