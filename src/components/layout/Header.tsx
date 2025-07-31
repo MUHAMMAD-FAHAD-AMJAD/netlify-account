@@ -33,7 +33,7 @@ export default function Header() {
           </Button>
 
           {/* Logo */}
-          <div className="flex-1 flex justify-start lg:justify-center">
+          <div className="flex-1 lg:flex-none">
             <Link href="/" className="flex items-center">
                 <Image 
                   src="/logo.png" 
@@ -49,12 +49,12 @@ export default function Header() {
           
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex justify-center absolute left-1/2 -translate-x-1/2">
+          <div className="hidden lg:flex flex-1 justify-center">
             <MainNav />
           </div>
 
           {/* Icons */}
-          <div className="flex items-center gap-2 flex-1 justify-end">
+          <div className="flex items-center gap-2 flex-1 lg:flex-none justify-end">
             <AnimatePresence>
               {isSearchOpen && (
                 <motion.div
