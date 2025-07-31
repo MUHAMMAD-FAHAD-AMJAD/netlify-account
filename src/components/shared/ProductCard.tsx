@@ -12,14 +12,16 @@ import Link from 'next/link';
 
 interface ProductCardProps {
   product: Product;
+  onAddToCart: () => void;
+  onViewProduct: () => void;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, onAddToCart, onViewProduct }: ProductCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleMouseEnter = () => {
+    onViewProduct(); // Track recently viewed
     if (product.images.length > 1) {
-      // Simple hover effect, can be expanded to a carousel
       setCurrentImageIndex(1 % product.images.length);
     }
   };
@@ -98,6 +100,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
           <Button
             size="icon"
+            onClick={(e) => {
+                e.stopPropagation(); // prevent link navigation
+                e.preventDefault();
+                onAddToCart();
+            }}
             className={cn(
               "rounded-full h-10 w-10 transition-all duration-300 ease-in-out z-20",
               product.isSoldOut

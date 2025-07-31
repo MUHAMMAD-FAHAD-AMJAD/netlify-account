@@ -1,3 +1,5 @@
+"use client";
+
 import CategoryGrid from "@/components/home/CategoryGrid";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import HeroCarousel from "@/components/home/HeroCarousel";

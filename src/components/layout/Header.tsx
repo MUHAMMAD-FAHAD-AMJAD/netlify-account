@@ -11,12 +11,14 @@ import CartSidebar from '../cart/CartSidebar';
 import { Badge } from '../ui/badge';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
+import { useAppContext } from '@/context/AppContext';
 
 export default function Header() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { cartItems, isCartOpen, setIsCartOpen } = useAppContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const cartItemCount = 2; // Mock count
+  
+  const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -125,7 +127,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      <CartSidebar isOpen={isCartOpen} onOpenChange={setIsCartOpen} />
+      <CartSidebar />
     </>
   );
 }

@@ -1,0 +1,89 @@
+"use client";
+
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import type { Product, CartItem } from '@/lib/types';
+import { mockProducts } from '@/lib/products';
+import { useToast } from '@/hooks/use-toast';
+
+interface AppContextType {
+  cartItems: CartItem[];
+  addToCart: (product: Product) => void;
+  removeFromCart: (itemId: string) => void;
+  updateQuantity: (itemId: string, quantity: number) => void;
+  isCartOpen: boolean;
+  setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  recentlyViewed: Product[];
+  addRecentlyViewed: (product: Product) => void;
+}
+
+const AppContext = createContext<AppContextType | undefined>(undefined);
+
+export function AppProvider({ children }: { children: ReactNode }) {
+  const { toast } = useToast();
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
+
+  const addToCart = (product: Product) => {
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.product.id === product.id);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prevItems, { id: `cart_${product.id}_${Date.now()}`, product, quantity: 1 }];
+    });
+    toast({
+        title: "Added to cart",
+        description: `${product.name} has been added to your cart.`,
+    })
+  };
+
+  const removeFromCart = (itemId: string) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
+
+  const updateQuantity = (itemId: string, quantity: number) => {
+    if (quantity < 1) {
+      removeFromCart(itemId);
+      return;
+    }
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId ? { ...item, quantity } : item
+      )
+    );
+  };
+  
+  const addRecentlyViewed = (product: Product) => {
+    setRecentlyViewed(prev => {
+        const isAlreadyViewed = prev.some(p => p.id === product.id);
+        if (isAlreadyViewed) {
+            return prev;
+        }
+        const updatedList = [product, ...prev];
+        // Keep the list to a reasonable size, e.g., 10
+        if (updatedList.length > 10) {
+            updatedList.pop();
+        }
+        return updatedList;
+    });
+  }
+
+  return (
+    <AppContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, recentlyViewed, addRecentlyViewed }}>
+      {children}
+    </AppContext.Provider>
+  );
+}
+
+export function useAppContext() {
+  const context = useContext(AppContext);
+  if (context === undefined) {
+    throw new Error('useAppContext must be used within an AppProvider');
+  }
+  return context;
+}
