@@ -76,7 +76,7 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
               </AccordionItem>
             </Accordion>
           ) : (
-            <Link href={link.href!} key={link.name} className="text-lg font-medium py-3 hover:text-primary">{link.name}</Link>
+            'href' in link && <Link href={link.href!} key={link.name} className="text-lg font-medium py-3 hover:text-primary">{link.name}</Link>
           )
         ))}
       </div>
@@ -101,7 +101,7 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
                 </NavigationMenuContent>
               </NavigationMenuItem>
             ) : (
-                 <NavigationMenuItem key={link.name}>
+                 'href' in link && <NavigationMenuItem key={link.name}>
                     <Link href={link.href!} legacyBehavior passHref>
                         <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-base font-medium bg-transparent transition-colors hover:text-white focus:text-white hover:bg-black focus:bg-black rounded-xl")}>
                         {link.name}
@@ -116,20 +116,19 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
 }
 
 const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
-  ({ className, title, children, ...props }, ref) => {
+  ({ className, title, ...props }, ref) => {
     return (
       <li>
         <NavigationMenuLink asChild>
           <a
             ref={ref}
             className={cn(
-              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              "block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors text-foreground hover:text-foreground/80 focus:bg-accent focus:text-accent-foreground group",
               className
             )}
             {...props}
           >
-            <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+            <div className="text-sm font-medium leading-none group-hover:underline group-hover:underline-offset-4">{title}</div>
           </a>
         </NavigationMenuLink>
       </li>
@@ -137,3 +136,4 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
   }
 );
 ListItem.displayName = "ListItem";
+
