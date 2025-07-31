@@ -6,30 +6,14 @@ import Breadcrumbs from '@/components/products/Breadcrumbs';
 import ProductGrid from '@/components/products/ProductGrid';
 import ProductFilters from '@/components/products/ProductFilters';
 import { notFound } from 'next/navigation';
+import { mockProducts } from '@/lib/products';
 
-// Helper function to get the base URL for API requests
-function getBaseUrl() {
-  if (process.env.NEXT_PUBLIC_URL) {
-    return process.env.NEXT_PUBLIC_URL;
-  }
-  // If the app is running on Vercel, use the Vercel URL
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  // Fallback for local development
-  return 'http://localhost:3000';
-}
-
+// Helper function to get products. On the server, we can directly access the data source.
+// This avoids making an unnecessary HTTP request to our own API.
 async function getProducts(category?: string, subcategory?: string): Promise<Product[]> {
   try {
-    const baseUrl = getBaseUrl();
-    const res = await fetch(`${baseUrl}/api/products`, { cache: 'no-store' });
-    
-    if (!res.ok) {
-      throw new Error(`Failed to fetch products: ${res.statusText}`);
-    }
-    
-    const products: Product[] = await res.json();
+    // In a real application, this would fetch from your database.
+    const products = mockProducts;
     
     if (!category) {
       return products;
@@ -86,24 +70,18 @@ export default async function CategoryPage({ params }: { params: { slug: string[
 // We can generate this from our product data.
 export async function generateStaticParams() {
   try {
-    const baseUrl = getBaseUrl();
-    const res = await fetch(`${baseUrl}/api/products`);
-    
-    if(!res.ok) {
-      console.error(`Failed to fetch products for static params: ${res.statusText}`);
-      return [];
-    }
-
-    const products: Product[] = await res.json();
+    // Directly use the mock data at build time
+    const products: Product[] = mockProducts;
 
     const paths = new Set<string>();
 
     products.forEach(p => {
       // Ensure category is a string before processing
       if (typeof p.category === 'string' && p.category) {
-        paths.add(p.category.toLowerCase());
+        const cat = p.category.toLowerCase();
+        paths.add(cat);
         if (typeof p.subcategory === 'string' && p.subcategory) {
-          paths.add(`${p.category.toLowerCase()}/${p.subcategory.toLowerCase()}`);
+          paths.add(`${cat}/${p.subcategory.toLowerCase()}`);
         }
       }
     });
