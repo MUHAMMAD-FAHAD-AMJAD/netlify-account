@@ -15,12 +15,21 @@ import ProductCard from "@/components/shared/ProductCard";
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const { addToCart, addRecentlyViewed } = useAppContext();
   const [quantity, setQuantity] = useState(1);
-
+  
+  // Find the product by id from the mock data
   const product = mockProducts.find((p) => p.id === params.id);
 
+  // If no product is found, render the 404 page
   if (!product) {
     notFound();
   }
+
+  // Add the product to the recently viewed list when the component mounts
+  useState(() => {
+    addRecentlyViewed(product);
+  });
+
+  const [mainImage, setMainImage] = useState(product.images[0]);
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
@@ -55,7 +64,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
           <div className="space-y-4">
               <div className="relative aspect-square rounded-2xl overflow-hidden border">
                 <Image
-                    src={product.images[0]}
+                    src={mainImage}
                     alt={product.name}
                     data-ai-hint={product.imageHint}
                     layout="fill"
@@ -73,7 +82,11 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               </div>
                <div className="grid grid-cols-4 gap-4">
                   {product.images.map((img, index) => (
-                      <div key={index} className="aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-primary cursor-pointer">
+                      <div 
+                        key={index} 
+                        className={`aspect-square rounded-lg overflow-hidden border-2 cursor-pointer ${mainImage === img ? 'border-primary' : 'border-transparent'}`}
+                        onClick={() => setMainImage(img)}
+                      >
                            <Image
                                 src={img}
                                 alt={`${product.name} thumbnail ${index+1}`}
@@ -166,6 +179,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
   );
 }
 
+// Generate static pages for all products at build time
 export async function generateStaticParams() {
     try {
       const products: typeof mockProducts = mockProducts;
@@ -176,4 +190,4 @@ export async function generateStaticParams() {
        console.error('Error in generateStaticParams for product pages:', error);
        return [];
     }
-  }
+}

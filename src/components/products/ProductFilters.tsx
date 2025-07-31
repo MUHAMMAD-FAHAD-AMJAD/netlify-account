@@ -18,7 +18,7 @@ const stockStatus = ["In Stock", "Out of Stock"];
 export default function ProductFilters() {
   return (
     <div className="space-y-6 sticky top-24">
-       <Accordion type="multiple" defaultValue={["category", "brands", "price", "stock"]} className="w-full">
+       <Accordion type="multiple" defaultValue={["brands", "price", "stock"]} className="w-full">
         <AccordionItem value="brands">
           <AccordionTrigger className="text-base font-medium">Brands</AccordionTrigger>
           <AccordionContent>
@@ -79,7 +79,7 @@ export default function ProductFilters() {
                 </div>
             </RadioGroup>
         </div>
-        <Button className="w-full h-11" variant="ghost">Clear Filters</Button>
+        <Button className="w-full h-11" variant="outline">Clear Filters</Button>
     </div>
   );
 }
