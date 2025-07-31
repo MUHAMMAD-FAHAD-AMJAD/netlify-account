@@ -52,7 +52,7 @@ export default function Header() {
                   alt="Maher Zarai Markaz" 
                   width={180} 
                   height={45}
-                  className="object-contain h-[45px]"
+                  className="h-[45px] object-contain"
                   priority
                   unoptimized
                 />

@@ -18,7 +18,7 @@ export default function Footer() {
                 alt="Maher Zarai Markaz"
                 width={200}
                 height={50}
-                className="object-contain h-[50px]"
+                className="h-[50px] object-contain"
                 unoptimized
               />
             </Link>

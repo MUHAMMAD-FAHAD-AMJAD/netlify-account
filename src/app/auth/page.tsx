@@ -77,7 +77,7 @@ export default function AuthPage() {
                   alt="Maher Zarai Markaz" 
                   width={250} 
                   height={60}
-                  className="object-contain h-[60px] mx-auto"
+                  className="mx-auto h-[60px] object-contain"
                   priority
                   unoptimized
                 />
