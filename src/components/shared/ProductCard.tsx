@@ -6,8 +6,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Product } from '@/lib/types';
-import { Star, StarHalf } from 'lucide-react';
+import { Star, StarHalf, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +19,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const handleMouseEnter = () => {
     if (product.images.length > 1) {
-      // Logic for image cycling can be added here
+      // Simple hover effect, can be expanded to a carousel
+      setCurrentImageIndex(1 % product.images.length);
     }
   };
 
@@ -39,7 +41,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       stars.push(<StarHalf key="half" className="w-4 h-4 text-yellow-400 fill-yellow-400" />);
     }
 
-    for (let i = stars.length; i < 5; i++) {
+    const remainingStars = 5 - stars.length;
+    for (let i = 0; i < remainingStars; i++) {
       stars.push(<Star key={`empty_${i}`} className="w-4 h-4 text-gray-300 fill-gray-300" />);
     }
 
@@ -48,19 +51,28 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Card
-      className="group relative overflow-hidden rounded-[20px] border-none shadow-md transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1"
+      className="group relative overflow-hidden rounded-[20px] border-none shadow-md transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {product.isSoldOut && (
-        <Badge
-          variant="secondary"
-          className="absolute top-4 left-4 z-10 rounded-full bg-gray-200 text-gray-800"
-        >
-          Sold Out
-        </Badge>
-      )}
-      <div className="aspect-square overflow-hidden bg-gray-50">
+      <Link href="#" className="absolute inset-0 z-10" aria-label={`View ${product.name}`}/>
+      <div className="aspect-square overflow-hidden bg-gray-50 relative">
+         {product.isSoldOut && (
+            <Badge
+            variant="secondary"
+            className="absolute top-3 left-3 z-20 rounded-full bg-gray-900/70 text-white backdrop-blur-sm"
+            >
+            Sold Out
+            </Badge>
+        )}
+        {product.originalPrice && (
+            <Badge
+            variant="destructive"
+            className="absolute top-3 right-3 z-20 rounded-full"
+            >
+            Sale
+            </Badge>
+        )}
         <Image
           src={product.images[currentImageIndex]}
           alt={product.name}
@@ -70,28 +82,32 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
         />
       </div>
-      <CardContent className="p-4 bg-white">
+      <CardContent className="p-4 bg-white flex flex-col flex-1">
         <p className="text-sm text-muted-foreground mb-1">{product.brand}</p>
-        <h3 className="font-bold text-lg leading-tight truncate">{product.name}</h3>
+        <h3 className="font-bold text-lg leading-tight truncate flex-1">{product.name}</h3>
         <div className="flex items-center mt-2">
             {renderStars()}
           <span className="ml-2 text-xs text-muted-foreground">({product.reviews} reviews)</span>
         </div>
         <div className="flex items-baseline justify-between mt-4">
-          <p className="text-2xl font-black text-gray-900">
-            Rs. {product.price.toLocaleString()}
-          </p>
+          <div className="flex items-baseline gap-2">
+            <p className="text-2xl font-black text-gray-900">
+                Rs. {product.price.toLocaleString()}
+            </p>
+            {product.originalPrice && <p className="text-base font-medium text-muted-foreground line-through">Rs. {product.originalPrice.toLocaleString()}</p>}
+          </div>
           <Button
-            size="lg"
+            size="icon"
             className={cn(
-              "rounded-full h-12 text-base transition-all duration-300 ease-in-out",
+              "rounded-full h-10 w-10 transition-all duration-300 ease-in-out z-20",
               product.isSoldOut
                 ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                 : "bg-black text-white border-2 border-transparent hover:bg-white hover:text-black hover:border-black"
             )}
             disabled={product.isSoldOut}
+            aria-label="Add to cart"
           >
-            {product.isSoldOut ? 'Out of Stock' : 'Add to Cart'}
+            <ShoppingCart className="h-5 w-5"/>
           </Button>
         </div>
       </CardContent>

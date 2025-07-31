@@ -1,52 +1,8 @@
 import ProductCard from '@/components/shared/ProductCard';
-import type { Product } from '@/lib/types';
+import { mockProducts } from '@/lib/products';
 
-const featuredProducts: Product[] = [
-  {
-    id: '1',
-    name: 'Contact Insecticide',
-    brand: 'FMC',
-    price: 1250,
-    images: ['https://placehold.co/400x400', 'https://placehold.co/400x400', 'https://placehold.co/400x400'],
-    rating: 4.5,
-    reviews: 112,
-    isSoldOut: false,
-    imageHint: 'insecticide bottle'
-  },
-  {
-    id: '2',
-    name: 'Non-selective Herbicide',
-    brand: 'Syngenta',
-    price: 2100,
-    images: ['https://placehold.co/400x400', 'https://placehold.co/400x400'],
-    rating: 4.8,
-    reviews: 98,
-    isSoldOut: false,
-    imageHint: 'herbicide spray'
-  },
-  {
-    id: '3',
-    name: 'NPK Fertilizer',
-    brand: 'Engro',
-    price: 3500,
-    images: ['https://placehold.co/400x400'],
-    rating: 5,
-    reviews: 254,
-    isSoldOut: true,
-    imageHint: 'fertilizer bag'
-  },
-  {
-    id: '4',
-    name: 'Hybrid Wheat Seeds',
-    brand: 'Maher Seeds',
-    price: 4200,
-    images: ['https://placehold.co/400x400', 'https://placehold.co/400x400'],
-    rating: 4.9,
-    reviews: 310,
-    isSoldOut: false,
-    imageHint: 'wheat seeds'
-  },
-];
+// Get a few products to feature on the home page
+const featuredProducts = mockProducts.filter(p => ['insect-1', 'herbi-2', 'fert-1', 'seed-1'].includes(p.id));
 
 export default function FeaturedProducts() {
   return (
