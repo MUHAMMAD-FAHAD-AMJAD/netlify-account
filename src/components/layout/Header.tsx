@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -42,6 +41,7 @@ export default function Header() {
                   height={45}
                   className="object-contain h-[45px]"
                   priority
+                  unoptimized
                   data-ai-hint="logo"
                 />
             </Link>
@@ -109,6 +109,7 @@ export default function Header() {
                       width={160} 
                       height={35}
                       className="object-contain"
+                      unoptimized
                       data-ai-hint="logo"
                     />
                  </Link>
