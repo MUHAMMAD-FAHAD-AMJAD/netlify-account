@@ -11,12 +11,11 @@ import {
 } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 import type { CartItem, Product } from "@/lib/types";
 import { Minus, Plus, Trash2, X } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
-import { Separator } from "../ui/separator";
+import { cn } from "@/lib/utils";
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -28,22 +27,22 @@ const initialCartItems: CartItem[] = [
     id: "1",
     product: {
       id: "prod1",
-      name: "Systemic Insecticide",
+      name: "Organic Fertilizer",
       brand: "Syngenta",
-      price: 1500,
+      price: 2500,
       images: ["https://placehold.co/100x100"],
       rating: 4.5,
       reviews: 120,
     },
-    quantity: 1,
+    quantity: 4,
   },
   {
     id: "2",
     product: {
       id: "prod2",
-      name: "Organic Fertilizer",
+      name: "Pre-emergence Herbicide",
       brand: "Engro",
-      price: 2500,
+      price: 1800,
       images: ["https://placehold.co/100x100"],
       rating: 5,
       reviews: 88,
@@ -55,7 +54,7 @@ const initialCartItems: CartItem[] = [
 const mockRecentlyViewed: Product[] = [
   {
     id: "prod3",
-    name: "Pre-emergence Herbicide",
+    name: "Systemic Insecticide",
     brand: "Bayer",
     price: 1800,
     images: ["https://placehold.co/100x100"],
@@ -75,6 +74,7 @@ const mockRecentlyViewed: Product[] = [
 
 export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) {
   const [cartItems, setCartItems] = useState(initialCartItems);
+  const [activeTab, setActiveTab] = useState("cart");
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.product.price * item.quantity,
@@ -96,7 +96,7 @@ export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) 
   const handleRemoveItem = (itemId: string) => {
     setCartItems(cartItems.filter((item) => item.id !== itemId));
   };
-  
+
   const handleAddItemFromRecent = (product: Product) => {
     const existingItem = cartItems.find(item => item.product.id === product.id);
     if (existingItem) {
@@ -109,23 +109,24 @@ export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) 
       };
       setCartItems([...cartItems, newItem]);
     }
+    setActiveTab("cart");
   };
 
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="w-full sm:max-w-md flex flex-col p-0 bg-white">
         <SheetHeader className="p-4 border-b flex-row items-center justify-between">
-          <SheetTitle className="text-xl font-bold text-charcoal">Shopping Cart</SheetTitle>
+          <SheetTitle className="text-xl font-bold">Shopping Cart</SheetTitle>
            <SheetClose asChild>
               <Button variant="ghost" size="icon">
                 <X className="h-5 w-5" />
               </Button>
             </SheetClose>
         </SheetHeader>
-        <Tabs defaultValue="cart" className="flex-1 flex flex-col overflow-hidden">
-          <TabsList className="grid w-full grid-cols-2 rounded-none px-4 pt-2 bg-transparent h-auto">
-            <TabsTrigger value="cart" className="pb-2 text-base font-semibold rounded-none data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary text-gray-500 data-[state=inactive]:border-b-2 data-[state=inactive]:border-transparent">Cart</TabsTrigger>
-            <TabsTrigger value="recent" className="pb-2 text-base font-semibold rounded-none data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary text-gray-500 data-[state=inactive]:border-b-2 data-[state=inactive]:border-transparent">Recently viewed</TabsTrigger>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col overflow-hidden">
+          <TabsList className="grid w-full grid-cols-2 rounded-none p-0 bg-transparent border-b h-auto">
+            <TabsTrigger value="cart" className="py-3 text-base font-medium rounded-none data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-green-600 data-[state=active]:text-green-600 text-gray-500 data-[state=inactive]:border-b-2 data-[state=inactive]:border-transparent">Cart</TabsTrigger>
+            <TabsTrigger value="recent" className="py-3 text-base font-medium rounded-none data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-green-600 data-[state=active]:text-green-600 text-gray-500 data-[state=inactive]:border-b-2 data-[state=inactive]:border-transparent">Recently viewed</TabsTrigger>
           </TabsList>
           <ScrollArea className="flex-1">
             <TabsContent value="cart" className="flex-1 p-4 flex flex-col gap-6 mt-0">
@@ -136,27 +137,27 @@ export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) 
                       data-ai-hint="product agriculture"
                       src={item.product.images[0]}
                       alt={item.product.name}
-                      width={90}
-                      height={90}
-                      className="rounded-lg border object-cover"
+                      width={80}
+                      height={80}
+                      className="rounded-lg border object-cover aspect-square"
                     />
-                    <div className="flex-1 flex flex-col gap-1">
+                    <div className="flex-1 flex flex-col">
                         <div className="flex justify-between items-start">
                             <div>
-                                <h4 className="font-semibold text-base text-charcoal">{item.product.name}</h4>
+                                <h4 className="font-medium text-base">{item.product.name}</h4>
                                 <p className="text-sm text-muted-foreground">Rs. {item.product.price.toLocaleString()}</p>
                             </div>
                              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive" onClick={() => handleRemoveItem(item.id)}>
                                 <Trash2 className="h-4 w-4"/>
                             </Button>
                         </div>
-                      <div className="flex items-center">
-                         <div className="flex items-center gap-2 border rounded-full p-1">
-                          <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full hover:bg-black hover:text-white" onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>
+                      <div className="flex items-center mt-2">
+                         <div className="flex items-center gap-2 border rounded-full py-1 px-2">
+                          <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full" onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>
                               <Minus className="h-4 w-4" />
                           </Button>
-                          <span className="w-5 text-center font-semibold">{item.quantity}</span>
-                           <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full hover:bg-black hover:text-white" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
+                          <span className="w-5 text-center font-medium text-sm">{item.quantity}</span>
+                           <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
                               <Plus className="h-4 w-4" />
                           </Button>
                          </div>
@@ -183,25 +184,25 @@ export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) 
                     className="rounded-lg border object-cover"
                   />
                   <div className="flex-1">
-                    <h5 className="font-semibold text-sm">{product.name}</h5>
+                    <h5 className="font-medium text-sm">{product.name}</h5>
                     <p className="text-sm text-muted-foreground">Rs. {product.price.toLocaleString()}</p>
                   </div>
-                  <Button size="icon" className="rounded-full w-10 h-10 bg-black text-white transition-colors duration-300 hover:bg-white hover:text-black border-2 border-black" onClick={() => handleAddItemFromRecent(product)}>
-                      <Plus className="h-5 w-5" />
+                   <Button size="sm" variant="outline" className="rounded-full" onClick={() => handleAddItemFromRecent(product)}>
+                      Add
                   </Button>
                 </div>
               ))}
             </TabsContent>
           </ScrollArea>
-          {cartItems.length > 0 && (
-             <SheetFooter className="p-4 border-t flex flex-col gap-4 bg-gray-50/80 backdrop-blur-sm">
-                <div className="flex justify-between items-center font-bold text-lg">
-                    <span>Subtotal</span>
-                    <span>Rs. {subtotal.toLocaleString()}</span>
+          {cartItems.length > 0 && activeTab === 'cart' && (
+             <SheetFooter className="p-4 border-t flex flex-col gap-4 bg-gray-50/80 backdrop-blur-sm sm:flex-col sm:items-stretch sm:justify-start">
+                <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Subtotal</span>
+                    <span className="font-bold text-xl">Rs. {subtotal.toLocaleString()}</span>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                    <Button variant="outline" className="rounded-full h-12 text-base font-semibold border-2 border-black hover:bg-black hover:text-white">View Cart</Button>
-                    <Button className="rounded-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800">Checkout</Button>
+                <div className="grid grid-cols-2 gap-3">
+                    <Button variant="outline" className="rounded-full h-11 text-base font-semibold border-2 border-black hover:bg-black hover:text-white">View Cart</Button>
+                    <Button className="rounded-full h-11 text-base font-semibold bg-black text-white hover:bg-gray-800">Checkout</Button>
                 </div>
              </SheetFooter>
           )}
