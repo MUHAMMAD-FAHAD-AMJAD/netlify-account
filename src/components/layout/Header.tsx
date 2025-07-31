@@ -14,7 +14,7 @@ import Image from 'next/image';
 import { useAppContext } from '@/context/AppContext';
 
 export default function Header() {
-  const { cartItems, isCartOpen, setIsCartOpen } = useAppContext();
+  const { cartItems, setIsCartOpen } = useAppContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   
