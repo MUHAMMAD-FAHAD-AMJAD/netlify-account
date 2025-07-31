@@ -10,11 +10,29 @@ import type { Product } from '@/lib/types';
 import { Star, StarHalf, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { Skeleton } from '../ui/skeleton';
 
 interface ProductCardProps {
   product: Product;
   onAddToCart: () => void;
   onViewProduct: () => void;
+}
+
+export function ProductCardSkeleton() {
+  return (
+    <div className="flex flex-col gap-4">
+      <Skeleton className="aspect-square rounded-2xl" />
+      <div className="flex flex-col gap-2">
+        <Skeleton className="h-4 w-1/4" />
+        <Skeleton className="h-4 w-3/4" />
+        <Skeleton className="h-4 w-1/2" />
+      </div>
+      <div className="flex justify-between items-center">
+        <Skeleton className="h-6 w-1/3" />
+        <Skeleton className="h-10 w-10 rounded-full" />
+      </div>
+    </div>
+  )
 }
 
 export default function ProductCard({ product, onAddToCart, onViewProduct }: ProductCardProps) {
@@ -83,6 +101,7 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
           width={400}
           height={400}
           className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
+          unoptimized
         />
       </div>
       <CardContent className="p-4 flex flex-col flex-1">
