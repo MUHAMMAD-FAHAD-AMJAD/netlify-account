@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -10,19 +11,19 @@ import {
 } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
 import type { CartItem, Product } from "@/lib/types";
 import { Minus, Plus, Trash2, X } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
+import { Separator } from "../ui/separator";
 
 interface CartSidebarProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
 }
 
-const mockCartItems: CartItem[] = [
+const initialCartItems: CartItem[] = [
   {
     id: "1",
     product: {
@@ -73,57 +74,89 @@ const mockRecentlyViewed: Product[] = [
 ];
 
 export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) {
-  const subtotal = mockCartItems.reduce(
+  const [cartItems, setCartItems] = useState(initialCartItems);
+
+  const subtotal = cartItems.reduce(
     (acc, item) => acc + item.product.price * item.quantity,
     0
   );
 
+  const handleQuantityChange = (itemId: string, newQuantity: number) => {
+    if (newQuantity < 1) {
+      handleRemoveItem(itemId);
+      return;
+    }
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
+  const handleRemoveItem = (itemId: string) => {
+    setCartItems(cartItems.filter((item) => item.id !== itemId));
+  };
+  
+  const handleAddItemFromRecent = (product: Product) => {
+    const existingItem = cartItems.find(item => item.product.id === product.id);
+    if (existingItem) {
+      handleQuantityChange(existingItem.id, existingItem.quantity + 1);
+    } else {
+      const newItem: CartItem = {
+        id: `cart_${product.id}`,
+        product: product,
+        quantity: 1,
+      };
+      setCartItems([...cartItems, newItem]);
+    }
+  };
+
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
-      <SheetContent className="w-full sm:max-w-md flex flex-col p-0">
+      <SheetContent className="w-full sm:max-w-md flex flex-col p-0 bg-white">
         <SheetHeader className="p-4 border-b flex-row items-center justify-between">
-          <SheetTitle className="text-xl font-bold">Your Cart</SheetTitle>
+          <SheetTitle className="text-xl font-bold text-charcoal">Shopping Cart</SheetTitle>
            <SheetClose asChild>
               <Button variant="ghost" size="icon">
                 <X className="h-5 w-5" />
               </Button>
             </SheetClose>
         </SheetHeader>
-        <Tabs defaultValue="cart" className="flex-1 flex flex-col">
-          <TabsList className="grid w-full grid-cols-2 rounded-none px-4 pt-4 bg-transparent">
-            <TabsTrigger value="cart" className="pb-3 rounded-none data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary">Cart</TabsTrigger>
-            <TabsTrigger value="recent" className="pb-3 rounded-none data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary">Recently viewed</TabsTrigger>
+        <Tabs defaultValue="cart" className="flex-1 flex flex-col overflow-hidden">
+          <TabsList className="grid w-full grid-cols-2 rounded-none px-4 pt-2 bg-transparent h-auto">
+            <TabsTrigger value="cart" className="pb-2 text-base font-semibold rounded-none data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary text-gray-500 data-[state=inactive]:border-b-2 data-[state=inactive]:border-transparent">Cart</TabsTrigger>
+            <TabsTrigger value="recent" className="pb-2 text-base font-semibold rounded-none data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary text-gray-500 data-[state=inactive]:border-b-2 data-[state=inactive]:border-transparent">Recently viewed</TabsTrigger>
           </TabsList>
           <ScrollArea className="flex-1">
             <TabsContent value="cart" className="flex-1 p-4 flex flex-col gap-6 mt-0">
-              {mockCartItems.length > 0 ? (
-                mockCartItems.map((item) => (
+              {cartItems.length > 0 ? (
+                cartItems.map((item) => (
                   <div key={item.id} className="flex gap-4">
                     <Image
                       data-ai-hint="product agriculture"
                       src={item.product.images[0]}
                       alt={item.product.name}
-                      width={80}
-                      height={80}
+                      width={90}
+                      height={90}
                       className="rounded-lg border object-cover"
                     />
-                    <div className="flex-1 flex flex-col gap-2">
+                    <div className="flex-1 flex flex-col gap-1">
                         <div className="flex justify-between items-start">
                             <div>
-                                <h4 className="font-semibold">{item.product.name}</h4>
+                                <h4 className="font-semibold text-base text-charcoal">{item.product.name}</h4>
                                 <p className="text-sm text-muted-foreground">Rs. {item.product.price.toLocaleString()}</p>
                             </div>
-                             <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive">
+                             <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive" onClick={() => handleRemoveItem(item.id)}>
                                 <Trash2 className="h-4 w-4"/>
                             </Button>
                         </div>
                       <div className="flex items-center">
                          <div className="flex items-center gap-2 border rounded-full p-1">
-                          <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full">
+                          <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full hover:bg-black hover:text-white" onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>
                               <Minus className="h-4 w-4" />
                           </Button>
-                          <span className="w-4 text-center">{item.quantity}</span>
-                           <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full">
+                          <span className="w-5 text-center font-semibold">{item.quantity}</span>
+                           <Button variant="ghost" size="icon" className="h-6 w-6 rounded-full hover:bg-black hover:text-white" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
                               <Plus className="h-4 w-4" />
                           </Button>
                          </div>
@@ -133,7 +166,8 @@ export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) 
                 ))
               ) : (
                 <div className="text-center text-muted-foreground flex-1 flex flex-col items-center justify-center h-full py-20">
-                  <p>Your cart is empty.</p>
+                  <p className="text-lg">Your cart is empty.</p>
+                  <p className="text-sm">Add items to get started!</p>
                 </div>
               )}
             </TabsContent>
@@ -152,22 +186,22 @@ export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) 
                     <h5 className="font-semibold text-sm">{product.name}</h5>
                     <p className="text-sm text-muted-foreground">Rs. {product.price.toLocaleString()}</p>
                   </div>
-                  <Button size="icon" className="rounded-full w-10 h-10 bg-primary text-primary-foreground transition-colors duration-300 hover:bg-primary/80">
+                  <Button size="icon" className="rounded-full w-10 h-10 bg-black text-white transition-colors duration-300 hover:bg-white hover:text-black border-2 border-black" onClick={() => handleAddItemFromRecent(product)}>
                       <Plus className="h-5 w-5" />
                   </Button>
                 </div>
               ))}
             </TabsContent>
           </ScrollArea>
-          {mockCartItems.length > 0 && (
-             <SheetFooter className="p-4 border-t flex flex-col gap-4 bg-background">
+          {cartItems.length > 0 && (
+             <SheetFooter className="p-4 border-t flex flex-col gap-4 bg-gray-50/80 backdrop-blur-sm">
                 <div className="flex justify-between items-center font-bold text-lg">
                     <span>Subtotal</span>
                     <span>Rs. {subtotal.toLocaleString()}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                    <Button variant="outline" className="rounded-full h-12">View Cart</Button>
-                    <Button className="rounded-full h-12">Checkout</Button>
+                    <Button variant="outline" className="rounded-full h-12 text-base font-semibold border-2 border-black hover:bg-black hover:text-white">View Cart</Button>
+                    <Button className="rounded-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800">Checkout</Button>
                 </div>
              </SheetFooter>
           )}
