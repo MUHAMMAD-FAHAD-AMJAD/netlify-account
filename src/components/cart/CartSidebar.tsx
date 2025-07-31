@@ -15,6 +15,7 @@ import Image from "next/image";
 import type { CartItem, Product } from "@/lib/types";
 import { Minus, Plus, Trash2, X } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface CartSidebarProps {
@@ -201,8 +202,16 @@ export default function CartSidebar({ isOpen, onOpenChange }: CartSidebarProps) 
                     <span className="font-bold text-xl">Rs. {subtotal.toLocaleString()}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                    <Button variant="outline" className="rounded-full h-11 text-base font-semibold border-2 border-black hover:bg-black hover:text-white">View Cart</Button>
-                    <Button className="rounded-full h-11 text-base font-semibold bg-black text-white hover:bg-gray-800">Checkout</Button>
+                    <Link href="/checkout" passHref>
+                        <Button asChild variant="outline" className="w-full rounded-full h-11 text-base font-semibold border-2 border-black hover:bg-black hover:text-white">
+                           <span>View Cart</span>
+                        </Button>
+                    </Link>
+                    <Link href="/checkout" passHref>
+                        <Button asChild className="w-full rounded-full h-11 text-base font-semibold bg-black text-white hover:bg-gray-800">
+                           <span>Checkout</span>
+                        </Button>
+                    </Link>
                 </div>
              </SheetFooter>
           )}
