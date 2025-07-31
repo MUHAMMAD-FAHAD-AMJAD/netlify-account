@@ -1,18 +1,10 @@
-
 "use client";
 
 import * as React from "react";
 import Link from "next/link";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
 const insecticides = [
@@ -55,6 +47,49 @@ const navLinks = [
     { name: "Seeds", subLinks: seeds },
 ];
 
+const NavItem = ({ link }: { link: typeof navLinks[0] }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <button
+        className={cn(
+          "text-base font-medium transition-colors duration-300 rounded-full px-4 py-2",
+          isHovered ? "bg-black text-white" : "bg-transparent text-black"
+        )}
+      >
+        {link.name}
+      </button>
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white rounded-lg shadow-lg p-2 z-20"
+          >
+            <ul className="flex flex-col gap-1">
+              {link.subLinks.map((sub) => (
+                <li key={sub.title}>
+                   <Link href={sub.href} className="block w-full text-left px-3 py-2 text-sm text-black hover:underline rounded-md">
+                      {sub.title}
+                   </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+
 export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
   if (isMobile) {
     return (
@@ -84,46 +119,10 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
   }
 
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        {navLinks.map((link) => (
-          <NavigationMenuItem key={link.name} value={link.name}>
-            <NavigationMenuTrigger className="text-base font-medium bg-transparent transition-colors hover:text-white focus:text-white data-[active]:text-white data-[state=open]:text-white hover:bg-black focus:bg-black rounded-xl">
-              {link.name}
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[200px] gap-1 p-4 md:w-[250px] lg:w-[300px]">
-                {link.subLinks.map((sub) => (
-                  <ListItem key={sub.title} title={sub.title} href={sub.href} />
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-      <NavigationMenuViewport />
-    </NavigationMenu>
+     <nav className="flex gap-2">
+      {navLinks.map((link) => (
+        <NavItem key={link.name} link={link} />
+      ))}
+    </nav>
   );
 }
-
-const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(
-  ({ className, title, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <a
-            ref={ref}
-            className={cn(
-              "block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors text-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground group",
-              className
-            )}
-            {...props}
-          >
-            <div className="text-sm font-medium leading-none group-hover:underline group-hover:underline-offset-4">{title}</div>
-          </a>
-        </NavigationMenuLink>
-      </li>
-    );
-  }
-);
-ListItem.displayName = "ListItem";
