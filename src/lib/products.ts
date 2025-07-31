@@ -7,14 +7,15 @@ export const mockProducts: Product[] = [
     name: 'Contact Insecticide',
     brand: 'FMC',
     price: 1250,
-    images: ['https://placehold.co/400x400'],
+    images: ['https://placehold.co/400x400', 'https://placehold.co/400x400.png?text=Side+View'],
     rating: 4.5,
     reviews: 112,
     isSoldOut: false,
     imageHint: 'insecticide bottle',
     category: 'insecticides',
     subcategory: 'contact',
-    tags: ['pest-control', 'fast-acting']
+    tags: ['pest-control', 'fast-acting'],
+    description: 'A powerful, fast-acting contact insecticide that provides immediate control of a wide range of pests. Ideal for quick knockdown of infestations on various crops. Safe for use when following label directions.'
   },
   {
     id: 'insect-2',
@@ -29,7 +30,8 @@ export const mockProducts: Product[] = [
     imageHint: 'systemic insecticide',
     category: 'insecticides',
     subcategory: 'systemic',
-    tags: ['long-lasting', 'plant-protection']
+    tags: ['long-lasting', 'plant-protection'],
+    description: 'Provides long-lasting, systemic protection from within the plant. Absorbed by the roots and foliage, it controls sucking and chewing insects for weeks, ensuring your crops stay healthy and vibrant.'
   },
   {
     id: 'insect-3',
@@ -43,7 +45,8 @@ export const mockProducts: Product[] = [
     imageHint: 'neem oil bottle',
     category: 'insecticides',
     subcategory: 'biological',
-    tags: ['organic', 'eco-friendly']
+    tags: ['organic', 'eco-friendly'],
+    description: 'An all-natural, organic solution for pest control. Cold-pressed Neem Oil acts as an antifeedant, repellent, and insect growth regulator. Safe for beneficial insects, pets, and the environment.'
   },
 
   // Herbicides
@@ -59,7 +62,8 @@ export const mockProducts: Product[] = [
     imageHint: 'herbicide granules',
     category: 'herbicides',
     subcategory: 'pre-emergence',
-    tags: ['weed-prevention', 'seasonal']
+    tags: ['weed-prevention', 'seasonal'],
+    description: 'Apply before weeds germinate to create a protective barrier in the soil. This pre-emergence herbicide provides season-long control of grasses and broadleaf weeds, ensuring a clean field for your crops.'
   },
   {
     id: 'herbi-2',
@@ -73,7 +77,8 @@ export const mockProducts: Product[] = [
     imageHint: 'herbicide spray bottle',
     category: 'herbicides',
     subcategory: 'post-emergence',
-    tags: ['weed-killer', 'fast-acting']
+    tags: ['weed-killer', 'fast-acting'],
+    description: 'A selective post-emergence herbicide designed to control tough broadleaf weeds in established lawns and crops without harming the desired plants. Visible results in just 24-48 hours.'
   },
   {
     id: 'herbi-3',
@@ -87,7 +92,8 @@ export const mockProducts: Product[] = [
     imageHint: 'industrial herbicide',
     category: 'herbicides',
     subcategory: 'non-selective',
-    tags: ['total-kill', 'industrial-use']
+    tags: ['total-kill', 'industrial-use'],
+    description: 'A powerful, non-selective herbicide for total vegetation control on non-crop areas like fencerows, driveways, and industrial sites. Kills all green plants, roots and all. Use with caution.'
   },
 
   // Fungicides
@@ -103,7 +109,8 @@ export const mockProducts: Product[] = [
     imageHint: 'fungicide powder',
     category: 'fungicides',
     subcategory: 'preventive',
-    tags: ['disease-control', 'protection']
+    tags: ['disease-control', 'protection'],
+    description: 'A broad-spectrum, preventive fungicide that protects plants from a variety of fungal diseases. Apply before disease is present to ensure your vegetables, fruits, and ornamentals stay healthy.'
   },
   {
     id: 'fungi-2',
@@ -117,7 +124,8 @@ export const mockProducts: Product[] = [
     imageHint: 'liquid fungicide',
     category: 'fungicides',
     subcategory: 'curative',
-    tags: ['treatment', 'fast-acting']
+    tags: ['treatment', 'fast-acting'],
+    description: 'Stops fungal diseases in their tracks. This curative fungicide is absorbed quickly by the plant to fight existing infections of powdery mildew, rust, black spot, and more. Includes a surfactant for better coverage.'
   },
    {
     id: 'fungi-3',
@@ -131,7 +139,8 @@ export const mockProducts: Product[] = [
     imageHint: 'systemic fungicide bottle',
     category: 'fungicides',
     subcategory: 'systemic',
-    tags: ['long-lasting', 'broad-spectrum']
+    tags: ['long-lasting', 'broad-spectrum'],
+    description: 'Our most advanced systemic fungicide provides complete plant protection from the inside out. It offers both curative and preventive action against a wide spectrum of diseases for up to 4 weeks.'
   },
 
   // Fertilizers
@@ -147,7 +156,8 @@ export const mockProducts: Product[] = [
     imageHint: 'fertilizer bag',
     category: 'fertilizers',
     subcategory: 'npk',
-    tags: ['balanced-nutrition', 'all-purpose']
+    tags: ['balanced-nutrition', 'all-purpose'],
+    description: 'A balanced, all-purpose water-soluble fertilizer with an NPK ratio of 20-20-20. Promotes vigorous growth, lush foliage, and abundant blooms and fruit. Ideal for all types of plants.'
   },
   {
     id: 'fert-2',
@@ -161,7 +171,8 @@ export const mockProducts: Product[] = [
     imageHint: 'urea bag',
     category: 'fertilizers',
     subcategory: 'urea',
-    tags: ['high-nitrogen', 'growth-booster']
+    tags: ['high-nitrogen', 'growth-booster'],
+    description: 'High-nitrogen Urea (46-0-0) promotes rapid, green leafy growth. An essential component for staple crops like corn and wheat, ensuring maximum yield potential. Must be incorporated into the soil to prevent nitrogen loss.'
   },
   {
     id: 'fert-3',
@@ -175,7 +186,8 @@ export const mockProducts: Product[] = [
     imageHint: 'dap fertilizer bag',
     category: 'fertilizers',
     subcategory: 'dap',
-    tags: ['phosphorus-rich', 'root-development']
+    tags: ['phosphorus-rich', 'root-development'],
+    description: 'Di-Ammonium Phosphate (DAP) is a rich source of phosphorus and nitrogen, crucial for strong root development and early plant growth. The preferred fertilizer for establishing healthy crops at planting time.'
   },
   {
     id: 'fert-4',
@@ -189,7 +201,8 @@ export const mockProducts: Product[] = [
     imageHint: 'compost bag',
     category: 'fertilizers',
     subcategory: 'organic',
-    tags: ['soil-health', 'eco-friendly']
+    tags: ['soil-health', 'eco-friendly'],
+    description: 'Improve your soil structure, moisture retention, and microbial activity with our premium organic compost. Made from all-natural materials, it provides a slow-release source of essential plant nutrients.'
   },
   
   // Seeds
@@ -205,7 +218,8 @@ export const mockProducts: Product[] = [
     imageHint: 'wheat seeds bag',
     category: 'seeds',
     subcategory: 'wheat',
-    tags: ['high-yield', 'disease-resistant']
+    tags: ['high-yield', 'disease-resistant'],
+    description: 'Our premier hybrid wheat seeds are selected for high yield potential, excellent grain quality, and strong resistance to common diseases like rust and powdery mildew. Maximize your harvest with Maher Seeds.'
   },
   {
     id: 'seed-2',
@@ -220,7 +234,8 @@ export const mockProducts: Product[] = [
     imageHint: 'rice seeds bag',
     category: 'seeds',
     subcategory: 'rice',
-    tags: ['aromatic', 'premium-quality']
+    tags: ['aromatic', 'premium-quality'],
+    description: 'Cultivate premium, long-grain Basmati rice known for its distinctive aroma and delicate flavor. Our seeds are certified for purity and germination rate, ensuring a successful and profitable crop.'
   },
   {
     id: 'seed-3',
@@ -234,7 +249,8 @@ export const mockProducts: Product[] = [
     imageHint: 'cotton seeds packet',
     category: 'seeds',
     subcategory: 'cotton',
-    tags: ['pest-resistant', 'high-yield']
+    tags: ['pest-resistant', 'high-yield'],
+    description: 'Genetically engineered BT cotton seeds provide inherent protection against bollworm attacks, reducing the need for insecticide sprays and increasing yield potential. The choice of modern cotton farmers.'
   },
   {
     id: 'seed-4',
@@ -248,6 +264,7 @@ export const mockProducts: Product[] = [
     imageHint: 'tomato seeds packet',
     category: 'seeds',
     subcategory: 'vegetables',
-    tags: ['hybrid', 'gardening']
+    tags: ['hybrid', 'gardening'],
+    description: 'High-yielding hybrid tomato seeds perfect for home gardening or commercial farming. Produces large, uniform, and flavorful tomatoes with good disease resistance. Suitable for a long harvesting season.'
   }
 ];

@@ -12,6 +12,7 @@ export interface Product {
   category: string;
   subcategory: string;
   tags?: string[];
+  description?: string;
 }
 
 export interface Category {

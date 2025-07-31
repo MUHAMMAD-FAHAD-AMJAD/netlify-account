@@ -57,7 +57,7 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href="#" className="absolute inset-0 z-10" aria-label={`View ${product.name}`}/>
+      <Link href={`/product/${product.id}`} className="absolute inset-0 z-10" aria-label={`View ${product.name}`}/>
       <div className="aspect-square overflow-hidden bg-gray-50 relative">
          {product.isSoldOut && (
             <Badge
