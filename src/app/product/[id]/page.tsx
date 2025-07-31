@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/products/Breadcrumbs";
 import ProductPageClient from "@/components/products/ProductPageClient";
 
 // This is the main page component, which is a SERVER component.
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
+export default async function ProductDetailPage({ params }: { params: { id: string } }) {
   
   // Find the product by id from the mock data on the server.
   const product = mockProducts.find((p) => p.id === params.id);
