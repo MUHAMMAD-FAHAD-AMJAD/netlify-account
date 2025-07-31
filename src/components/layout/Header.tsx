@@ -36,7 +36,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex justify-center">
+          <div className="hidden lg:flex justify-center flex-1">
             <MainNav />
           </div>
 

@@ -14,54 +14,82 @@ import {
 import { cn } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
-const categories = {
-  Insecticides: ["Contact", "Systemic", "Biological Control"],
-  Herbicides: ["Pre-emergence", "Post-emergence", "Non-selective"],
-  Fungicides: ["Preventive", "Curative", "Systemic"],
-  Fertilizers: ["NPK", "Urea", "DAP", "Organic"],
-  Seeds: ["Wheat", "Rice", "Cotton", "Vegetables"],
-};
+const products = [
+    { title: "Insecticides", href: "/products/insecticides", description: "Effective solutions to protect your crops from pests." },
+    { title: "Weedicides", href: "/products/weedicides", description: "Control and eliminate unwanted weeds efficiently." },
+    { title: "Fungicides", href: "/products/fungicides", description: "Prevent and treat fungal diseases in your plants." },
+    { title: "Micro Nutrients", href: "/products/micronutrients", description: "Essential nutrients for optimal plant growth." },
+    { title: "Granules", href: "/products/granules", description: "Slow-release granules for sustained nutrient supply." },
+    { title: "Fertilizers", href: "/products/fertilizers", description: "Boost your soil's fertility for a richer harvest." },
+]
+
+const navLinks = [
+    { name: "Home", href: "/" },
+    { 
+        name: "Products", 
+        subLinks: products
+    },
+    { name: "Solutions", href: "/solutions" },
+    { name: "Company", href: "/company" },
+    { name: "Support", href: "/support" },
+];
 
 export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
   if (isMobile) {
     return (
-      <Accordion type="single" collapsible className="w-full">
-        {Object.entries(categories).map(([category, subcategories]) => (
-          <AccordionItem value={category} key={category}>
-            <AccordionTrigger className="text-lg font-semibold py-4">{category}</AccordionTrigger>
-            <AccordionContent>
-              <ul className="pl-4 space-y-2">
-                {subcategories.map((sub) => (
-                  <li key={sub}>
-                    <Link href="#" className="block py-2 text-muted-foreground hover:text-primary">{sub}</Link>
-                  </li>
-                ))}
-              </ul>
-            </AccordionContent>
-          </AccordionItem>
+      <div className="flex flex-col gap-4">
+        {navLinks.map((link) => (
+          link.subLinks ? (
+            <Accordion type="single" collapsible className="w-full" key={link.name}>
+              <AccordionItem value={link.name}>
+                <AccordionTrigger className="text-lg font-semibold py-2">{link.name}</AccordionTrigger>
+                <AccordionContent>
+                  <ul className="pl-4 space-y-2">
+                    {link.subLinks.map((sub) => (
+                      <li key={sub.title}>
+                        <Link href={sub.href} className="block py-2 text-muted-foreground hover:text-primary">{sub.title}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ) : (
+            <Link href={link.href!} key={link.name} className="text-lg font-semibold py-2 hover:text-primary">{link.name}</Link>
+          )
         ))}
-      </Accordion>
+      </div>
     );
   }
 
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {Object.entries(categories).map(([category, subcategories]) => (
-          <NavigationMenuItem key={category}>
-            <NavigationMenuTrigger className="text-base font-medium transition-colors hover:text-black focus:text-black data-[active]:text-black data-[state=open]:text-black">
-              {category}
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                {subcategories.map((sub) => (
-                  <ListItem key={sub} title={sub} href="#">
-                    Shop all {sub.toLowerCase()} {category.toLowerCase()}.
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+        {navLinks.map((link) => (
+            link.subLinks ? (
+              <NavigationMenuItem key={link.name}>
+                <NavigationMenuTrigger className="text-base font-medium transition-colors hover:text-black focus:text-black data-[active]:text-black data-[state=open]:text-black hover:bg-black hover:text-white focus:bg-black focus:text-white rounded-full">
+                  {link.name}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[200px] gap-3 p-4 md:w-[250px] lg:w-[300px]">
+                    {link.subLinks.map((sub) => (
+                      <ListItem key={sub.title} title={sub.title} href={sub.href}>
+                        {sub.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            ) : (
+                 <NavigationMenuItem key={link.name}>
+                    <Link href={link.href!} legacyBehavior passHref>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-base font-medium transition-colors hover:text-black focus:text-black data-[active]:text-black data-[state=open]:text-black hover:bg-black hover:text-white focus:bg-black focus:text-white rounded-full")}>
+                        {link.name}
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+            )
         ))}
       </NavigationMenuList>
     </NavigationMenu>
