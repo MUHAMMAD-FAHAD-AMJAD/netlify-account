@@ -1,8 +1,9 @@
 
 import { NextResponse } from 'next/server';
 
-// This is the URL of your backend service deployed on Render.
-// IMPORTANT: You will need to replace this with your actual Render URL after you deploy the backend.
+// IMPORTANT: After you deploy your backend to Render, you MUST replace this URL
+// with the actual URL of your Render service.
+// For example: 'https://your-backend-name.onrender.com'
 const BACKEND_URL = 'https://your-render-backend-url.onrender.com';
 
 /**
@@ -22,12 +23,16 @@ const BACKEND_URL = 'https://your-render-backend-url.onrender.com';
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Product'
+ *       503:
+ *         description: Service Unavailable. The backend URL is not configured or the backend service is unreachable.
  *       500:
- *         description: Internal Server Error if the backend is unreachable or returns an error.
+ *         description: Internal Server Error if the backend returns an error.
  */
 export async function GET() {
   if (BACKEND_URL === 'https://your-render-backend-url.onrender.com') {
-    return new NextResponse('Backend URL has not been configured. Please update src/app/api/products/route.ts', { status: 503 });
+    const errorMessage = 'Backend URL has not been configured. Please update the BACKEND_URL in src/app/api/products/route.ts with your live Render backend URL.';
+    console.error(errorMessage);
+    return new NextResponse(errorMessage, { status: 503 });
   }
   
   try {
@@ -36,6 +41,7 @@ export async function GET() {
     
     if (!response.ok) {
       // If the backend returns an error, forward that error to the client
+      console.error(`Error from backend: ${response.status} ${response.statusText}`);
       return new NextResponse(`Error from backend: ${response.statusText}`, { status: response.status });
     }
 
