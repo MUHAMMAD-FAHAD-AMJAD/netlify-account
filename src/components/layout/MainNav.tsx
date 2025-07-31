@@ -10,7 +10,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
@@ -43,7 +42,7 @@ const fertilizers = [
 const seeds = [
     { title: "Wheat", href: "/products/seeds/wheat"},
     { title: "Rice", href: "/products/seeds/rice"},
-    { title: "Cotton", href: "/products/seeds/cotton"},
+    { title: "Cotton", href: "/products/seeds/vegetables"},
     { title: "Vegetables", href: "/products/seeds/vegetables"},
 ]
 
@@ -87,7 +86,7 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
     <NavigationMenu>
       <NavigationMenuList>
         {navLinks.map((link) => (
-          <NavigationMenuItem key={link.name}>
+          <NavigationMenuItem key={link.name} value={link.name}>
             <NavigationMenuTrigger className="text-base font-medium bg-transparent transition-colors hover:text-white focus:text-white data-[active]:text-white data-[state=open]:text-white hover:bg-black focus:bg-black rounded-xl">
               {link.name}
             </NavigationMenuTrigger>
@@ -113,7 +112,7 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
           <a
             ref={ref}
             className={cn(
-              "block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors text-foreground hover:text-foreground/80 focus:bg-accent focus:text-accent-foreground group",
+              "block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors text-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground group",
               className
             )}
             {...props}
