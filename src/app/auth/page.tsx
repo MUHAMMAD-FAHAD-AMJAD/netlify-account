@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
@@ -72,13 +73,12 @@ export default function AuthPage() {
         <div className="text-center">
             <Link href="/" className="inline-block">
                 <Image 
-                  src="/1.png" 
+                  src="https://placehold.co/250x60.png" 
                   alt="Maher Zarai Markaz" 
                   width={250} 
                   height={60}
                   className="object-contain h-[60px] mx-auto"
                   priority
-                  unoptimized
                   data-ai-hint="logo"
                 />
             </Link>
@@ -192,5 +192,3 @@ export default function AuthPage() {
     </div>
   );
 }
-
-    
