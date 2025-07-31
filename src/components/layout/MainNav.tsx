@@ -58,7 +58,12 @@ const navLinks = [
     },
 ];
 
-const NavItem = ({ link }: { link: typeof navLinks[0] }) => {
+interface NavItemProps {
+  link: typeof navLinks[0];
+  closeMobileMenu: () => void;
+}
+
+const NavItem = ({ link, closeMobileMenu }: NavItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -73,6 +78,7 @@ const NavItem = ({ link }: { link: typeof navLinks[0] }) => {
           "flex items-center gap-1 text-base font-medium transition-colors duration-300 rounded-full px-4 py-2",
           isHovered ? "bg-black text-white" : "bg-transparent text-black"
         )}
+        onClick={closeMobileMenu}
       >
         {link.name}
         <ChevronDown className={cn("h-4 w-4 transition-transform", isHovered && "rotate-180")} />
@@ -89,7 +95,7 @@ const NavItem = ({ link }: { link: typeof navLinks[0] }) => {
             <ul className="flex flex-col gap-1">
               {link.subLinks.map((sub) => (
                 <li key={sub.title}>
-                   <Link href={sub.href} className="block w-full text-left px-3 py-2 text-sm text-black hover:bg-gray-100 rounded-md">
+                   <Link href={sub.href} className="block w-full text-left px-3 py-2 text-sm text-black hover:bg-gray-100 rounded-md" onClick={closeMobileMenu}>
                       {sub.title}
                    </Link>
                 </li>
@@ -102,8 +108,12 @@ const NavItem = ({ link }: { link: typeof navLinks[0] }) => {
   );
 };
 
+interface MainNavProps {
+  isMobile?: boolean;
+  closeMobileMenu: () => void;
+}
 
-export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
+export default function MainNav({ isMobile = false, closeMobileMenu }: MainNavProps) {
   if (isMobile) {
     return (
       <div className="flex flex-col gap-4">
@@ -111,13 +121,13 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
           <Accordion type="single" collapsible className="w-full" key={link.name}>
             <AccordionItem value={link.name} className="border-b-0">
               <AccordionTrigger className="text-lg font-medium py-3 hover:no-underline">
-                <Link href={link.href}>{link.name}</Link>
+                <Link href={link.href} onClick={closeMobileMenu}>{link.name}</Link>
               </AccordionTrigger>
               <AccordionContent>
                 <ul className="pl-4 space-y-2">
                   {link.subLinks.map((sub) => (
                     <li key={sub.title}>
-                      <Link href={sub.href} className="block py-2 text-muted-foreground hover:text-primary">{sub.title}</Link>
+                      <Link href={sub.href} className="block py-2 text-muted-foreground hover:text-primary" onClick={closeMobileMenu}>{sub.title}</Link>
                     </li>
                   ))}
                 </ul>
@@ -132,7 +142,7 @@ export default function MainNav({ isMobile = false }: { isMobile?: boolean }) {
   return (
      <nav className="flex gap-2">
       {navLinks.map((link) => (
-        <NavItem key={link.name} link={link} />
+        <NavItem key={link.name} link={link} closeMobileMenu={closeMobileMenu} />
       ))}
     </nav>
   );

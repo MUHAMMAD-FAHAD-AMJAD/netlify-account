@@ -27,9 +27,7 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
 
 
   const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
-        addToCart(product);
-    }
+    addToCart(product, quantity);
   };
 
   const renderStars = () => {
@@ -156,7 +154,7 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
               <ProductCard 
                 key={p.id} 
                 product={p} 
-                onAddToCart={() => addToCart(p)}
+                onAddToCart={() => addToCart(p, 1)}
                 onViewProduct={() => addRecentlyViewed(p)}
               />
             ))}

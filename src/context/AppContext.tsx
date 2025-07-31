@@ -2,12 +2,11 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import type { Product, CartItem } from '@/lib/types';
-import { mockProducts } from '@/lib/products';
 import { useToast } from '@/hooks/use-toast';
 
 interface AppContextType {
   cartItems: CartItem[];
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, quantity?: number) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   isCartOpen: boolean;
@@ -24,21 +23,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
 
-  const addToCart = (product: Product) => {
+  const addToCart = (product: Product, quantity: number = 1) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.product.id === product.id);
       if (existingItem) {
         return prevItems.map(item =>
           item.product.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      return [...prevItems, { id: `cart_${product.id}_${Date.now()}`, product, quantity: 1 }];
+      return [...prevItems, { id: `cart_${product.id}_${Date.now()}`, product, quantity }];
     });
     toast({
         title: "Added to cart",
-        description: `${product.name} has been added to your cart.`,
+        description: `${product.name} (x${quantity}) has been added to your cart.`,
     })
   };
 
@@ -62,7 +61,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setRecentlyViewed(prev => {
         const isAlreadyViewed = prev.some(p => p.id === product.id);
         if (isAlreadyViewed) {
-            return prev;
+            // Move the item to the front if it's already in the list
+            const newOrder = [product, ...prev.filter(p => p.id !== product.id)];
+            return newOrder;
         }
         const updatedList = [product, ...prev];
         // Keep the list to a reasonable size, e.g., 10

@@ -9,6 +9,7 @@ import type { Product } from '@/lib/types';
 import { Star, StarHalf, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { useAppContext } from '@/context/AppContext';
 
 interface ProductCardProps {
   product: Product;

@@ -17,6 +17,7 @@ export interface Product {
 
 export interface Category {
   name: string;
+  href: string;
   description: string;
   imageUrl: string;
   imageHint: string;

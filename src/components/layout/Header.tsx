@@ -2,39 +2,55 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Search, User, ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SocialBar from './SocialBar';
 import NotificationMarquee from './NotificationMarquee';
 import MainNav from './MainNav';
-import CartSidebar from '../cart/CartSidebar';
 import { Badge } from '../ui/badge';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useAppContext } from '@/context/AppContext';
+import { Input } from '../ui/input';
+import CartSidebar from '../cart/CartSidebar';
 
 export default function Header() {
   const { cartItems, setIsCartOpen } = useAppContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const router = useRouter();
   
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const searchTerm = e.currentTarget.search.value;
+    if (searchTerm) {
+      // In a real app, you'd navigate to a search results page
+      // For now, we can just log it and show a toast.
+      alert(`Searching for: ${searchTerm}`);
+      setIsSearchOpen(false);
+    }
+  };
 
   return (
     <>
       <header className="sticky top-0 z-40 w-full bg-white shadow-sm">
         <SocialBar />
         <NotificationMarquee />
-        <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+        <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
           {/* Mobile Menu Trigger */}
-          <Button variant="ghost" size="icon" className="lg:hidden" onClick={toggleMobileMenu}>
-            <Menu className="h-6 w-6" />
-          </Button>
+          <div className="lg:hidden">
+            <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
+              <Menu className="h-6 w-6" />
+            </Button>
+          </div>
 
           {/* Logo */}
-          <div className="flex-1 lg:flex-none">
+          <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
                 <Image 
                   src="/1.png" 
@@ -49,35 +65,40 @@ export default function Header() {
             </Link>
           </div>
           
-
           {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 justify-center">
-            <MainNav />
+            <MainNav closeMobileMenu={() => setIsMobileMenuOpen(false)} />
           </div>
 
           {/* Icons */}
-          <div className="flex items-center gap-2 flex-1 lg:flex-none justify-end">
-            <AnimatePresence>
-              {isSearchOpen && (
-                <motion.div
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: 'auto', opacity: 1 }}
-                  exit={{ width: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <input
-                    type="text"
-                    placeholder="Search products..."
-                    className="h-10 px-4 rounded-full border border-gray-300 focus:ring-primary focus:border-primary transition-all duration-300"
-                    autoFocus
-                    onBlur={() => setIsSearchOpen(false)}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-             <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
-              <Search className="h-6 w-6" />
-            </Button>
+          <div className="flex items-center justify-end gap-2">
+            <div className="relative hidden md:block">
+              <AnimatePresence>
+                {isSearchOpen && (
+                  <motion.div
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 200, opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute right-full mr-2"
+                  >
+                    <form onSubmit={handleSearchSubmit}>
+                      <Input
+                        name="search"
+                        type="text"
+                        placeholder="Search..."
+                        className="h-10 rounded-full border-gray-300 focus:ring-primary focus:border-primary"
+                        autoFocus
+                        onBlur={() => setIsSearchOpen(false)}
+                      />
+                    </form>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)}>
+                <Search className="h-6 w-6" />
+              </Button>
+            </div>
             <Link href="/auth">
               <Button variant="ghost" size="icon">
                 <User className="h-6 w-6" />
@@ -99,9 +120,10 @@ export default function Header() {
        <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, x: "-100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "-100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="fixed inset-0 z-50 bg-white lg:hidden"
           >
             <div className="container mx-auto p-4">
@@ -121,7 +143,7 @@ export default function Header() {
                   <X className="h-6 w-6" />
                 </Button>
               </div>
-              <MainNav isMobile />
+              <MainNav isMobile closeMobileMenu={() => setIsMobileMenuOpen(false)} />
             </div>
           </motion.div>
         )}
