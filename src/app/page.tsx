@@ -3,6 +3,8 @@
 
 import type { Product } from '@/lib/types';
 import ProductShowcase from "@/components/home/ProductShowcase";
+import HeroCarousel from "@/components/home/HeroCarousel";
+import CategoryGrid from "@/components/home/CategoryGrid";
 import { mockProducts } from '@/lib/products';
 
 async function getProducts(): Promise<Product[]> {
@@ -21,7 +23,9 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col">
-      <ProductShowcase products={products} />
+      <HeroCarousel />
+      <CategoryGrid />
+      <ProductShowcase products={products.slice(0, 8)} />
     </div>
   );
 }
