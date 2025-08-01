@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 import { ChevronDown } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
     { 
@@ -21,11 +22,11 @@ const navLinks = [
     },
     { 
         name: "Herbicides", 
-        href: "/products/herbicides",
+        href: "/products/weedicides",
         subLinks: [
-            { title: "Pre-emergence", href: "/products/herbicides/pre-emergence"},
-            { title: "Post-emergence", href: "/products/herbicides/post-emergence"},
-            { title: "Non-selective", href: "/products/herbicides/non-selective"},
+            { title: "Pre-emergence", href: "/products/weedicides/pre-emergence"},
+            { title: "Post-emergence", href: "/products/weedicides/post-emergence"},
+            { title: "Non-selective", href: "/products/weedicides/non-selective"},
         ]
     },
     { 
@@ -62,9 +63,10 @@ const navLinks = [
 interface NavItemProps {
   link: typeof navLinks[0];
   closeMobileMenu: () => void;
+  isActive: boolean;
 }
 
-const NavItem = ({ link, closeMobileMenu }: NavItemProps) => {
+const NavItem = ({ link, closeMobileMenu, isActive }: NavItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -76,22 +78,25 @@ const NavItem = ({ link, closeMobileMenu }: NavItemProps) => {
       <Link
         href={link.href}
         className={cn(
-          "flex items-center gap-1 text-base font-medium transition-colors duration-300 rounded-full px-4 py-2",
-          isHovered ? "bg-black text-white" : "bg-transparent text-black"
+          "flex items-center gap-1 text-base font-medium transition-colors duration-300 px-4 py-2",
+          isActive ? "text-primary" : "text-black hover:text-black/70"
         )}
-        onClick={closeMobileMenu}
+        onClick={(e) => {
+            if (link.subLinks && link.subLinks.length > 0) {
+                // Allow hover to open dropdown, but direct click goes to parent page
+            }
+        }}
       >
         {link.name}
-        <ChevronDown className={cn("h-4 w-4 transition-transform", isHovered && "rotate-180")} />
       </Link>
       <AnimatePresence>
-        {isHovered && (
+        {isHovered && link.subLinks && link.subLinks.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white rounded-lg shadow-lg p-2 z-20 border"
+            className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white rounded-xl shadow-[0_8px_25px_rgba(0,0,0,0.1)] p-2 z-20 border"
           >
             <ul className="flex flex-col gap-1">
               {link.subLinks.map((sub) => (
@@ -115,6 +120,8 @@ interface MainNavProps {
 }
 
 export default function MainNav({ isMobile = false, closeMobileMenu }: MainNavProps) {
+    const pathname = usePathname();
+
   if (isMobile) {
     return (
       <div className="flex flex-col gap-4">
@@ -143,7 +150,12 @@ export default function MainNav({ isMobile = false, closeMobileMenu }: MainNavPr
   return (
      <nav className="flex gap-2">
       {navLinks.map((link) => (
-        <NavItem key={link.name} link={link} closeMobileMenu={closeMobileMenu} />
+        <NavItem 
+            key={link.name} 
+            link={link} 
+            closeMobileMenu={closeMobileMenu}
+            isActive={pathname.startsWith(link.href)}
+        />
       ))}
     </nav>
   );

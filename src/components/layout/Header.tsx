@@ -116,25 +116,20 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-white shadow-sm">
+      <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md">
         <SocialBar />
         <NotificationMarquee />
-        <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
-          <Button variant="ghost" size="icon" onClick={toggleMobileMenu} className="lg:hidden">
-            <Menu className="h-6 w-6" />
-          </Button>
+        <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4 border-b">
+          <div className="lg:hidden">
+            <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
+              <Menu className="h-6 w-6" />
+            </Button>
+          </div>
+          
 
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-                <Image 
-                  src="/logo.png"
-                  alt="Maher Zarai Markaz" 
-                  width={180} 
-                  height={45}
-                  className="h-[45px] object-contain"
-                  priority
-                  unoptimized
-                />
+          <div className="absolute left-1/2 -translate-x-1/2 lg:static lg:left-0 lg:translate-x-0 flex-shrink-0">
+            <Link href="/" className="flex items-center text-2xl font-bold tracking-tight">
+                MAHER ZARAI MARKAZ
             </Link>
           </div>
           
@@ -143,18 +138,13 @@ export default function Header() {
           </div>
 
           <div className="flex items-center justify-end gap-2">
-            <div className="relative hidden md:block">
-              <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
-                <Search className="h-6 w-6" />
-              </Button>
-              <AnimatePresence>
+            <AnimatePresence>
                 {isSearchOpen && (
                   <motion.div
                     initial={{ width: 0, opacity: 0 }}
                     animate={{ width: 200, opacity: 1 }}
                     exit={{ width: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute top-1/2 right-full -translate-y-1/2 mr-2"
                   >
                     <form onSubmit={handleSearchSubmit}>
                       <Input
@@ -169,7 +159,9 @@ export default function Header() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
+              <Search className="h-6 w-6" />
+            </Button>
             <UserNav />
             <Button variant="ghost" size="icon" className="relative" onClick={() => setIsCartOpen(true)}>
               <ShoppingCart className="h-6 w-6" />
@@ -195,15 +187,8 @@ export default function Header() {
           >
             <div className="container mx-auto p-4">
               <div className="flex justify-between items-center mb-8">
-                 <Link href="/" className="flex items-center" onClick={toggleMobileMenu}>
-                    <Image 
-                      src="/logo.png"
-                      alt="Maher Zarai Markaz" 
-                      width={160} 
-                      height={35}
-                      className="object-contain"
-                      unoptimized
-                    />
+                 <Link href="/" className="flex items-center text-xl font-bold" onClick={toggleMobileMenu}>
+                    MAHER ZARAI MARKAZ
                  </Link>
                 <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
                   <X className="h-6 w-6" />
