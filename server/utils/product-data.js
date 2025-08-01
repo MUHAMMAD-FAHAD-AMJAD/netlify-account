@@ -1437,25 +1437,6 @@ const mockProducts = [
     "description": "FAST 480SL Fast is a completely non-selective systemic weedicide which completely eliminates weeds.... Packing - 1000ML"
   },
   {
-    "id": "prod_75",
-    "name": "LEERA 80%WG",
-    "brand": "Saver",
-    "price": 0,
-    "images": [
-      "http://saverenterprises.com/uploadfiles/2014729525Leera.png"
-    ],
-    "rating": 4.9,
-    "reviews": 52,
-    "isSoldOut": false,
-    "imageHint": "insecticide box",
-    "category": "Insecticides",
-    "subcategory": "insecticides",
-    "tags": [
-      "insecticides"
-    ],
-    "description": "Leera is the best insecticide against sucking pest and mites as well. It has contact and stomach.... Packing - 150GM"
-  },
-  {
     "id": "prod_130",
     "name": "KALLIUM-30",
     "brand": "Saver",
