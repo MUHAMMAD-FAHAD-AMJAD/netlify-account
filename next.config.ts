@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
         hostname: 'maherzaraimarkaz.store',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'saverenterprises.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
