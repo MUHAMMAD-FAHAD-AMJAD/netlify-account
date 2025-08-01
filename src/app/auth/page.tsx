@@ -2,14 +2,15 @@
 "use client";
 
 import { useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAppContext } from '@/context/AppContext';
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
@@ -53,19 +54,24 @@ function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("login");
-  const { toast } = useToast();
+  const { login } = useAppContext();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get('redirect') || '/';
 
-  const handleAuthAction = (action: string) => {
-    toast({
-      title: "Feature Not Implemented",
-      description: `The ${action} functionality requires a backend. This is ready for integration!`,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, action: string) => {
+  const handleAuthAction = (e: React.FormEvent<HTMLFormElement>, action: 'Login' | 'Sign Up') => {
     e.preventDefault();
-    handleAuthAction(action);
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || 'Test User';
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    
+    // Simulate login
+    login({ id: '123', name, email, isAdmin: false });
+
+    // Redirect user
+    router.push(redirectUrl);
   };
+  
 
   return (
     <div className="flex min-h-[calc(100vh-200px)] items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -95,7 +101,7 @@ export default function AuthPage() {
                 <CardDescription>Log in to access your account and continue shopping.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <form onSubmit={(e) => handleSubmit(e, 'Login')}>
+                <form onSubmit={(e) => handleAuthAction(e, 'Login')}>
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="login-email">Email address</Label>
@@ -104,7 +110,7 @@ export default function AuthPage() {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Label htmlFor="login-password">Password</Label>
-                        <a href="#" onClick={() => handleAuthAction('Forgot Password')} className="text-sm font-medium text-primary hover:underline">
+                        <a href="#" onClick={(e) => {e.preventDefault(); alert("Feature not implemented")}} className="text-sm font-medium text-primary hover:underline">
                           Forgot password?
                         </a>
                       </div>
@@ -124,11 +130,11 @@ export default function AuthPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleAuthAction('Google Sign-In')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Feature not implemented')}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleAuthAction('Facebook Sign-In')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Feature not implemented')}>
                     <FacebookIcon className="mr-2 h-5 w-5" />
                     Facebook
                   </Button>
@@ -143,7 +149,7 @@ export default function AuthPage() {
                 <CardDescription>Join us and get access to exclusive products and offers.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                 <form onSubmit={(e) => handleSubmit(e, 'Sign Up')}>
+                 <form onSubmit={(e) => handleAuthAction(e, 'Sign Up')}>
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <Label htmlFor="signup-name">Full name</Label>
@@ -175,11 +181,11 @@ export default function AuthPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleAuthAction('Google Sign-Up')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Feature not implemented')}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleAuthAction('Facebook Sign-Up')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Feature not implemented')}>
                     <FacebookIcon className="mr-2 h-5 w-5" />
                     Facebook
                   </Button>

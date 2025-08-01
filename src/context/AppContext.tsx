@@ -2,7 +2,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
-import type { Product, CartItem } from '@/lib/types';
+import type { Product, CartItem, User } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 
 interface AppContextType {
@@ -14,6 +14,9 @@ interface AppContextType {
   setIsCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
   recentlyViewed: Product[];
   addRecentlyViewed: (product: Product) => void;
+  user: User | null;
+  login: (userData: User) => void;
+  logout: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -23,6 +26,23 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+
+  const login = (userData: User) => {
+    setUser(userData);
+    toast({
+      title: "Login Successful",
+      description: `Welcome back, ${userData.name}!`,
+    });
+  };
+
+  const logout = () => {
+    setUser(null);
+    toast({
+      title: "Logged Out",
+      description: "You have been successfully logged out.",
+    });
+  };
 
   const addToCart = (product: Product, quantity: number = 1) => {
     setCartItems(prevItems => {
@@ -77,7 +97,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AppContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, recentlyViewed, addRecentlyViewed }}>
+    <AppContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, recentlyViewed, addRecentlyViewed, user, login, logout }}>
       {children}
     </AppContext.Provider>
   );

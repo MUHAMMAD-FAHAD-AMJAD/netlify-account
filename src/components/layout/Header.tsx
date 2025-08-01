@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, User, ShoppingCart, Menu, X } from 'lucide-react';
+import { Search, User, ShoppingCart, Menu, X, ChevronDown, LogOut, UserCog, History } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SocialBar from './SocialBar';
 import NotificationMarquee from './NotificationMarquee';
@@ -15,6 +15,79 @@ import Image from 'next/image';
 import { useAppContext } from '@/context/AppContext';
 import { Input } from '../ui/input';
 import CartSidebar from '../cart/CartSidebar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+
+
+function UserNav() {
+  const { user, logout } = useAppContext();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  }
+
+  if (!user) {
+    return (
+      <Link href="/auth">
+        <Button variant="ghost" size="icon">
+          <User className="h-6 w-6" />
+        </Button>
+      </Link>
+    );
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="relative h-10 w-auto px-3 gap-2">
+            <Avatar className="h-8 w-8">
+                <AvatarImage src={`https://i.pravatar.cc/150?u=${user.email}`} alt={user.name} />
+                <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+            </Avatar>
+            <span className="hidden md:block font-medium">{user.name}</span>
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" align="end" forceMount>
+        <DropdownMenuLabel className="font-normal">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">{user.name}</p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {user.email}
+            </p>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+            <Link href="/dashboard">
+                <UserCog className="mr-2 h-4 w-4" />
+                <span>My Profile</span>
+            </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+             <Link href="/dashboard">
+                <History className="mr-2 h-4 w-4" />
+                <span>Order History</span>
+            </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+          <LogOut className="mr-2 h-4 w-4" />
+          <span>Log out</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
 
 export default function Header() {
   const { cartItems, setIsCartOpen } = useAppContext();
@@ -91,11 +164,7 @@ export default function Header() {
                 )}
               </AnimatePresence>
             </div>
-            <Link href="/auth">
-              <Button variant="ghost" size="icon">
-                <User className="h-6 w-6" />
-              </Button>
-            </Link>
+            <UserNav />
             <Button variant="ghost" size="icon" className="relative" onClick={() => setIsCartOpen(true)}>
               <ShoppingCart className="h-6 w-6" />
               {cartItemCount > 0 && (
