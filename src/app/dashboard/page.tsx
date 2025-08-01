@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function DashboardPage() {
   const { user, logout } = useAppContext();
@@ -36,6 +37,19 @@ export default function DashboardPage() {
     <div className="bg-gray-50/50">
         <div className="container mx-auto py-16 sm:py-24 px-4">
             <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-8">
+                  <Link href="/" className="inline-block">
+                    <Image 
+                      src="/logo.png"
+                      alt="Maher Zarai Markaz" 
+                      width={250} 
+                      height={60}
+                      className="mx-auto h-[60px] object-contain"
+                      priority
+                      unoptimized
+                    />
+                  </Link>
+                </div>
                 <Card className="shadow-xl rounded-2xl overflow-hidden border-none">
                     <CardHeader className="p-8 bg-white text-center">
                         <Avatar className="h-32 w-32 mx-auto mb-6 ring-4 ring-primary/20 p-1">
