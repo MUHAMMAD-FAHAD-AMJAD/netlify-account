@@ -7,6 +7,11 @@ const router = express.Router();
 
 // Generate Token
 const generateToken = (id) => {
+  if (!process.env.JWT_SECRET) {
+      console.error('FATAL ERROR: JWT_SECRET is not defined.');
+      // In a real app, you might want to prevent the server from even starting without this.
+      return null;
+  }
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: '30d',
   });
@@ -35,18 +40,20 @@ router.post('/register', async (req, res) => {
       password, // Password will be hashed by the pre-save hook in the model
     });
 
-    if (user) {
+    const token = generateToken(user._id);
+    if (user && token) {
       res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        token: generateToken(user._id),
+        token: token,
       });
     } else {
-      res.status(400).json({ message: 'Invalid user data' });
+      res.status(400).json({ message: 'Invalid user data or could not generate token' });
     }
   } catch (error) {
+     console.error(error);
      res.status(500).json({ message: 'Server Error' });
   }
 });
@@ -62,17 +69,23 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ email });
 
         if (user && (await user.matchPassword(password))) {
-            res.json({
-                _id: user._id,
-                name: user.name,
-                email: user.email,
-                isAdmin: user.isAdmin,
-                token: generateToken(user._id),
-            });
+            const token = generateToken(user._id);
+            if (token) {
+                 res.json({
+                    _id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    isAdmin: user.isAdmin,
+                    token: token,
+                });
+            } else {
+                res.status(500).json({ message: 'Could not generate token' });
+            }
         } else {
             res.status(401).json({ message: 'Invalid email or password' });
         }
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: 'Server Error' });
     }
 });

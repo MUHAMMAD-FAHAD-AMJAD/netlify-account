@@ -15,12 +15,10 @@ import { Slider } from "@/components/ui/slider";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
-const brands = ["Syngenta", "FMC", "Engro", "Bayer", "Maher Seeds", "Other"];
+const brands = ["Saver", "Kanzo AG", "Bayer", "FMC", "Other"];
 const stockStatus = ["In Stock", "Out of Stock"];
 const sortOptions = [
   { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
   { value: "newest", label: "Newest Arrivals" },
 ];
 
@@ -55,35 +53,36 @@ export default function ProductFilters() {
         <AccordionItem value="price" className="border-b-0">
           <AccordionTrigger className="text-lg font-semibold py-2 hover:no-underline">Price Range</AccordionTrigger>
           <AccordionContent className="pt-4">
-            <div className="p-1">
-                <Slider 
-                  value={priceRange} 
-                  onValueChange={setPriceRange}
-                  max={10000} 
-                  step={100} 
-                  className="mb-4"
-                />
-                <div className="flex justify-between items-center gap-4 text-sm text-muted-foreground mt-3">
-                    <div className="flex items-center gap-2">
-                        <Label htmlFor="min-price">Min</Label>
-                        <Input 
-                          id="min-price"
-                          type="number"
-                          value={priceRange[0]}
-                          onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
-                          className="w-24 h-9"
-                        />
-                    </div>
-                     <div className="flex items-center gap-2">
-                        <Label htmlFor="max-price">Max</Label>
-                        <Input 
-                          id="max-price"
-                          type="number"
-                          value={priceRange[1]}
-                          onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
-                          className="w-24 h-9"
-                        />
-                    </div>
+             <Slider 
+                value={priceRange} 
+                onValueChange={setPriceRange}
+                max={10000} 
+                step={100} 
+                className="mb-6"
+            />
+            <div className="flex justify-between items-center gap-4 text-sm">
+                <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="min-price" className="text-muted-foreground">Min</Label>
+                    <Input 
+                      id="min-price"
+                      type="number"
+                      value={priceRange[0]}
+                      onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
+                      className="w-full h-10"
+                      prefix="Rs."
+                    />
+                </div>
+                <div className="text-muted-foreground pt-5">-</div>
+                 <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="max-price" className="text-muted-foreground">Max</Label>
+                    <Input 
+                      id="max-price"
+                      type="number"
+                      value={priceRange[1]}
+                      onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+                      className="w-full h-10"
+                      prefix="Rs."
+                    />
                 </div>
             </div>
           </AccordionContent>
