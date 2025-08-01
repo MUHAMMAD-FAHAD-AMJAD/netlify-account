@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAppContext } from '@/context/AppContext';
+import { useToast } from '@/hooks/use-toast';
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
@@ -52,25 +53,95 @@ function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
     );
 }
 
+// IMPORTANT: After you deploy your backend to Render, you MUST replace this URL
+// with the actual URL of your Render service.
+// For example: 'https://your-backend-name.onrender.com'
+const BACKEND_URL = 'https://maher-zara-markaz-backend.onrender.com';
+
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("login");
   const { login } = useAppContext();
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect') || '/';
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleAuthAction = (e: React.FormEvent<HTMLFormElement>, action: 'Login' | 'Sign Up') => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     const form = e.currentTarget;
-    const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || 'Test User';
     const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-    
-    // Simulate login
-    login({ id: '123', name, email, isAdmin: false });
+    const password = (form.elements.namedItem('password') as HTMLInputElement).value;
 
-    // Redirect user
-    router.push(redirectUrl);
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || 'Failed to login');
+      }
+      login(data);
+      router.push(redirectUrl);
+
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Login Failed",
+        description: error.message || "An unexpected error occurred.",
+      });
+    } finally {
+        setIsLoading(false);
+    }
   };
+
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const password = (form.elements.namedItem('password') as HTMLInputElement).value;
+    const confirmPassword = (form.elements.namedItem('confirmPassword') as HTMLInputElement).value;
+
+    if (password !== confirmPassword) {
+      toast({
+        variant: "destructive",
+        title: "Signup Failed",
+        description: "Passwords do not match.",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+        const res = await fetch(`${BACKEND_URL}/api/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+            throw new Error(data.message || 'Failed to create account');
+        }
+        toast({
+            title: "Account Created!",
+            description: "Please log in with your new credentials.",
+        });
+        setActiveTab("login");
+    } catch(error: any) {
+         toast({
+            variant: "destructive",
+            title: "Signup Failed",
+            description: error.message || "An unexpected error occurred.",
+        });
+    } finally {
+        setIsLoading(false);
+    }
+  }
   
 
   return (
@@ -91,8 +162,8 @@ export default function AuthPage() {
         </div>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="login" className="py-3 text-base">Login</TabsTrigger>
-            <TabsTrigger value="signup" className="py-3 text-base">Sign Up</TabsTrigger>
+            <TabsTrigger value="login" className="py-3 text-base" disabled={isLoading}>Login</TabsTrigger>
+            <TabsTrigger value="signup" className="py-3 text-base" disabled={isLoading}>Sign Up</TabsTrigger>
           </TabsList>
           <TabsContent value="login">
             <Card className="rounded-2xl shadow-lg">
@@ -101,7 +172,7 @@ export default function AuthPage() {
                 <CardDescription>Log in to access your account and continue shopping.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <form onSubmit={(e) => handleAuthAction(e, 'Login')}>
+                <form onSubmit={handleLogin}>
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="login-email">Email address</Label>
@@ -110,14 +181,14 @@ export default function AuthPage() {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Label htmlFor="login-password">Password</Label>
-                        <a href="#" onClick={(e) => {e.preventDefault(); alert("Feature not implemented")}} className="text-sm font-medium text-primary hover:underline">
+                        <button type="button" onClick={(e) => {e.preventDefault(); alert("Password reset functionality is not yet implemented.")}} className="text-sm font-medium text-primary hover:underline">
                           Forgot password?
-                        </a>
+                        </button>
                       </div>
                       <Input id="login-password" name="password" type="password" required className="h-12 rounded-lg"/>
                     </div>
-                    <Button type="submit" className="w-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800 rounded-lg">
-                      Log In
+                    <Button type="submit" className="w-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800 rounded-lg" disabled={isLoading}>
+                      {isLoading ? 'Logging in...' : 'Log In'}
                     </Button>
                   </div>
                 </form>
@@ -130,11 +201,11 @@ export default function AuthPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Feature not implemented')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Social login is not yet implemented.')}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Feature not implemented')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Social login is not yet implemented.')}>
                     <FacebookIcon className="mr-2 h-5 w-5" />
                     Facebook
                   </Button>
@@ -149,7 +220,7 @@ export default function AuthPage() {
                 <CardDescription>Join us and get access to exclusive products and offers.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                 <form onSubmit={(e) => handleAuthAction(e, 'Sign Up')}>
+                 <form onSubmit={handleSignup}>
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <Label htmlFor="signup-name">Full name</Label>
@@ -167,8 +238,8 @@ export default function AuthPage() {
                         <Label htmlFor="signup-confirm-password">Confirm Password</Label>
                         <Input id="signup-confirm-password" name="confirmPassword" type="password" required className="h-12 rounded-lg"/>
                       </div>
-                      <Button type="submit" className="w-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800 rounded-lg">
-                        Create Account
+                      <Button type="submit" className="w-full h-12 text-base font-semibold bg-black text-white hover:bg-gray-800 rounded-lg" disabled={isLoading}>
+                         {isLoading ? 'Creating Account...' : 'Create Account'}
                       </Button>
                     </div>
                  </form>
@@ -181,11 +252,11 @@ export default function AuthPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Feature not implemented')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Social login is not yet implemented.')}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Feature not implemented')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Social login is not yet implemented.')}>
                     <FacebookIcon className="mr-2 h-5 w-5" />
                     Facebook
                   </Button>

@@ -4,8 +4,29 @@ import { Input } from "@/components/ui/input";
 import { Facebook, Instagram, Youtube, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Footer() {
+  const { toast } = useToast();
+
+  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const email = e.currentTarget.email.value;
+    if (email) {
+      toast({
+        title: "Subscribed!",
+        description: `Thank you, ${email} has been added to our mailing list.`,
+      });
+      e.currentTarget.reset();
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter a valid email address.",
+      });
+    }
+  };
+
   return (
     <footer className="bg-gray-100 text-foreground">
       <div className="container mx-auto px-4 py-16">
@@ -37,11 +58,11 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Insecticides</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Herbicides</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Fungicides</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Fertilizers</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Seeds</a></li>
+              <li><Link href="/products/insecticides" className="text-muted-foreground hover:text-primary transition-colors">Insecticides</Link></li>
+              <li><Link href="/products/weedicides" className="text-muted-foreground hover:text-primary transition-colors">Weedicides</Link></li>
+              <li><Link href="/products/fungicides" className="text-muted-foreground hover:text-primary transition-colors">Fungicides</Link></li>
+              <li><Link href="/products/fertilizers" className="text-muted-foreground hover:text-primary transition-colors">Fertilizers</Link></li>
+              <li><Link href="/products/seeds" className="text-muted-foreground hover:text-primary transition-colors">Seeds</Link></li>
             </ul>
           </div>
 
@@ -49,10 +70,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Support</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Contact Us</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">FAQs</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">Returns & Exchanges</a></li>
+              <li><a href="#" onClick={() => alert("Contact page not yet implemented.")} className="text-muted-foreground hover:text-primary transition-colors">Contact Us</a></li>
+              <li><a href="#" onClick={() => alert("FAQ page not yet implemented.")} className="text-muted-foreground hover:text-primary transition-colors">FAQs</a></li>
+              <li><a href="#" onClick={() => alert("Policy page not yet implemented.")} className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</a></li>
+              <li><a href="#" onClick={() => alert("Policy page not yet implemented.")} className="text-muted-foreground hover:text-primary transition-colors">Returns & Exchanges</a></li>
             </ul>
           </div>
           
@@ -60,10 +81,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
             <p className="text-muted-foreground mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
-            <div className="flex w-full max-w-sm items-center space-x-2">
-              <Input type="email" placeholder="Your email address" className="rounded-full h-12" />
+            <form className="flex w-full max-w-sm items-center space-x-2" onSubmit={handleSubscribe}>
+              <Input name="email" type="email" placeholder="Your email address" className="rounded-full h-12" />
               <Button type="submit" className="rounded-full h-12 bg-black text-white hover:bg-gray-800">Subscribe</Button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

@@ -24,6 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { useToast } from '@/hooks/use-toast';
 
 
 function UserNav() {
@@ -50,7 +51,7 @@ function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-auto px-3 gap-2">
             <Avatar className="h-8 w-8">
-                <AvatarImage src={`https://i.pravatar.cc/150?u=${user.email}`} alt={user.name} />
+                <AvatarImage src={`https://api.pravatar.cc/150?u=${user.email}`} alt={user.name} />
                 <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <span className="hidden md:block font-medium">{user.name}</span>
@@ -94,6 +95,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const router = useRouter();
+  const { toast } = useToast();
   
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -103,8 +105,12 @@ export default function Header() {
     e.preventDefault();
     const searchTerm = e.currentTarget.search.value;
     if (searchTerm) {
-      alert(`Searching for: ${searchTerm}`);
+      toast({
+        title: "Search Submitted",
+        description: `You searched for: "${searchTerm}". Search results page is not yet implemented.`
+      })
       setIsSearchOpen(false);
+      e.currentTarget.reset();
     }
   };
 
