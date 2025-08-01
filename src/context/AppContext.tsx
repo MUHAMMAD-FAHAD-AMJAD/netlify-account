@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 import type { Product, CartItem } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 
@@ -59,7 +59,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     );
   };
   
-  const addRecentlyViewed = (product: Product) => {
+  const addRecentlyViewed = useCallback((product: Product) => {
     setRecentlyViewed(prev => {
         const isAlreadyViewed = prev.some(p => p.id === product.id);
         if (isAlreadyViewed) {
@@ -74,7 +74,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         }
         return updatedList;
     });
-  }
+  }, []);
 
   return (
     <AppContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, recentlyViewed, addRecentlyViewed }}>
