@@ -27,7 +27,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_69",
     "name": "CEEDO 20%SC",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/963441673Ceedo.png"
@@ -46,7 +46,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_128",
     "name": "TRIDEMEFONE 25%WP",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1340720766Triademafone.jpeg"
@@ -65,7 +65,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_54",
     "name": "PURE HUMUS 10%",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/10568pure-humus-soil-conditioner.png"
@@ -103,7 +103,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_88",
     "name": "RACER 360EC",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1763852958Delamethrin+Triazophos_product.jpeg"
@@ -122,7 +122,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_16",
     "name": "LAMBDA CYHALOTHRIN 2.5%EC",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/18250lambda-cyhalothring-2.5-ec.jpeg"
@@ -141,7 +141,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_122",
     "name": "MISSION POSSIBLE 50%WP",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/781639325MissionPossible.jpeg"
@@ -179,7 +179,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_115",
     "name": "SUDAO 11.6%SC",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1547377629Sudao100ml.png"
@@ -198,7 +198,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_103",
     "name": "ACEPHATE 75% SP",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/232997538Acephate.jpg"
@@ -217,7 +217,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_132",
     "name": "TRAINER",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1817541670Trainer-new.jpg"
@@ -255,7 +255,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_76",
     "name": "LIGHT 25%WDG",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/618054907Light.jpeg"
@@ -274,7 +274,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_127",
     "name": "PIVOT 18.7%WG",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/14793143Pivot.jpeg"
@@ -293,7 +293,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_106",
     "name": "CHLORFENAPYR 360SC",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1135537743Chlorfenapyre.jpeg"
@@ -331,7 +331,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_119",
     "name": "BURJ 75%WG",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1384177484Burj.jpeg"
@@ -350,7 +350,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_133",
     "name": "CARTAP 4%G",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/902813422Cartapppp.png"
@@ -369,7 +369,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_94",
     "name": "SEED CARE 300FS",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1286045188Seed_Care_product.png"
@@ -407,7 +407,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_80",
     "name": "SHORT 13%OD",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1679911833Short.png"
@@ -426,7 +426,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_31",
     "name": "MISSION EXTRA 55%SC",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/8755mission-extra-55-sc.jpeg"
@@ -445,7 +445,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_116",
     "name": "VALOR 12%SC",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1697495855valor.jpeg"
@@ -483,7 +483,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_113",
     "name": "KING POCKER 25%EW",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/115527771King_Pocker-bg.png"
@@ -502,7 +502,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_129",
     "name": "TRIP 250SC",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1987333082Trip-bg.png"
@@ -521,7 +521,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_79",
     "name": "SHIDING 21%EC",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/560759570Shiding.jpeg"
@@ -559,7 +559,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_37",
     "name": "PARAZONE 20%SL",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/4463paraquat-20-sl.jpeg"
@@ -578,7 +578,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_30",
     "name": "KICK 48%SC",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/30114kick-48-sc.png"
@@ -597,7 +597,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_126",
     "name": "WAKER 50%SC",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1658160518Walker300ml.png"
@@ -635,7 +635,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_114",
     "name": "SOVISECT 50%SP",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1498527914Sovisect.jpeg"
@@ -654,7 +654,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_70",
     "name": "CONDO 30%SC",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/138648226Condo.png"
@@ -673,7 +673,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_33",
     "name": "METRIBUZIN 70%WP",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/19305METRIBUZIN-70WP-683x1024.jpeg"
@@ -711,7 +711,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_105",
     "name": "BIFENTHRIN 10% EC",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1412141642Bifenthrin.png"
@@ -730,7 +730,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_84",
     "name": "MULTICLEAN 25%OD",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/459180245Multi-Clean.png"
@@ -749,7 +749,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_109",
     "name": "EMAMECTIN 1.9%EC",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/757741861Emamectin.png"
@@ -788,7 +788,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_67",
     "name": "SAJAJAN",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1132570839Sajjan.jpeg"
@@ -807,7 +807,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_117",
     "name": "WOOLMER 3%SC",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1332648517Woolmer400ml.png"
@@ -826,7 +826,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_118",
     "name": "ATRAZINE 38%SC",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1220103988Atrazin.jpeg"
@@ -864,7 +864,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_64",
     "name": "ENERGY 5%G",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/23938monomehypo-5g.png"
@@ -883,7 +883,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_108",
     "name": "DINO 200SG",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/197718019Dino.jpeg"
@@ -902,7 +902,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_60",
     "name": "KALLIUM S",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/15250kallium-s.png"
@@ -940,7 +940,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_50",
     "name": "THIOPHENATE 70% WP",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/20030THIOPHANATE-METHYL-70-683x1024.jpeg"
@@ -959,7 +959,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_46",
     "name": "PROFILE 47%WP",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/30711PROFILE-47FUNGICIDE-683x1024.jpeg"
@@ -978,7 +978,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_26",
     "name": "BROMOXYNIL 40%EC",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/31046bromoxynil-40-ec.png"
@@ -1016,7 +1016,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_62",
     "name": "WINSTO 30%WDG",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/27855WNSTA-30WP-e1518088107905-731x1024.png"
@@ -1035,7 +1035,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_120",
     "name": "DEMO 20%WP",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1663843375Demo.png"
@@ -1054,7 +1054,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_63",
     "name": "FIPRONIL 0.4%G",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/9497fipronil-0.4-g.png"
@@ -1092,7 +1092,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_53",
     "name": "JEET",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/2027jeet-poassium-humate-solid.png"
@@ -1111,7 +1111,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_15",
     "name": "IMIDACLOPRID 25%WP",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/13493imidacloprid-70-ws.jpeg"
@@ -1130,7 +1130,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_27",
     "name": "CLODINOFOP 15%WP",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/9991clodinafop-propargly-15-wp.jpeg"
@@ -1168,7 +1168,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_59",
     "name": "ADVANCER",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/11549advancer.png"
@@ -1187,7 +1187,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_134",
     "name": "MARCH 0.2%G",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/59481214March.jpeg"
@@ -1206,7 +1206,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_74",
     "name": "GOAL 36%WP",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1549943618Goal.png"
@@ -1244,7 +1244,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_112",
     "name": "INSTANT SUPER 50%SG",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/2066664533Instentsuper.jpeg"
@@ -1263,7 +1263,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_66",
     "name": "SNIPER",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1450393423Sniper.png"
@@ -1282,7 +1282,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_19",
     "name": "SPEED 50%SC",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/26417speed-10-wdg.jpeg"
@@ -1320,7 +1320,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_13",
     "name": "IMIDACLOPRID 25%WP",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/19792imidacloprid-25-wp200.jpeg"
@@ -1339,7 +1339,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_98",
     "name": "OLA 50%WG",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/959965389Ola-product-pic.jpeg"
@@ -1358,7 +1358,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_55",
     "name": "RAPID ZINC 10%W/V",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/13281rapid-zinc.png"
@@ -1396,7 +1396,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_93",
     "name": "PYRIPROXYFEN 10.8%EC",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/1882442014Pyriproxyfen_product.jpeg"
@@ -1415,7 +1415,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_28",
     "name": "FAST 480SL",
-    "brand": "Bayer",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/6532fast-480-sl.png"
@@ -1434,7 +1434,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_75",
     "name": "LEERA 80%WG",
-    "brand": "FMC",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/2014729525Leera.png"
@@ -1472,7 +1472,7 @@ export const mockProducts: Product[] = [
   {
     "id": "prod_124",
     "name": "RANGEELA 42%EC",
-    "brand": "Kanzo AG",
+    "brand": "Saver",
     "price": 0,
     "images": [
       "https://maherzaraimarkaz.store/uploadfiles/112087747Rangeela1Ltr-Yellow.png"
