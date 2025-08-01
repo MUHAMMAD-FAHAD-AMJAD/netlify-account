@@ -67,6 +67,20 @@ export default function AuthPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleSocialLogin = (provider: string) => {
+    toast({
+        title: "Feature Coming Soon!",
+        description: `${provider} login is not yet implemented.`,
+    });
+  };
+
+  const handleForgotPassword = () => {
+     toast({
+        title: "Feature Coming Soon!",
+        description: "Password reset functionality is currently under development.",
+    });
+  }
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -181,7 +195,7 @@ export default function AuthPage() {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Label htmlFor="login-password">Password</Label>
-                        <button type="button" onClick={(e) => {e.preventDefault(); alert("Password reset functionality is not yet implemented.")}} className="text-sm font-medium text-primary hover:underline">
+                        <button type="button" onClick={handleForgotPassword} className="text-sm font-medium text-primary hover:underline">
                           Forgot password?
                         </button>
                       </div>
@@ -201,11 +215,11 @@ export default function AuthPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Social login is not yet implemented.')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleSocialLogin('Google')}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Social login is not yet implemented.')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleSocialLogin('Facebook')}>
                     <FacebookIcon className="mr-2 h-5 w-5" />
                     Facebook
                   </Button>
@@ -252,11 +266,11 @@ export default function AuthPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Social login is not yet implemented.')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleSocialLogin('Google')}>
                     <GoogleIcon className="mr-2 h-5 w-5" />
                     Google
                   </Button>
-                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => alert('Social login is not yet implemented.')}>
+                  <Button variant="outline" className="h-12 text-base rounded-lg" onClick={() => handleSocialLogin('Facebook')}>
                     <FacebookIcon className="mr-2 h-5 w-5" />
                     Facebook
                   </Button>

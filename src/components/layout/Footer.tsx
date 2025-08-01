@@ -27,6 +27,13 @@ export default function Footer() {
     }
   };
 
+  const handleNotImplemented = (feature: string) => {
+    toast({
+        title: "Coming Soon!",
+        description: `The ${feature} page is currently under construction.`,
+    })
+  }
+
   return (
     <footer className="bg-gray-100 text-foreground">
       <div className="container mx-auto px-4 py-16">
@@ -70,10 +77,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Support</h3>
             <ul className="space-y-2">
-              <li><a href="#" onClick={() => alert("Contact page not yet implemented.")} className="text-muted-foreground hover:text-primary transition-colors">Contact Us</a></li>
-              <li><a href="#" onClick={() => alert("FAQ page not yet implemented.")} className="text-muted-foreground hover:text-primary transition-colors">FAQs</a></li>
-              <li><a href="#" onClick={() => alert("Policy page not yet implemented.")} className="text-muted-foreground hover:text-primary transition-colors">Shipping Policy</a></li>
-              <li><a href="#" onClick={() => alert("Policy page not yet implemented.")} className="text-muted-foreground hover:text-primary transition-colors">Returns & Exchanges</a></li>
+              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact Us</Link></li>
+              <li><button onClick={() => handleNotImplemented('FAQ')} className="text-muted-foreground hover:text-primary transition-colors text-left w-full">FAQs</button></li>
+              <li><button onClick={() => handleNotImplemented('Shipping Policy')} className="text-muted-foreground hover:text-primary transition-colors text-left w-full">Shipping Policy</button></li>
+              <li><button onClick={() => handleNotImplemented('Returns & Exchanges')} className="text-muted-foreground hover:text-primary transition-colors text-left w-full">Returns & Exchanges</button></li>
             </ul>
           </div>
           

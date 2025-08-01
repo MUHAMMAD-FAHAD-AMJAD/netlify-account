@@ -348,6 +348,7 @@ function CheckoutLoader() {
 export default function CheckoutPage() {
   const { cartItems, setIsCartOpen, user } = useAppContext();
   const router = useRouter();
+  const { toast } = useToast();
   const [step, setStep] = useState<'information' | 'shipping' | 'payment'>('information');
   const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
     email: '',
@@ -360,7 +361,7 @@ export default function CheckoutPage() {
     phone: ''
   });
   const [isAuthCheckComplete, setIsAuthCheckComplete] = useState(false);
-  const { toast } = useToast();
+  
 
   useEffect(() => {
     // Check for user on mount. If not logged in, redirect to auth page.
@@ -386,6 +387,15 @@ export default function CheckoutPage() {
   const handleBack = (toStep: 'information' | 'shipping') => {
     setStep(toStep);
   }
+
+  const handleApplyDiscount = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const code = e.currentTarget.discount.value;
+    toast({
+      title: "Discount Code Applied",
+      description: `The code "${code}" is not valid, but we appreciate you trying! This feature is coming soon.`,
+    });
+  };
 
   const handlePay = () => {
     toast({
@@ -470,10 +480,10 @@ export default function CheckoutPage() {
 
             <Separator className="my-6" />
             
-            <div className="flex gap-2">
-                <Input placeholder="Discount code" className="bg-white rounded-lg h-11" />
-                <Button variant="outline" className="h-11 border-gray-300 text-gray-600 hover:bg-gray-200 px-6 rounded-lg">Apply</Button>
-            </div>
+             <form className="flex gap-2" onSubmit={handleApplyDiscount}>
+                <Input name="discount" placeholder="Discount code" className="bg-white rounded-lg h-11" />
+                <Button type="submit" variant="outline" className="h-11 border-gray-300 text-gray-600 hover:bg-gray-200 px-6 rounded-lg">Apply</Button>
+            </form>
 
             <Separator className="my-6" />
 
