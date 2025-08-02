@@ -7,7 +7,15 @@ import { useToast } from '@/hooks/use-toast';
 import { initializeApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, signOut, type Auth } from 'firebase/auth';
 
-// IMPORTANT: Replace with your actual Firebase configuration
+// =================================================================================
+// PASTE YOUR FIREBASE CONFIGURATION HERE
+// =================================================================================
+// 1. Go to your Firebase project: console.firebase.google.com
+// 2. Click the gear icon (⚙️) > Project settings.
+// 3. In the "Your apps" card, find your web app.
+// 4. Select the "Config" option to see your firebaseConfig object.
+// 5. Copy the entire object and paste it here, replacing the placeholder.
+// =================================================================================
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_AUTH_DOMAIN",
@@ -16,6 +24,7 @@ const firebaseConfig = {
   messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
   appId: "YOUR_APP_ID"
 };
+// =================================================================================
 
 interface AppContextType {
   cartItems: CartItem[];
@@ -109,6 +118,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           description: `${product.name} (x${quantity}) has been added to your cart.`,
       })
     }
+    // setIsCartOpen(true);
   };
 
   const removeFromCart = (itemId: string) => {
