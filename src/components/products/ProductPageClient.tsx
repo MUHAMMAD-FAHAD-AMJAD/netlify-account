@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react";
@@ -49,14 +50,15 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
       <div className="grid md:grid-cols-2 gap-12 items-start mt-6">
         {/* Image Gallery */}
         <div className="space-y-4">
-            <div className="relative aspect-square rounded-2xl overflow-hidden border">
+            <div className="relative aspect-square rounded-2xl overflow-hidden border bg-gray-50">
               <Image
                   src={mainImage}
                   alt={product.name}
                   data-ai-hint={product.imageHint}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  className="object-contain transition-transform duration-500 hover:scale-105 p-4"
+                  unoptimized
               />
                {product.originalPrice && (
                   <Badge
@@ -71,7 +73,7 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
                 {product.images.map((img, index) => (
                     <div 
                       key={index} 
-                      className={`aspect-square rounded-lg overflow-hidden border-2 cursor-pointer ${mainImage === img ? 'border-primary' : 'border-transparent'}`}
+                      className={`aspect-square rounded-lg overflow-hidden border-2 cursor-pointer bg-gray-50 ${mainImage === img ? 'border-primary' : 'border-transparent'}`}
                       onClick={() => setMainImage(img)}
                     >
                          <Image
@@ -79,7 +81,8 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
                               alt={`${product.name} thumbnail ${index+1}`}
                               width={100}
                               height={100}
-                              className="object-cover w-full h-full"
+                              className="object-contain w-full h-full p-1"
+                              unoptimized
                           />
                     </div>
                 ))}
