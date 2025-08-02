@@ -36,12 +36,18 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 let firebaseApp: FirebaseApp | null = null;
 let firebaseAuth: Auth | null = null;
 
+// Ensure Firebase is initialized only on the client side
 if (typeof window !== 'undefined') {
-    try {
-        firebaseApp = initializeApp(firebaseConfig);
-        firebaseAuth = getAuth(firebaseApp);
-    } catch (error) {
-        console.error("Firebase initialization error:", error);
+    // Check if the config keys are placeholders. If so, don't initialize.
+    if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        try {
+            firebaseApp = initializeApp(firebaseConfig);
+            firebaseAuth = getAuth(firebaseApp);
+        } catch (error) {
+            console.error("Firebase initialization error:", error);
+        }
+    } else {
+        console.warn("Firebase config is using placeholder keys. Please replace them in src/context/AppContext.tsx to enable authentication.");
     }
 }
 

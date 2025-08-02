@@ -12,7 +12,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1200,
     "images": [
-      "http://saverenterprises.com/uploadfiles/520342368Hectorsachy.jpeg"
+      "/products/520342368Hectorsachy.jpeg"
     ],
     "rating": 4.5,
     "reviews": 15,
@@ -31,7 +31,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1350,
     "images": [
-      "http://saverenterprises.com/uploadfiles/963441673Ceedo.png"
+      "/products/963441673Ceedo.png"
     ],
     "rating": 4.6,
     "reviews": 22,
@@ -50,7 +50,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 950,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1340720766Triademafone.jpeg"
+      "/products/1340720766Triademafone.jpeg"
     ],
     "rating": 4.7,
     "reviews": 18,
@@ -69,7 +69,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2200,
     "images": [
-      "http://saverenterprises.com/uploadfiles/10568pure-humus-soil-conditioner.png"
+      "/products/10568pure-humus-soil-conditioner.png"
     ],
     "rating": 4.8,
     "reviews": 35,
@@ -88,7 +88,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 800,
     "images": [
-      "http://saverenterprises.com/uploadfiles/99258872Orcus.jpeg"
+      "/products/99258872Orcus.jpeg"
     ],
     "rating": 4.4,
     "reviews": 12,
@@ -107,7 +107,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1500,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1763852958Delamethrin+Triazophos_product.jpeg"
+      "/products/1763852958Delamethrin+Triazophos_product.jpeg"
     ],
     "rating": 4.5,
     "reviews": 28,
@@ -126,7 +126,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1800,
     "images": [
-      "http://saverenterprises.com/uploadfiles/18250lambda-cyhalothring-2.5-ec.jpeg"
+      "/products/18250lambda-cyhalothring-2.5-ec.jpeg"
     ],
     "rating": 4.7,
     "reviews": 40,
@@ -145,7 +145,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1650,
     "images": [
-      "http://saverenterprises.com/uploadfiles/781639325MissionPossible.jpeg"
+      "/products/781639325MissionPossible.jpeg"
     ],
     "rating": 4.6,
     "reviews": 19,
@@ -164,7 +164,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 750,
     "images": [
-      "http://saverenterprises.com/uploadfiles/28409sulphur-80-wg.png"
+      "/products/28409sulphur-80-wg.png"
     ],
     "rating": 4.8,
     "reviews": 33,
@@ -183,7 +183,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2500,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1547377629Sudao100ml.png"
+      "/products/1547377629Sudao100ml.png"
     ],
     "rating": 4.5,
     "reviews": 14,
@@ -202,7 +202,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 900,
     "images": [
-      "http://saverenterprises.com/uploadfiles/232997538Acephate.jpg"
+      "/products/232997538Acephate.jpg"
     ],
     "rating": 4.6,
     "reviews": 25,
@@ -221,7 +221,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 3000,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1817541670Trainer-new.jpg"
+      "/products/1817541670Trainer-new.jpg"
     ],
     "rating": 4.9,
     "reviews": 50,
@@ -240,7 +240,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1400,
     "images": [
-      "http://saverenterprises.com/uploadfiles/5819LUFENURON-5-EC-683x1024.png"
+      "/products/5819LUFENURON-5-EC-683x1024.png"
     ],
     "rating": 4.5,
     "reviews": 21,
@@ -259,7 +259,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2800,
     "images": [
-      "http://saverenterprises.com/uploadfiles/618054907Light.jpeg"
+      "/products/618054907Light.jpeg"
     ],
     "rating": 4.7,
     "reviews": 30,
@@ -278,7 +278,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1900,
     "images": [
-      "http://saverenterprises.com/uploadfiles/14793143Pivot.jpeg"
+      "/products/14793143Pivot.jpeg"
     ],
     "rating": 4.6,
     "reviews": 16,
@@ -297,7 +297,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2100,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1135537743Chlorfenapyre.jpeg"
+      "/products/1135537743Chlorfenapyre.jpeg"
     ],
     "rating": 4.5,
     "reviews": 23,
@@ -316,7 +316,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 600,
     "images": [
-      "http://saverenterprises.com/uploadfiles/31561imidacloprid-70-ws.jpeg"
+      "/products/31561imidacloprid-70-ws.jpeg"
     ],
     "rating": 4.4,
     "reviews": 29,
@@ -335,7 +335,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 550,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1384177484Burj.jpeg"
+      "/products/1384177484Burj.jpeg"
     ],
     "rating": 4.6,
     "reviews": 11,
@@ -354,7 +354,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1100,
     "images": [
-      "http://saverenterprises.com/uploadfiles/902813422Cartapppp.png"
+      "/products/902813422Cartapppp.png"
     ],
     "rating": 4.7,
     "reviews": 38,
@@ -373,7 +373,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 3200,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1286045188Seed_Care_product.png"
+      "/products/1286045188Seed_Care_product.png"
     ],
     "rating": 4.8,
     "reviews": 45,
@@ -392,7 +392,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1500,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1371848144Corner3.jpg"
+      "/products/1371848144Corner3.jpg"
     ],
     "rating": 4.9,
     "reviews": 60,
@@ -411,7 +411,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1750,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1679911833Short.png"
+      "/products/1679911833Short.png"
     ],
     "rating": 4.5,
     "reviews": 17,
@@ -430,7 +430,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2400,
     "images": [
-      "http://saverenterprises.com/uploadfiles/8755mission-extra-5-sc.jpeg"
+      "/products/8755mission-extra-5-sc.jpeg"
     ],
     "rating": 4.6,
     "reviews": 24,
@@ -449,7 +449,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2600,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1697495855valor.jpeg"
+      "/products/1697495855valor.jpeg"
     ],
     "rating": 4.7,
     "reviews": 13,
@@ -468,7 +468,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 950,
     "images": [
-      "http://saverenterprises.com/uploadfiles/6380acetamiprid-20-sp.jpg"
+      "/products/6380acetamiprid-20-sp.jpg"
     ],
     "rating": 4.5,
     "reviews": 31,
@@ -487,7 +487,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 3100,
     "images": [
-      "http://saverenterprises.com/uploadfiles/115527771King_Pocker-bg.png"
+      "/products/115527771King_Pocker-bg.png"
     ],
     "rating": 4.8,
     "reviews": 20,
@@ -506,7 +506,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1850,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1987333082Trip-bg.png"
+      "/products/1987333082Trip-bg.png"
     ],
     "rating": 4.6,
     "reviews": 10,
@@ -525,7 +525,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2000,
     "images": [
-      "http://saverenterprises.com/uploadfiles/560759570Shiding.jpeg"
+      "/products/560759570Shiding.jpeg"
     ],
     "rating": 4.6,
     "reviews": 26,
@@ -544,7 +544,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1250,
     "images": [
-      "http://saverenterprises.com/uploadfiles/2014729525Leera.png"
+      "/products/2014729525Leera.png"
     ],
     "rating": 4.7,
     "reviews": 17,
@@ -563,7 +563,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 850,
     "images": [
-      "http://saverenterprises.com/uploadfiles/4463paraquat-20-sl.jpeg"
+      "/products/4463paraquat-20-sl.jpeg"
     ],
     "rating": 4.5,
     "reviews": 29,
@@ -582,7 +582,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1950,
     "images": [
-      "http://saverenterprises.com/uploadfiles/30114kick-48-sc.png"
+      "/products/30114kick-48-sc.png"
     ],
     "rating": 4.6,
     "reviews": 21,
@@ -601,7 +601,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2300,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1658160518Walker300ml.png"
+      "/products/1658160518Walker300ml.png"
     ],
     "rating": 4.7,
     "reviews": 18,
@@ -620,7 +620,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 980,
     "images": [
-      "http://saverenterprises.com/uploadfiles/132520509Super.jpg"
+      "/products/132520509Super.jpg"
     ],
     "rating": 4.8,
     "reviews": 25,
@@ -639,7 +639,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1150,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1498527914Sovisect.jpeg"
+      "/products/1498527914Sovisect.jpeg"
     ],
     "rating": 4.9,
     "reviews": 32,
@@ -658,7 +658,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2700,
     "images": [
-      "http://saverenterprises.com/uploadfiles/138648226Condo.png"
+      "/products/138648226Condo.png"
     ],
     "rating": 4.5,
     "reviews": 20,
@@ -677,7 +677,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 880,
     "images": [
-      "http://saverenterprises.com/uploadfiles/19305METRIBUZIN-70WP-683x1024.jpeg"
+      "/products/19305METRIBUZIN-70WP-683x1024.jpeg"
     ],
     "rating": 4.6,
     "reviews": 28,
@@ -696,7 +696,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1450,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1603655310Skater.png"
+      "/products/1603655310Skater.png"
     ],
     "rating": 4.7,
     "reviews": 19,
@@ -715,7 +715,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1900,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1412141642Bifenthrin.png"
+      "/products/1412141642Bifenthrin.png"
     ],
     "rating": 4.8,
     "reviews": 35,
@@ -734,7 +734,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2850,
     "images": [
-      "http://saverenterprises.com/uploadfiles/459180245Multi-Clean.png"
+      "/products/459180245Multi-Clean.png"
     ],
     "rating": 4.9,
     "reviews": 41,
@@ -753,7 +753,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1300,
     "images": [
-      "http://saverenterprises.com/uploadfiles/757741861Emamectin.png"
+      "/products/757741861Emamectin.png"
     ],
     "rating": 4.5,
     "reviews": 24,
@@ -772,7 +772,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 950,
     "images": [
-      "http://saverenterprises.com/uploadfiles/14279SAVER-PAIDAWAR-10DANAYDAR-768x1024.png"
+      "/products/14279SAVER-PAIDAWAR-10DANAYDAR-768x1024.png"
     ],
     "rating": 4.6,
     "reviews": 33,
@@ -792,7 +792,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1800,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1132570839Sajjan.jpeg"
+      "/products/1132570839Sajjan.jpeg"
     ],
     "rating": 4.7,
     "reviews": 29,
@@ -811,7 +811,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2950,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1332648517Woolmer400ml.png"
+      "/products/1332648517Woolmer400ml.png"
     ],
     "rating": 4.8,
     "reviews": 22,
@@ -830,7 +830,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1200,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1220103988Atrazin.jpeg"
+      "/products/1220103988Atrazin.jpeg"
     ],
     "rating": 4.9,
     "reviews": 15,
@@ -849,7 +849,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2400,
     "images": [
-      "http://saverenterprises.com/uploadfiles/2132996493Saveron.jpg"
+      "/products/2132996493Saveron.jpg"
     ],
     "rating": 4.5,
     "reviews": 38,
@@ -868,7 +868,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1050,
     "images": [
-      "http://saverenterprises.com/uploadfiles/23938monomehypo-5g.png"
+      "/products/23938monomehypo-5g.png"
     ],
     "rating": 4.6,
     "reviews": 27,
@@ -887,7 +887,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 3300,
     "images": [
-      "http://saverenterprises.com/uploadfiles/197718019Dino.jpeg"
+      "/products/197718019Dino.jpeg"
     ],
     "rating": 4.7,
     "reviews": 31,
@@ -906,7 +906,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1800,
     "images": [
-      "http://saverenterprises.com/uploadfiles/15250kallium-s.png"
+      "/products/15250kallium-s.png"
     ],
     "rating": 4.8,
     "reviews": 42,
@@ -925,7 +925,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1950,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1178014332Spector.jpeg"
+      "/products/1178014332Spector.jpeg"
     ],
     "rating": 4.9,
     "reviews": 19,
@@ -944,7 +944,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1100,
     "images": [
-      "http://saverenterprises.com/uploadfiles/20030THIOPHANATE-METHYL-70-683x1024.jpeg"
+      "/products/20030THIOPHANATE-METHYL-70-683x1024.jpeg"
     ],
     "rating": 4.5,
     "reviews": 34,
@@ -963,7 +963,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1600,
     "images": [
-      "http://saverenterprises.com/uploadfiles/30711PROFILE-47FUNGICIDE-683x1024.jpeg"
+      "/products/30711PROFILE-47FUNGICIDE-683x1024.jpeg"
     ],
     "rating": 4.6,
     "reviews": 23,
@@ -982,7 +982,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1350,
     "images": [
-      "http://saverenterprises.com/uploadfiles/31046bromoxynil-40-ec.png"
+      "/products/31046bromoxynil-40-ec.png"
     ],
     "rating": 4.7,
     "reviews": 28,
@@ -1001,7 +1001,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1550,
     "images": [
-      "http://saverenterprises.com/uploadfiles/11693581Fipronil480ml.png"
+      "/products/11693581Fipronil480ml.png"
     ],
     "rating": 4.8,
     "reviews": 36,
@@ -1020,7 +1020,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 990,
     "images": [
-      "http://saverenterprises.com/uploadfiles/27855WNSTA-30WP-e1518088107905-731x1024.png"
+      "/products/27855WNSTA-30WP-e1518088107905-731x1024.png"
     ],
     "rating": 4.9,
     "reviews": 25,
@@ -1039,7 +1039,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 700,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1663843375Demo.png"
+      "/products/1663843375Demo.png"
     ],
     "rating": 4.5,
     "reviews": 20,
@@ -1058,7 +1058,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1250,
     "images": [
-      "http://saverenterprises.com/uploadfiles/9497fipronil-0.4-g.png"
+      "/products/9497fipronil-0.4-g.png"
     ],
     "rating": 4.6,
     "reviews": 30,
@@ -1077,7 +1077,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1400,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1192552725ACUBAR-removebg-preview.jpeg"
+      "/products/1192552725ACUBAR-removebg-preview.jpeg"
     ],
     "rating": 4.7,
     "reviews": 26,
@@ -1096,7 +1096,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2500,
     "images": [
-      "http://saverenterprises.com/uploadfiles/2027jeet-poassium-humate-solid.png"
+      "/products/2027jeet-poassium-humate-solid.png"
     ],
     "rating": 4.8,
     "reviews": 39,
@@ -1115,7 +1115,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 850,
     "images": [
-      "http://saverenterprises.com/uploadfiles/9991clodinafop-propargly-15-wp.jpeg"
+      "/products/9991clodinafop-propargly-15-wp.jpeg"
     ],
     "rating": 4.7,
     "reviews": 35,
@@ -1134,7 +1134,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1950,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1412137555Knocker_Plus-product.png"
+      "/products/1412137555Knocker_Plus-product.png"
     ],
     "rating": 4.8,
     "reviews": 29,
@@ -1153,7 +1153,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2800,
     "images": [
-      "http://saverenterprises.com/uploadfiles/11549advancer.png"
+      "/products/11549advancer.png"
     ],
     "rating": 4.9,
     "reviews": 40,
@@ -1172,7 +1172,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1300,
     "images": [
-      "http://saverenterprises.com/uploadfiles/59481214March.jpeg"
+      "/products/59481214March.jpeg"
     ],
     "rating": 4.6,
     "reviews": 22,
@@ -1191,7 +1191,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1700,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1549943618Goal.png"
+      "/products/1549943618Goal.png"
     ],
     "rating": 4.7,
     "reviews": 33,
@@ -1210,7 +1210,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 650,
     "images": [
-      "http://saverenterprises.com/uploadfiles/2030827368Fast-Plus.jpeg"
+      "/products/2030827368Fast-Plus.jpeg"
     ],
     "rating": 4.8,
     "reviews": 45,
@@ -1229,7 +1229,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 3500,
     "images": [
-      "http://saverenterprises.com/uploadfiles/2066664533Instentsuper.jpeg"
+      "/products/2066664533Instentsuper.jpeg"
     ],
     "rating": 4.9,
     "reviews": 50,
@@ -1248,7 +1248,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 950,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1450393423Sniper.png"
+      "/products/1450393423Sniper.png"
     ],
     "rating": 4.5,
     "reviews": 18,
@@ -1267,7 +1267,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1650,
     "images": [
-      "http://saverenterprises.com/uploadfiles/26417speed-10-wdg.jpeg"
+      "/products/26417speed-10-wdg.jpeg"
     ],
     "rating": 4.6,
     "reviews": 23,
@@ -1286,7 +1286,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1800,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1362526246Chlorpyrifos.png"
+      "/products/1362526246Chlorpyrifos.png"
     ],
     "rating": 4.7,
     "reviews": 34,
@@ -1305,7 +1305,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 800,
     "images": [
-      "http://saverenterprises.com/uploadfiles/19792imidacloprid-25-wp200.jpeg"
+      "/products/19792imidacloprid-25-wp200.jpeg"
     ],
     "rating": 4.8,
     "reviews": 41,
@@ -1324,7 +1324,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 3100,
     "images": [
-      "http://saverenterprises.com/uploadfiles/959965389Ola-product-pic.jpeg"
+      "/products/959965389Ola-product-pic.jpeg"
     ],
     "rating": 4.9,
     "reviews": 48,
@@ -1343,7 +1343,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2100,
     "images": [
-      "http://saverenterprises.com/uploadfiles/13281rapid-zinc.png"
+      "/products/13281rapid-zinc.png"
     ],
     "rating": 4.5,
     "reviews": 19,
@@ -1362,7 +1362,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1500,
     "images": [
-      "http://saverenterprises.com/uploadfiles/5733benefit.jpeg"
+      "/products/5733benefit.jpeg"
     ],
     "rating": 4.6,
     "reviews": 26,
@@ -1381,7 +1381,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 1750,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1882442014Pyriproxyfen_product.jpeg"
+      "/products/1882442014Pyriproxyfen_product.jpeg"
     ],
     "rating": 4.7,
     "reviews": 37,
@@ -1400,7 +1400,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 900,
     "images": [
-      "http://saverenterprises.com/uploadfiles/6532fast-480-sl.png"
+      "/products/6532fast-480-sl.png"
     ],
     "rating": 4.8,
     "reviews": 44,
@@ -1419,7 +1419,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2600,
     "images": [
-      "http://saverenterprises.com/uploadfiles/1457091551Kallium30-New.png"
+      "/products/1457091551Kallium30-New.png"
     ],
     "rating": 4.5,
     "reviews": 21,
@@ -1438,7 +1438,7 @@ export const mockProducts: Product[] = [
     "brand": "Saver",
     "price": 2200,
     "images": [
-      "http://saverenterprises.com/uploadfiles/112087747Rangeela1Ltr-Yellow.png"
+      "/products/112087747Rangeela1Ltr-Yellow.png"
     ],
     "rating": 4.6,
     "reviews": 28,

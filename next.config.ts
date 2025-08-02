@@ -21,24 +21,6 @@ const nextConfig: NextConfig = {
         hostname: 'firebasestorage.googleapis.com',
         port: '',
         pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'maherzaraimarkaz.store',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'maherzaraimarkaz.store',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'saverenterprises.com',
-        port: '',
-        pathname: '/**',
       }
     ],
   },
