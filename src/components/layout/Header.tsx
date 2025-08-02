@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Search, User, ShoppingCart, Menu, X, ChevronDown, LogOut, UserCog, History } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import SocialBar from './SocialBar';
 import NotificationMarquee from './NotificationMarquee';
 import MainNav from './MainNav';
 import { Badge } from '../ui/badge';
@@ -110,7 +109,6 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md">
-        <SocialBar />
         <NotificationMarquee />
         <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4 border-b">
           <div className="lg:hidden">
@@ -124,9 +122,9 @@ export default function Header() {
                 <Image 
                   src="/logo.png" 
                   alt="Maher Zarai Markaz" 
-                  width={250} 
-                  height={60} 
-                  className="h-[60px] object-contain"
+                  width={300} 
+                  height={75} 
+                  className="h-[75px] object-contain"
                   priority
                   unoptimized
                 />
