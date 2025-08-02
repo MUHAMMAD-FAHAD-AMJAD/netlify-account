@@ -126,10 +126,20 @@ export default function Header() {
             </Button>
           </div>
           
-
           <div className="absolute left-1/2 -translate-x-1/2 lg:static lg:left-0 lg:translate-x-0 flex-shrink-0">
-            <Link href="/" className="flex items-center text-2xl font-bold tracking-tight">
-                MAHER ZARAI MARKAZ
+             <Link href="/" className="flex items-center gap-2">
+                <Image 
+                  src="/logo.png" 
+                  alt="Maher Zarai Markaz" 
+                  width={50} 
+                  height={50} 
+                  className="h-12 w-12 object-contain"
+                  priority
+                  unoptimized
+                />
+                <span className="hidden sm:inline-block text-xl font-bold tracking-tight">
+                    MAHER ZARAI MARKAZ
+                </span>
             </Link>
           </div>
           
@@ -187,8 +197,15 @@ export default function Header() {
           >
             <div className="container mx-auto p-4">
               <div className="flex justify-between items-center mb-8">
-                 <Link href="/" className="flex items-center text-xl font-bold" onClick={toggleMobileMenu}>
-                    MAHER ZARAI MARKAZ
+                 <Link href="/" className="flex items-center gap-2" onClick={toggleMobileMenu}>
+                    <Image 
+                      src="/logo.png" 
+                      alt="Maher Zarai Markaz" 
+                      width={40} 
+                      height={40}
+                      unoptimized
+                    />
+                    <span className="text-lg font-bold">MAHER ZARAI MARKAZ</span>
                  </Link>
                 <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
                   <X className="h-6 w-6" />

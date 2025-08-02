@@ -18,6 +18,8 @@ import { Minus, Plus, Trash2, X } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 import Link from "next/link";
 import { useAppContext } from "@/context/AppContext";
+import { useToast } from "@/hooks/use-toast";
+
 
 export default function CartSidebar() {
   const { 
@@ -31,6 +33,8 @@ export default function CartSidebar() {
   } = useAppContext();
   
   const [activeTab, setActiveTab] = useState("cart");
+  const { toast } = useToast();
+
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.product.price * item.quantity,
@@ -38,7 +42,13 @@ export default function CartSidebar() {
   );
 
   const handleAddItemFromRecent = (product: Product) => {
-    addToCart(product);
+    // We don't use the main addToCart here because it opens the cart,
+    // which is already open. This version just adds the item and shows a toast.
+    addToCart(product, 1);
+    toast({
+        title: "Added to cart",
+        description: `${product.name} (x1) has been added to your cart.`,
+    });
     setActiveTab("cart");
   };
 
@@ -138,7 +148,7 @@ export default function CartSidebar() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                     <SheetClose asChild>
-                      <Link href="/checkout" passHref>
+                      <Link href="/cart" passHref>
                           <Button asChild variant="outline" className="w-full rounded-full h-11 text-base font-semibold border-2 border-black hover:bg-black hover:text-white">
                             <span>View Cart</span>
                           </Button>
