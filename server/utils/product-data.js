@@ -1,4 +1,5 @@
 
+
 // =================================================================================
 // THIS IS YOUR MASTER PRODUCT LIST
 // =================================================================================
@@ -10,12 +11,12 @@
 //
 // =================================================================================
 
-const mockProducts = [
+export const mockProducts = [
   {
     "id": "prod_111",
     "name": "HECTOR 10%WDG",
     "brand": "Saver",
-    "price": 0,
+    "price": 1200,
     "images": [
       "http://saverenterprises.com/uploadfiles/520342368Hectorsachy.jpeg"
     ],
@@ -34,7 +35,7 @@ const mockProducts = [
     "id": "prod_69",
     "name": "CEEDO 20%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1350,
     "images": [
       "http://saverenterprises.com/uploadfiles/963441673Ceedo.png"
     ],
@@ -53,7 +54,7 @@ const mockProducts = [
     "id": "prod_128",
     "name": "TRIDEMEFONE 25%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 950,
     "images": [
       "http://saverenterprises.com/uploadfiles/1340720766Triademafone.jpeg"
     ],
@@ -72,7 +73,7 @@ const mockProducts = [
     "id": "prod_54",
     "name": "PURE HUMUS 10%",
     "brand": "Saver",
-    "price": 0,
+    "price": 2200,
     "images": [
       "http://saverenterprises.com/uploadfiles/10568pure-humus-soil-conditioner.png"
     ],
@@ -91,7 +92,7 @@ const mockProducts = [
     "id": "prod_123",
     "name": "ORCUS 75%WDG",
     "brand": "Saver",
-    "price": 0,
+    "price": 800,
     "images": [
       "http://saverenterprises.com/uploadfiles/99258872Orcus.jpeg"
     ],
@@ -110,7 +111,7 @@ const mockProducts = [
     "id": "prod_88",
     "name": "RACER 360EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1500,
     "images": [
       "http://saverenterprises.com/uploadfiles/1763852958Delamethrin+Triazophos_product.jpeg"
     ],
@@ -129,7 +130,7 @@ const mockProducts = [
     "id": "prod_16",
     "name": "LAMBDA CYHALOTHRIN 2.5%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1800,
     "images": [
       "http://saverenterprises.com/uploadfiles/18250lambda-cyhalothring-2.5-ec.jpeg"
     ],
@@ -148,7 +149,7 @@ const mockProducts = [
     "id": "prod_122",
     "name": "MISSION POSSIBLE 50%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 1650,
     "images": [
       "http://saverenterprises.com/uploadfiles/781639325MissionPossible.jpeg"
     ],
@@ -167,7 +168,7 @@ const mockProducts = [
     "id": "prod_49",
     "name": "SINGLE 80% WG",
     "brand": "Saver",
-    "price": 0,
+    "price": 750,
     "images": [
       "http://saverenterprises.com/uploadfiles/28409sulphur-80-wg.png"
     ],
@@ -186,7 +187,7 @@ const mockProducts = [
     "id": "prod_115",
     "name": "SUDAO 11.6%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2500,
     "images": [
       "http://saverenterprises.com/uploadfiles/1547377629Sudao100ml.png"
     ],
@@ -205,7 +206,7 @@ const mockProducts = [
     "id": "prod_103",
     "name": "ACEPHATE 75% SP",
     "brand": "Saver",
-    "price": 0,
+    "price": 900,
     "images": [
       "http://saverenterprises.com/uploadfiles/232997538Acephate.jpg"
     ],
@@ -224,7 +225,7 @@ const mockProducts = [
     "id": "prod_132",
     "name": "TRAINER",
     "brand": "Saver",
-    "price": 0,
+    "price": 3000,
     "images": [
       "http://saverenterprises.com/uploadfiles/1817541670Trainer-new.jpg"
     ],
@@ -243,7 +244,7 @@ const mockProducts = [
     "id": "prod_17",
     "name": "LUFENURON 5%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1400,
     "images": [
       "http://saverenterprises.com/uploadfiles/5819LUFENURON-5-EC-683x1024.png"
     ],
@@ -262,7 +263,7 @@ const mockProducts = [
     "id": "prod_76",
     "name": "LIGHT 25%WDG",
     "brand": "Saver",
-    "price": 0,
+    "price": 2800,
     "images": [
       "http://saverenterprises.com/uploadfiles/618054907Light.jpeg"
     ],
@@ -281,7 +282,7 @@ const mockProducts = [
     "id": "prod_127",
     "name": "PIVOT 18.7%WG",
     "brand": "Saver",
-    "price": 0,
+    "price": 1900,
     "images": [
       "http://saverenterprises.com/uploadfiles/14793143Pivot.jpeg"
     ],
@@ -300,7 +301,7 @@ const mockProducts = [
     "id": "prod_106",
     "name": "CHLORFENAPYR 360SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2100,
     "images": [
       "http://saverenterprises.com/uploadfiles/1135537743Chlorfenapyre.jpeg"
     ],
@@ -319,7 +320,7 @@ const mockProducts = [
     "id": "prod_14",
     "name": "IMIDACLOPRID 70%WS",
     "brand": "Saver",
-    "price": 0,
+    "price": 600,
     "images": [
       "http://saverenterprises.com/uploadfiles/31561imidacloprid-70-ws.jpeg"
     ],
@@ -338,7 +339,7 @@ const mockProducts = [
     "id": "prod_119",
     "name": "BURJ 75%WG",
     "brand": "Saver",
-    "price": 0,
+    "price": 550,
     "images": [
       "http://saverenterprises.com/uploadfiles/1384177484Burj.jpeg"
     ],
@@ -357,7 +358,7 @@ const mockProducts = [
     "id": "prod_133",
     "name": "CARTAP 4%G",
     "brand": "Saver",
-    "price": 0,
+    "price": 1100,
     "images": [
       "http://saverenterprises.com/uploadfiles/902813422Cartapppp.png"
     ],
@@ -376,7 +377,7 @@ const mockProducts = [
     "id": "prod_94",
     "name": "SEED CARE 300FS",
     "brand": "Saver",
-    "price": 0,
+    "price": 3200,
     "images": [
       "http://saverenterprises.com/uploadfiles/1286045188Seed_Care_product.png"
     ],
@@ -395,7 +396,7 @@ const mockProducts = [
     "id": "prod_135",
     "name": "CORNER 27%Zinc",
     "brand": "Saver",
-    "price": 0,
+    "price": 1500,
     "images": [
       "http://saverenterprises.com/uploadfiles/1371848144Corner3.jpg"
     ],
@@ -414,7 +415,7 @@ const mockProducts = [
     "id": "prod_80",
     "name": "SHORT 13%OD",
     "brand": "Saver",
-    "price": 0,
+    "price": 1750,
     "images": [
       "http://saverenterprises.com/uploadfiles/1679911833Short.png"
     ],
@@ -433,9 +434,9 @@ const mockProducts = [
     "id": "prod_31",
     "name": "MISSION EXTRA 55%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2400,
     "images": [
-      "http://saverenterprises.com/uploadfiles/8755mission-extra-55-sc.jpeg"
+      "http://saverenterprises.com/uploadfiles/8755mission-extra-5-sc.jpeg"
     ],
     "rating": 4.6,
     "reviews": 24,
@@ -452,7 +453,7 @@ const mockProducts = [
     "id": "prod_116",
     "name": "VALOR 12%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2600,
     "images": [
       "http://saverenterprises.com/uploadfiles/1697495855valor.jpeg"
     ],
@@ -471,7 +472,7 @@ const mockProducts = [
     "id": "prod_2",
     "name": "ACETAMEPRID 20%SP",
     "brand": "Saver",
-    "price": 0,
+    "price": 950,
     "images": [
       "http://saverenterprises.com/uploadfiles/6380acetamiprid-20-sp.jpg"
     ],
@@ -490,7 +491,7 @@ const mockProducts = [
     "id": "prod_113",
     "name": "KING POCKER 25%EW",
     "brand": "Saver",
-    "price": 0,
+    "price": 3100,
     "images": [
       "http://saverenterprises.com/uploadfiles/115527771King_Pocker-bg.png"
     ],
@@ -509,7 +510,7 @@ const mockProducts = [
     "id": "prod_129",
     "name": "TRIP 250SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1850,
     "images": [
       "http://saverenterprises.com/uploadfiles/1987333082Trip-bg.png"
     ],
@@ -528,7 +529,7 @@ const mockProducts = [
     "id": "prod_79",
     "name": "SHIDING 21%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2000,
     "images": [
       "http://saverenterprises.com/uploadfiles/560759570Shiding.jpeg"
     ],
@@ -547,7 +548,7 @@ const mockProducts = [
     "id": "prod_104",
     "name": "LEERA 80%WG",
     "brand": "Saver",
-    "price": 0,
+    "price": 1250,
     "images": [
       "http://saverenterprises.com/uploadfiles/2014729525Leera.png"
     ],
@@ -566,7 +567,7 @@ const mockProducts = [
     "id": "prod_37",
     "name": "PARAZONE 20%SL",
     "brand": "Saver",
-    "price": 0,
+    "price": 850,
     "images": [
       "http://saverenterprises.com/uploadfiles/4463paraquat-20-sl.jpeg"
     ],
@@ -585,7 +586,7 @@ const mockProducts = [
     "id": "prod_30",
     "name": "KICK 48%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1950,
     "images": [
       "http://saverenterprises.com/uploadfiles/30114kick-48-sc.png"
     ],
@@ -604,7 +605,7 @@ const mockProducts = [
     "id": "prod_126",
     "name": "WAKER 50%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2300,
     "images": [
       "http://saverenterprises.com/uploadfiles/1658160518Walker300ml.png"
     ],
@@ -623,7 +624,7 @@ const mockProducts = [
     "id": "prod_72",
     "name": "SUPER PLUS 6%WG",
     "brand": "Saver",
-    "price": 0,
+    "price": 980,
     "images": [
       "http://saverenterprises.com/uploadfiles/132520509Super.jpg"
     ],
@@ -642,7 +643,7 @@ const mockProducts = [
     "id": "prod_114",
     "name": "SOVISECT 50%SP",
     "brand": "Saver",
-    "price": 0,
+    "price": 1150,
     "images": [
       "http://saverenterprises.com/uploadfiles/1498527914Sovisect.jpeg"
     ],
@@ -661,7 +662,7 @@ const mockProducts = [
     "id": "prod_70",
     "name": "CONDO 30%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2700,
     "images": [
       "http://saverenterprises.com/uploadfiles/138648226Condo.png"
     ],
@@ -680,7 +681,7 @@ const mockProducts = [
     "id": "prod_33",
     "name": "METRIBUZIN 70%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 880,
     "images": [
       "http://saverenterprises.com/uploadfiles/19305METRIBUZIN-70WP-683x1024.jpeg"
     ],
@@ -699,7 +700,7 @@ const mockProducts = [
     "id": "prod_81",
     "name": "SKATER 15%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1450,
     "images": [
       "http://saverenterprises.com/uploadfiles/1603655310Skater.png"
     ],
@@ -718,7 +719,7 @@ const mockProducts = [
     "id": "prod_105",
     "name": "BIFENTHRIN 10% EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1900,
     "images": [
       "http://saverenterprises.com/uploadfiles/1412141642Bifenthrin.png"
     ],
@@ -737,7 +738,7 @@ const mockProducts = [
     "id": "prod_84",
     "name": "MULTICLEAN 25%OD",
     "brand": "Saver",
-    "price": 0,
+    "price": 2850,
     "images": [
       "http://saverenterprises.com/uploadfiles/459180245Multi-Clean.png"
     ],
@@ -756,7 +757,7 @@ const mockProducts = [
     "id": "prod_109",
     "name": "EMAMECTIN 1.9%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1300,
     "images": [
       "http://saverenterprises.com/uploadfiles/757741861Emamectin.png"
     ],
@@ -775,7 +776,7 @@ const mockProducts = [
     "id": "prod_57",
     "name": "SAVER PEDAWAR 10%G",
     "brand": "Saver",
-    "price": 0,
+    "price": 950,
     "images": [
       "http://saverenterprises.com/uploadfiles/14279SAVER-PAIDAWAR-10DANAYDAR-768x1024.png"
     ],
@@ -795,7 +796,7 @@ const mockProducts = [
     "id": "prod_67",
     "name": "SAJAJAN",
     "brand": "Saver",
-    "price": 0,
+    "price": 1800,
     "images": [
       "http://saverenterprises.com/uploadfiles/1132570839Sajjan.jpeg"
     ],
@@ -814,7 +815,7 @@ const mockProducts = [
     "id": "prod_117",
     "name": "WOOLMER 3%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2950,
     "images": [
       "http://saverenterprises.com/uploadfiles/1332648517Woolmer400ml.png"
     ],
@@ -833,7 +834,7 @@ const mockProducts = [
     "id": "prod_118",
     "name": "ATRAZINE 38%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1200,
     "images": [
       "http://saverenterprises.com/uploadfiles/1220103988Atrazin.jpeg"
     ],
@@ -852,7 +853,7 @@ const mockProducts = [
     "id": "prod_131",
     "name": "SAVERON Boron 5%",
     "brand": "Saver",
-    "price": 0,
+    "price": 2400,
     "images": [
       "http://saverenterprises.com/uploadfiles/2132996493Saveron.jpg"
     ],
@@ -871,7 +872,7 @@ const mockProducts = [
     "id": "prod_64",
     "name": "ENERGY 5%G",
     "brand": "Saver",
-    "price": 0,
+    "price": 1050,
     "images": [
       "http://saverenterprises.com/uploadfiles/23938monomehypo-5g.png"
     ],
@@ -890,7 +891,7 @@ const mockProducts = [
     "id": "prod_108",
     "name": "DINO 200SG",
     "brand": "Saver",
-    "price": 0,
+    "price": 3300,
     "images": [
       "http://saverenterprises.com/uploadfiles/197718019Dino.jpeg"
     ],
@@ -909,7 +910,7 @@ const mockProducts = [
     "id": "prod_60",
     "name": "KALLIUM S",
     "brand": "Saver",
-    "price": 0,
+    "price": 1800,
     "images": [
       "http://saverenterprises.com/uploadfiles/15250kallium-s.png"
     ],
@@ -928,7 +929,7 @@ const mockProducts = [
     "id": "prod_125",
     "name": "SPECTAR 20%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1950,
     "images": [
       "http://saverenterprises.com/uploadfiles/1178014332Spector.jpeg"
     ],
@@ -947,7 +948,7 @@ const mockProducts = [
     "id": "prod_50",
     "name": "THIOPHENATE 70% WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 1100,
     "images": [
       "http://saverenterprises.com/uploadfiles/20030THIOPHANATE-METHYL-70-683x1024.jpeg"
     ],
@@ -966,7 +967,7 @@ const mockProducts = [
     "id": "prod_46",
     "name": "PROFILE 47%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 1600,
     "images": [
       "http://saverenterprises.com/uploadfiles/30711PROFILE-47FUNGICIDE-683x1024.jpeg"
     ],
@@ -985,7 +986,7 @@ const mockProducts = [
     "id": "prod_26",
     "name": "BROMOXYNIL 40%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1350,
     "images": [
       "http://saverenterprises.com/uploadfiles/31046bromoxynil-40-ec.png"
     ],
@@ -1004,7 +1005,7 @@ const mockProducts = [
     "id": "prod_110",
     "name": "FIPRONIL 5%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1550,
     "images": [
       "http://saverenterprises.com/uploadfiles/11693581Fipronil480ml.png"
     ],
@@ -1023,7 +1024,7 @@ const mockProducts = [
     "id": "prod_62",
     "name": "WINSTO 30%WDG",
     "brand": "Saver",
-    "price": 0,
+    "price": 990,
     "images": [
       "http://saverenterprises.com/uploadfiles/27855WNSTA-30WP-e1518088107905-731x1024.png"
     ],
@@ -1042,7 +1043,7 @@ const mockProducts = [
     "id": "prod_120",
     "name": "DEMO 20%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 700,
     "images": [
       "http://saverenterprises.com/uploadfiles/1663843375Demo.png"
     ],
@@ -1061,7 +1062,7 @@ const mockProducts = [
     "id": "prod_63",
     "name": "FIPRONIL 0.4%G",
     "brand": "Saver",
-    "price": 0,
+    "price": 1250,
     "images": [
       "http://saverenterprises.com/uploadfiles/9497fipronil-0.4-g.png"
     ],
@@ -1080,7 +1081,7 @@ const mockProducts = [
     "id": "prod_95",
     "name": "ACUBAR 30%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 1400,
     "images": [
       "http://saverenterprises.com/uploadfiles/1192552725ACUBAR-removebg-preview.jpeg"
     ],
@@ -1099,7 +1100,7 @@ const mockProducts = [
     "id": "prod_53",
     "name": "JEET",
     "brand": "Saver",
-    "price": 0,
+    "price": 2500,
     "images": [
       "http://saverenterprises.com/uploadfiles/2027jeet-poassium-humate-solid.png"
     ],
@@ -1115,29 +1116,10 @@ const mockProducts = [
     "description": "JEET Potassium Humate Solid Jeet is a soil conditioner. It increases production upto 10 %. Jeet is.... Packing - 8KG , 20KG"
   },
   {
-    "id": "prod_15",
-    "name": "IMIDACLOPRID 25%WP",
-    "brand": "Saver",
-    "price": 0,
-    "images": [
-      "http://saverenterprises.com/uploadfiles/13493imidacloprid-70-ws.jpeg"
-    ],
-    "rating": 4.5,
-    "reviews": 27,
-    "isSoldOut": false,
-    "imageHint": "insecticide powder",
-    "category": "Insecticides",
-    "subcategory": "insecticides",
-    "tags": [
-      "insecticides"
-    ],
-    "description": "IMIDACLOPRID 25%WP Exclusive and unique seed treatment from Neonicotinoids group by use of which.... Packing - 50GM"
-  },
-  {
     "id": "prod_27",
     "name": "CLODINOFOP 15%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 850,
     "images": [
       "http://saverenterprises.com/uploadfiles/9991clodinafop-propargly-15-wp.jpeg"
     ],
@@ -1156,7 +1138,7 @@ const mockProducts = [
     "id": "prod_90",
     "name": "KNOCK OUT 18%FS",
     "brand": "Saver",
-    "price": 0,
+    "price": 1950,
     "images": [
       "http://saverenterprises.com/uploadfiles/1412137555Knocker_Plus-product.png"
     ],
@@ -1175,7 +1157,7 @@ const mockProducts = [
     "id": "prod_59",
     "name": "ADVANCER",
     "brand": "Saver",
-    "price": 0,
+    "price": 2800,
     "images": [
       "http://saverenterprises.com/uploadfiles/11549advancer.png"
     ],
@@ -1194,7 +1176,7 @@ const mockProducts = [
     "id": "prod_134",
     "name": "MARCH 0.2%G",
     "brand": "Saver",
-    "price": 0,
+    "price": 1300,
     "images": [
       "http://saverenterprises.com/uploadfiles/59481214March.jpeg"
     ],
@@ -1213,7 +1195,7 @@ const mockProducts = [
     "id": "prod_74",
     "name": "GOAL 36%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 1700,
     "images": [
       "http://saverenterprises.com/uploadfiles/1549943618Goal.png"
     ],
@@ -1232,7 +1214,7 @@ const mockProducts = [
     "id": "prod_121",
     "name": "FAST PLUS 88.8%WSG",
     "brand": "Saver",
-    "price": 0,
+    "price": 650,
     "images": [
       "http://saverenterprises.com/uploadfiles/2030827368Fast-Plus.jpeg"
     ],
@@ -1251,7 +1233,7 @@ const mockProducts = [
     "id": "prod_112",
     "name": "INSTANT SUPER 50%SG",
     "brand": "Saver",
-    "price": 0,
+    "price": 3500,
     "images": [
       "http://saverenterprises.com/uploadfiles/2066664533Instentsuper.jpeg"
     ],
@@ -1270,7 +1252,7 @@ const mockProducts = [
     "id": "prod_66",
     "name": "SNIPER",
     "brand": "Saver",
-    "price": 0,
+    "price": 950,
     "images": [
       "http://saverenterprises.com/uploadfiles/1450393423Sniper.png"
     ],
@@ -1289,7 +1271,7 @@ const mockProducts = [
     "id": "prod_19",
     "name": "SPEED 50%SC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1650,
     "images": [
       "http://saverenterprises.com/uploadfiles/26417speed-10-wdg.jpeg"
     ],
@@ -1308,7 +1290,7 @@ const mockProducts = [
     "id": "prod_107",
     "name": "CHLORPYRIFOS 40%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1800,
     "images": [
       "http://saverenterprises.com/uploadfiles/1362526246Chlorpyrifos.png"
     ],
@@ -1327,7 +1309,7 @@ const mockProducts = [
     "id": "prod_13",
     "name": "IMIDACLOPRID 25%WP",
     "brand": "Saver",
-    "price": 0,
+    "price": 800,
     "images": [
       "http://saverenterprises.com/uploadfiles/19792imidacloprid-25-wp200.jpeg"
     ],
@@ -1346,7 +1328,7 @@ const mockProducts = [
     "id": "prod_98",
     "name": "OLA 50%WG",
     "brand": "Saver",
-    "price": 0,
+    "price": 3100,
     "images": [
       "http://saverenterprises.com/uploadfiles/959965389Ola-product-pic.jpeg"
     ],
@@ -1365,7 +1347,7 @@ const mockProducts = [
     "id": "prod_55",
     "name": "RAPID ZINC 10%W/V",
     "brand": "Saver",
-    "price": 0,
+    "price": 2100,
     "images": [
       "http://saverenterprises.com/uploadfiles/13281rapid-zinc.png"
     ],
@@ -1384,7 +1366,7 @@ const mockProducts = [
     "id": "prod_51",
     "name": "BENEFIT",
     "brand": "Saver",
-    "price": 0,
+    "price": 1500,
     "images": [
       "http://saverenterprises.com/uploadfiles/5733benefit.jpeg"
     ],
@@ -1403,7 +1385,7 @@ const mockProducts = [
     "id": "prod_93",
     "name": "PYRIPROXYFEN 10.8%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 1750,
     "images": [
       "http://saverenterprises.com/uploadfiles/1882442014Pyriproxyfen_product.jpeg"
     ],
@@ -1422,7 +1404,7 @@ const mockProducts = [
     "id": "prod_28",
     "name": "FAST 480SL",
     "brand": "Saver",
-    "price": 0,
+    "price": 900,
     "images": [
       "http://saverenterprises.com/uploadfiles/6532fast-480-sl.png"
     ],
@@ -1441,7 +1423,7 @@ const mockProducts = [
     "id": "prod_130",
     "name": "KALLIUM-30",
     "brand": "Saver",
-    "price": 0,
+    "price": 2600,
     "images": [
       "http://saverenterprises.com/uploadfiles/1457091551Kallium30-New.png"
     ],
@@ -1460,7 +1442,7 @@ const mockProducts = [
     "id": "prod_124",
     "name": "RANGEELA 42%EC",
     "brand": "Saver",
-    "price": 0,
+    "price": 2200,
     "images": [
       "http://saverenterprises.com/uploadfiles/112087747Rangeela1Ltr-Yellow.png"
     ],
