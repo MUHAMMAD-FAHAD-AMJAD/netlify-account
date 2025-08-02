@@ -58,7 +58,6 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-contain transition-transform duration-500 hover:scale-105 p-4"
-                  unoptimized
               />
                {product.originalPrice && (
                   <Badge
@@ -82,7 +81,6 @@ export default function ProductPageClient({ product, relatedProducts }: ProductP
                               width={100}
                               height={100}
                               className="object-contain w-full h-full p-1"
-                              unoptimized
                           />
                     </div>
                 ))}

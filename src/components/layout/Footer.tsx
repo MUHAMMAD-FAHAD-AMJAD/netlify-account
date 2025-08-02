@@ -47,7 +47,6 @@ export default function Footer() {
                 width={200}
                 height={50}
                 className="h-[50px] object-contain"
-                unoptimized
               />
             </Link>
             <p className="text-muted-foreground mb-4">

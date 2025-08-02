@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, User, ShoppingCart, Menu, X, ChevronDown, LogOut, UserCog, History } from 'lucide-react';
+import { Search, User, ShoppingCart, Menu, X, ChevronDown, LogOut, UserCog, History, Facebook, Instagram, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import NotificationMarquee from './NotificationMarquee';
 import MainNav from './MainNav';
@@ -24,6 +24,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { useToast } from '@/hooks/use-toast';
+
+function SocialBar() {
+    return (
+        <div className="bg-gray-100 py-1.5">
+            <div className="container mx-auto px-4 flex justify-end items-center gap-4">
+                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Facebook className="h-5 w-5"/></a>
+                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Instagram className="h-5 w-5"/></a>
+                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Youtube className="h-5 w-5"/></a>
+            </div>
+        </div>
+    )
+}
 
 
 function UserNav() {
@@ -126,7 +138,6 @@ export default function Header() {
                   height={75} 
                   className="h-[75px] object-contain"
                   priority
-                  unoptimized
                 />
             </Link>
           </div>
@@ -192,7 +203,6 @@ export default function Header() {
                       width={200}
                       height={50}
                       className="h-[50px] object-contain"
-                      unoptimized
                     />
                  </Link>
                 <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>

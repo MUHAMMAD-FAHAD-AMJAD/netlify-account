@@ -101,7 +101,6 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
           width={400}
           height={400}
           className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
-          unoptimized
         />
       </div>
       <CardContent className="p-4 flex flex-col flex-1">

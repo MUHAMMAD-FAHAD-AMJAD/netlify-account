@@ -80,7 +80,6 @@ export default function CartSidebar() {
                       width={80}
                       height={80}
                       className="rounded-lg border object-cover aspect-square"
-                      unoptimized
                     />
                     <div className="flex-1 flex flex-col">
                         <div className="flex justify-between items-start">
@@ -124,7 +123,6 @@ export default function CartSidebar() {
                       width={60}
                       height={60}
                       className="rounded-lg border object-cover"
-                      unoptimized
                     />
                     <div className="flex-1">
                       <h5 className="font-medium text-sm">{product.name}</h5>

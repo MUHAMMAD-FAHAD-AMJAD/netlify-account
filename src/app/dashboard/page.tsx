@@ -46,7 +46,6 @@ export default function DashboardPage() {
                       height={75}
                       className="mx-auto h-[75px] object-contain"
                       priority
-                      unoptimized
                     />
                   </Link>
                 </div>
