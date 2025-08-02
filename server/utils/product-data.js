@@ -1476,6 +1476,3 @@ const mockProducts = [
     "description": "Pendimethalin 170 gm/Ltr(15% w/w) + Acetochlor 250Gm/Ltr(23% w/w). Packing - 800ML"
   }
 ];
-
-
-module.exports = { mockProducts };
