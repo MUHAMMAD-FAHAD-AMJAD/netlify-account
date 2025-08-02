@@ -124,15 +124,12 @@ export default function Header() {
                 <Image 
                   src="/logo.png" 
                   alt="Maher Zarai Markaz" 
-                  width={50} 
+                  width={200} 
                   height={50} 
-                  className="h-12 w-12 object-contain"
+                  className="h-[50px] object-contain"
                   priority
                   unoptimized
                 />
-                <span className="hidden sm:inline-block text-xl font-bold tracking-tight">
-                    MAHER ZARAI MARKAZ
-                </span>
             </Link>
           </div>
           
@@ -194,11 +191,11 @@ export default function Header() {
                     <Image 
                       src="/logo.png" 
                       alt="Maher Zarai Markaz" 
-                      width={40} 
+                      width={150} 
                       height={40}
+                      className="h-[40px] object-contain"
                       unoptimized
                     />
-                    <span className="text-lg font-bold">MAHER ZARAI MARKAZ</span>
                  </Link>
                 <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
                   <X className="h-6 w-6" />
