@@ -12,6 +12,8 @@ const categories: Category[] = [
     { name: 'Weedicides', href: '/products/weedicides', description: 'Weed Control Products', imageUrl: 'https://placehold.co/600x400', imageHint: 'weeds field' },
     { name: 'Fungicides', href: '/products/fungicides', description: 'Disease Prevention', imageUrl: 'https://placehold.co/600x400', imageHint: 'plant disease' },
     { name: 'Fertilizers', href: '/products/fertilizers', description: 'Plant Nutrition', imageUrl: 'https://placehold.co/600x400', imageHint: 'fertilizer bags' },
+    { name: 'Micro Nutrients', href: '/products/micro-nutrients', description: 'Essential Plant Nutrition', imageUrl: 'https://placehold.co/600x400', imageHint: 'plant nutrients' },
+    { name: 'Granules', href: '/products/granules', description: 'Effective Granular Solutions', imageUrl: 'https://placehold.co/600x400', imageHint: 'soil granules' },
     { name: 'Seeds', href: '/products/seeds', description: 'Quality Seeds & Seedlings', imageUrl: 'https://placehold.co/600x400', imageHint: 'seeds planting' },
 ];
 
@@ -23,7 +25,7 @@ export default function CategoryGrid() {
           <h2 className="text-4xl font-bold tracking-tight">Shop by Category</h2>
           <p className="mt-4 text-lg text-muted-foreground">Find exactly what you need for your farm or garden.</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {categories.map((category) => (
             <Link key={category.name} href={category.href} className="block group">
               <Card className="relative overflow-hidden rounded-3xl border-none shadow-lg transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2">

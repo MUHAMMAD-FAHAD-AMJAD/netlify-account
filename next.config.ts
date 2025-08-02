@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'maherzaraimarkaz.store',
+        hostname: 'firebasestorage.googleapis.com',
         port: '',
         pathname: '/**',
       },
@@ -28,15 +28,9 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-       {
+      {
         protocol: 'https',
-        hostname: 'maher-zarai-markaz-d951f.appspot.com',
-        port: '',
-        pathname: '/**',
-      },
-       {
-        protocol: 'https',
-        hostname: 'maher-zarai-markaz-d951f.firebasestorage.app',
+        hostname: 'maherzaraimarkaz.store',
         port: '',
         pathname: '/**',
       },
