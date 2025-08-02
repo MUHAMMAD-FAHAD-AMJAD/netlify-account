@@ -124,9 +124,9 @@ export default function Header() {
                 <Image 
                   src="/logo.png" 
                   alt="Maher Zarai Markaz" 
-                  width={200} 
-                  height={50} 
-                  className="h-[50px] object-contain"
+                  width={250} 
+                  height={60} 
+                  className="h-[60px] object-contain"
                   priority
                   unoptimized
                 />
@@ -191,9 +191,9 @@ export default function Header() {
                     <Image 
                       src="/logo.png" 
                       alt="Maher Zarai Markaz" 
-                      width={150} 
-                      height={40}
-                      className="h-[40px] object-contain"
+                      width={200}
+                      height={50}
+                      className="h-[50px] object-contain"
                       unoptimized
                     />
                  </Link>

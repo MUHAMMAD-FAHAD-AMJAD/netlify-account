@@ -42,9 +42,9 @@ export default function DashboardPage() {
                     <Image 
                       src="/logo.png"
                       alt="Maher Zarai Markaz" 
-                      width={250} 
-                      height={60}
-                      className="mx-auto h-[60px] object-contain"
+                      width={300} 
+                      height={75}
+                      className="mx-auto h-[75px] object-contain"
                       priority
                       unoptimized
                     />
