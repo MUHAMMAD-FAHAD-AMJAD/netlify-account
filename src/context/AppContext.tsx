@@ -19,7 +19,7 @@ const firebaseConfig = {
 
 interface AppContextType {
   cartItems: CartItem[];
-  addToCart: (product: Product, quantity?: number) => void;
+  addToCart: (product: Product, quantity?: number, options?: { showToast?: boolean }) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   isCartOpen: boolean;
@@ -84,7 +84,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const addToCart = (product: Product, quantity: number = 1) => {
+  const addToCart = (product: Product, quantity: number = 1, options: { showToast?: boolean } = { showToast: true }) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.product.id === product.id);
       if (existingItem) {
@@ -96,10 +96,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
       }
       return [...prevItems, { id: `cart_${product.id}_${Date.now()}`, product, quantity }];
     });
-    toast({
-        title: "Added to cart",
-        description: `${product.name} (x${quantity}) has been added to your cart.`,
-    })
+
+    if (options.showToast) {
+       toast({
+          title: "Added to cart",
+          description: `${product.name} (x${quantity}) has been added to your cart.`,
+      })
+    }
   };
 
   const removeFromCart = (itemId: string) => {

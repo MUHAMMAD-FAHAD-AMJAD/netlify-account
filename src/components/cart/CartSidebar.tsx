@@ -42,12 +42,12 @@ export default function CartSidebar() {
   );
 
   const handleAddItemFromRecent = (product: Product) => {
-    // We don't use the main addToCart here because it opens the cart,
-    // which is already open. This version just adds the item and shows a toast.
-    addToCart(product, 1);
+    // Call the main addToCart function but disable its toast to prevent duplicates.
+    addToCart(product, 1, { showToast: false });
+    // Show a specific toast for this action.
     toast({
         title: "Added to cart",
-        description: `${product.name} (x1) has been added to your cart.`,
+        description: `${product.name} (x1) has been added to your cart from recently viewed.`,
     });
     setActiveTab("cart");
   };
@@ -80,6 +80,7 @@ export default function CartSidebar() {
                       width={80}
                       height={80}
                       className="rounded-lg border object-cover aspect-square"
+                      unoptimized
                     />
                     <div className="flex-1 flex flex-col">
                         <div className="flex justify-between items-start">
@@ -123,6 +124,7 @@ export default function CartSidebar() {
                       width={60}
                       height={60}
                       className="rounded-lg border object-cover"
+                      unoptimized
                     />
                     <div className="flex-1">
                       <h5 className="font-medium text-sm">{product.name}</h5>
