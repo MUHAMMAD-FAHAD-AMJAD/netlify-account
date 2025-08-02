@@ -4,14 +4,18 @@
 import React, { createContext, useContext, useState, ReactNode, useCallback, useEffect } from 'react';
 import type { Product, CartItem, User } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
+import { initializeApp, type FirebaseApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged, signOut, type Auth } from 'firebase/auth';
 
-interface AuthResponse {
-  _id: string;
-  name: string;
-  email: string;
-  isAdmin: boolean;
-  token: string;
-}
+// IMPORTANT: Replace with your actual Firebase configuration
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
 interface AppContextType {
   cartItems: CartItem[];
@@ -23,11 +27,24 @@ interface AppContextType {
   recentlyViewed: Product[];
   addRecentlyViewed: (product: Product) => void;
   user: User | null;
-  login: (authData: AuthResponse) => void;
+  firebaseAuth: Auth | null;
   logout: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
+
+let firebaseApp: FirebaseApp | null = null;
+let firebaseAuth: Auth | null = null;
+
+if (typeof window !== 'undefined') {
+    try {
+        firebaseApp = initializeApp(firebaseConfig);
+        firebaseAuth = getAuth(firebaseApp);
+    } catch (error) {
+        console.error("Firebase initialization error:", error);
+    }
+}
+
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
@@ -37,46 +54,34 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Check for user data in localStorage on initial load
-    try {
-      const storedUser = localStorage.getItem('userInfo');
-      if (storedUser) {
-        const userData = JSON.parse(storedUser);
-        setUser({
-          id: userData._id,
-          name: userData.name,
-          email: userData.email,
-          isAdmin: userData.isAdmin,
-        });
-      }
-    } catch (error) {
-      console.error("Failed to parse user info from localStorage", error);
-      localStorage.removeItem('userInfo');
-    }
+    if (!firebaseAuth) return;
+    
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (firebaseUser) => {
+        if (firebaseUser) {
+            setUser({
+                id: firebaseUser.uid,
+                name: firebaseUser.displayName || 'User',
+                email: firebaseUser.email || '',
+                isAdmin: false // You might need a custom claim for this
+            });
+        } else {
+            setUser(null);
+        }
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const login = (authData: AuthResponse) => {
-    const userData = {
-        id: authData._id,
-        name: authData.name,
-        email: authData.email,
-        isAdmin: authData.isAdmin,
-    };
-    setUser(userData);
-    localStorage.setItem('userInfo', JSON.stringify(authData));
-    toast({
-      title: "Login Successful",
-      description: `Welcome back, ${authData.name}!`,
-    });
-  };
 
   const logout = () => {
-    setUser(null);
-    localStorage.removeItem('userInfo');
-    toast({
-      title: "Logged Out",
-      description: "You have been successfully logged out.",
-    });
+    if (firebaseAuth) {
+        signOut(firebaseAuth).then(() => {
+             toast({
+                title: "Logged Out",
+                description: "You have been successfully logged out.",
+            });
+        });
+    }
   };
 
   const addToCart = (product: Product, quantity: number = 1) => {
@@ -95,7 +100,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
         title: "Added to cart",
         description: `${product.name} (x${quantity}) has been added to your cart.`,
     })
-    setIsCartOpen(true);
   };
 
   const removeFromCart = (itemId: string) => {
@@ -130,7 +134,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AppContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, recentlyViewed, addRecentlyViewed, user, login, logout }}>
+    <AppContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, recentlyViewed, addRecentlyViewed, user, firebaseAuth, logout }}>
       {children}
     </AppContext.Provider>
   );

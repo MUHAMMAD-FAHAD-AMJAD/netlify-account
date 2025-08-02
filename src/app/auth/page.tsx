@@ -12,6 +12,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useAppContext } from '@/context/AppContext';
 import { useToast } from '@/hooks/use-toast';
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    sendEmailVerification,
+    updateProfile
+} from 'firebase/auth';
 
 function GoogleIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
@@ -53,14 +59,9 @@ function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
     );
 }
 
-// IMPORTANT: After you deploy your backend to Render, you MUST replace this URL
-// with the actual URL of your Render service.
-// For example: 'https://your-backend-name.onrender.com'
-const BACKEND_URL = 'https://maher-zara-markaz-backend.onrender.com';
-
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("login");
-  const { login } = useAppContext();
+  const { firebaseAuth } = useAppContext();
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect') || '/';
@@ -83,29 +84,37 @@ export default function AuthPage() {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!firebaseAuth) return;
     setIsLoading(true);
+
     const form = e.currentTarget;
     const email = (form.elements.namedItem('email') as HTMLInputElement).value;
     const password = (form.elements.namedItem('password') as HTMLInputElement).value;
 
     try {
-      const res = await fetch(`${BACKEND_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message || 'Failed to login');
+      const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
+      
+      if (!userCredential.user.emailVerified) {
+        toast({
+            variant: "destructive",
+            title: "Email Not Verified",
+            description: "Please check your inbox to verify your email address before logging in.",
+        });
+        setIsLoading(false);
+        return;
       }
-      login(data);
+
+      toast({
+        title: "Login Successful",
+        description: `Welcome back!`,
+      });
       router.push(redirectUrl);
 
     } catch (error: any) {
       toast({
         variant: "destructive",
         title: "Login Failed",
-        description: error.message || "An unexpected error occurred.",
+        description: error.message || "An unexpected error occurred. Please check your credentials.",
       });
     } finally {
         setIsLoading(false);
@@ -114,6 +123,7 @@ export default function AuthPage() {
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!firebaseAuth) return;
     setIsLoading(true);
     const form = e.currentTarget;
     const name = (form.elements.namedItem('name') as HTMLInputElement).value;
@@ -132,18 +142,13 @@ export default function AuthPage() {
     }
 
     try {
-        const res = await fetch(`${BACKEND_URL}/api/auth/register`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, password }),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-            throw new Error(data.message || 'Failed to create account');
-        }
+        const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
+        await updateProfile(userCredential.user, { displayName: name });
+        await sendEmailVerification(userCredential.user);
+        
         toast({
             title: "Account Created!",
-            description: "Please log in with your new credentials.",
+            description: "A verification email has been sent. Please check your inbox.",
         });
         setActiveTab("login");
     } catch(error: any) {

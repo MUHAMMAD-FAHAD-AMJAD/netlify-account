@@ -1,3 +1,4 @@
+
 import type { Product } from './types';
 
 // This file is now just a mirror of the backend data for local development.

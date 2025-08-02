@@ -1,10 +1,12 @@
+
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
 const productRoutes = require('./routes/products');
-const authRoutes = require('./routes/auth');
+// Auth routes are no longer needed as Firebase handles this
+// const authRoutes = require('./routes/auth');
 
 dotenv.config();
 
@@ -20,7 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/products', productRoutes);
-app.use('/api/auth', authRoutes);
+// app.use('/api/auth', authRoutes);
 
 
 const PORT = process.env.PORT || 5000;

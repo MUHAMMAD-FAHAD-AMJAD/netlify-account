@@ -29,12 +29,6 @@ import { useToast } from '@/hooks/use-toast';
 
 function UserNav() {
   const { user, logout } = useAppContext();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    router.push('/');
-  }
 
   if (!user) {
     return (
@@ -81,7 +75,7 @@ function UserNav() {
             </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+        <DropdownMenuItem onClick={logout} className="cursor-pointer">
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>
@@ -94,7 +88,6 @@ export default function Header() {
   const { cartItems, setIsCartOpen } = useAppContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const router = useRouter();
   const { toast } = useToast();
   
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
