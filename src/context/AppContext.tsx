@@ -8,21 +8,16 @@ import { initializeApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, signOut, type Auth } from 'firebase/auth';
 
 // =================================================================================
-// PASTE YOUR FIREBASE CONFIGURATION HERE
-// =================================================================================
-// 1. Go to your Firebase project: console.firebase.google.com
-// 2. Click the gear icon (⚙️) > Project settings.
-// 3. In the "Your apps" card, find your web app.
-// 4. Select the "Config" option to see your firebaseConfig object.
-// 5. Copy the entire object and paste it here, replacing the placeholder.
+// Your web app's Firebase configuration
 // =================================================================================
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAscWXltgrEHibeJi-J4zd2_5kdROREUD8",
+  authDomain: "maher-zarai-markaz-d951f.firebaseapp.com",
+  projectId: "maher-zarai-markaz-d951f",
+  storageBucket: "maher-zarai-markaz-d951f.appspot.com",
+  messagingSenderId: "335643307179",
+  appId: "1:335643307179:web:bdf305b218596f29c85bee",
+  measurementId: "G-PJGFVND835"
 };
 // =================================================================================
 
@@ -47,16 +42,11 @@ let firebaseAuth: Auth | null = null;
 
 // Ensure Firebase is initialized only on the client side
 if (typeof window !== 'undefined') {
-    // Check if the config keys are placeholders. If so, don't initialize.
-    if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
-        try {
-            firebaseApp = initializeApp(firebaseConfig);
-            firebaseAuth = getAuth(firebaseApp);
-        } catch (error) {
-            console.error("Firebase initialization error:", error);
-        }
-    } else {
-        console.warn("Firebase config is using placeholder keys. Please replace them in src/context/AppContext.tsx to enable authentication.");
+    try {
+        firebaseApp = initializeApp(firebaseConfig);
+        firebaseAuth = getAuth(firebaseApp);
+    } catch (error) {
+        console.error("Firebase initialization error:", error);
     }
 }
 
@@ -118,7 +108,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
           description: `${product.name} (x${quantity}) has been added to your cart.`,
       })
     }
-    // setIsCartOpen(true);
   };
 
   const removeFromCart = (itemId: string) => {
