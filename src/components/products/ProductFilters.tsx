@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import {
   Accordion,
@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { mockProducts } from "@/lib/products";
+import { getProducts } from "@/lib/products";
+import type { Product } from "@/lib/types";
 
 const categories = [
     { name: 'Insecticides', id: '1' },
@@ -23,11 +24,18 @@ const categories = [
     { name: 'Seeds', id: '7' },
 ];
 
-// Dynamically generate packing options from products
-const allPackingOptions = Array.from(new Set(mockProducts.flatMap(p => p.description.match(/Packing - (.+)/)?.[1].split(' , ') || [])));
-
-
 export default function ProductFilters() {
+  const [allPackingOptions, setAllPackingOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function fetchPackingOptions() {
+        const products = await getProducts();
+        const packingOptions = Array.from(new Set(products.flatMap(p => p.packing?.split(' , ') || [])));
+        setAllPackingOptions(packingOptions);
+    }
+    fetchPackingOptions();
+  }, []);
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

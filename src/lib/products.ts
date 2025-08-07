@@ -2,7 +2,8 @@ import type { Product } from './types';
 
 export async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch('/api/products');
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:9002';
+    const res = await fetch(`${baseUrl}/api/products`);
     if (!res.ok) {
       throw new Error('Failed to fetch products');
     }

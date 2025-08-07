@@ -1,22 +1,22 @@
 "use server"
 
 import { notFound } from "next/navigation";
-import { mockProducts } from "@/lib/products";
+import { getProducts } from "@/lib/products";
 import Breadcrumbs from "@/components/products/Breadcrumbs";
 import ProductPageClient from "@/components/products/ProductPageClient";
 
 // This is the main page component, which is a SERVER component.
 export default async function ProductDetailPage({ params }: { params: { id: string } }) {
   
-  // Find the product by id from the mock data on the server.
-  const product = mockProducts.find((p) => p.id === params.id);
+  const products = await getProducts();
+  const product = products.find((p) => p.id === params.id);
 
   // If no product is found, render the 404 page.
   if (!product) {
     notFound();
   }
 
-  const relatedProducts = mockProducts.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+  const relatedProducts = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
 
   return (
     <div className="bg-white">
@@ -33,7 +33,7 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
 // This function MUST be in a Server Component.
 export async function generateStaticParams() {
     try {
-      const products = mockProducts;
+      const products = await getProducts();
       return products.map(product => ({
         id: product.id,
       }));
