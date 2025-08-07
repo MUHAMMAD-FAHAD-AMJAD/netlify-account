@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
   productId: { type: String, required: true, unique: true },
   name: { type: String, required: true },
-  brand: { type: String, required: true },
-  price: { type: Number, required: true },
+  brand: { type: String },
+  price: { type: Number },
   originalPrice: { type: Number },
   images: [{ type: String }],
   rating: { type: Number },
@@ -15,6 +15,7 @@ const productSchema = new mongoose.Schema({
   subcategory: { type: String },
   tags: [{ type: String }],
   description: { type: String, required: true },
+  packing: { type: String },
 }, {
   timestamps: true
 });

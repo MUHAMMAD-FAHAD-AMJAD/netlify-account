@@ -1,23 +1,26 @@
 
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import type { Category } from '@/lib/types';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { getProducts } from '@/lib/products';
+import type { Product, Category } from '@/lib/types';
 
-const categories: Category[] = [
-    { name: 'Shop All', href: '/products/all', description: 'All Agricultural Products', imageUrl: 'https://placehold.co/600x400', imageHint: 'farm field' },
-    { name: 'Insecticides', href: '/products/insecticides', description: 'Pest Control Solutions', imageUrl: 'https://placehold.co/600x400', imageHint: 'insects farm' },
-    { name: 'Weedicides', href: '/products/weedicides', description: 'Weed Control Products', imageUrl: 'https://placehold.co/600x400', imageHint: 'weeds field' },
-    { name: 'Fungicides', href: '/products/fungicides', description: 'Disease Prevention', imageUrl: 'https://placehold.co/600x400', imageHint: 'plant disease' },
-    { name: 'Fertilizers', href: '/products/fertilizers', description: 'Plant Nutrition', imageUrl: 'https://placehold.co/600x400', imageHint: 'fertilizer bags' },
-    { name: 'Micro Nutrients', href: '/products/micro-nutrients', description: 'Essential Plant Nutrition', imageUrl: 'https://placehold.co/600x400', imageHint: 'plant nutrients' },
-    { name: 'Granules', href: '/products/granules', description: 'Effective Granular Solutions', imageUrl: 'https://placehold.co/600x400', imageHint: 'soil granules' },
-    { name: 'Seeds', href: '/products/seeds', description: 'Quality Seeds & Seedlings', imageUrl: 'https://placehold.co/600x400', imageHint: 'seeds planting' },
-];
+export default async function CategoryGrid() {
+  const products = await getProducts();
 
-export default function CategoryGrid() {
+  const uniqueCategories = Array.from(new Set(products.map(p => p.category)))
+    .map(categoryName => {
+      const product = products.find(p => p.category === categoryName);
+      return {
+        name: categoryName,
+        href: `/products/${categoryName.toLowerCase().replace(/\s/g, '-')}`,
+        description: `${categoryName} for your farm`,
+        imageUrl: `https://picsum.photos/seed/${categoryName.toLowerCase().replace(/\s/g, '-')}/600/400`,
+        imageHint: `An image related to ${categoryName}`
+      } as Category;
+    });
+
   return (
     <section className="py-16 sm:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -26,7 +29,7 @@ export default function CategoryGrid() {
           <p className="mt-4 text-lg text-muted-foreground">Find exactly what you need for your farm or garden.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {categories.map((category) => (
+          {uniqueCategories.map((category) => (
             <Link key={category.name} href={category.href} className="block group">
               <Card className="relative overflow-hidden rounded-3xl border-none shadow-lg transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2">
                 <Image

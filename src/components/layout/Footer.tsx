@@ -41,13 +41,7 @@ export default function Footer() {
           {/* About Section */}
           <div>
             <Link href="/" className="mb-4 inline-block">
-              <Image 
-                src="/logo.png"
-                alt="Maher Zarai Markaz"
-                width={200}
-                height={50}
-                className="h-[50px] object-contain"
-              />
+              <span className="text-xl font-bold text-primary">MAHER ZARAI MARKAZ</span>
             </Link>
             <p className="text-muted-foreground mb-4">
               Your trusted partner in agriculture, providing top-quality products for a bountiful harvest since 1995.

@@ -37,14 +37,7 @@ interface ShippingInfo {
 function Logo() {
     return (
         <Link href="/" className="flex items-center">
-            <Image 
-                src="/logo.png"
-                alt="Maher Zarai Markaz" 
-                width={200} 
-                height={50}
-                className="h-[50px] object-contain"
-                priority
-            />
+            <span className="text-2xl font-bold text-primary">MAHER ZARAI MARKAZ</span>
         </Link>
     );
 }

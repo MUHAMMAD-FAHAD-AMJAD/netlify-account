@@ -1,12 +1,13 @@
 services:
   - type: web
-    name: my-backend
+    name: maher-zarai-markaz
     env: node
     plan: free
     region: oregon
-    rootDir: server
-    build_command: npm install
-    start_command: node index.js
+    build_command: |
+      npm install
+      npm run build
+    start_command: npm start
     env_vars:
       - key: MONGO_URI
         fromSecret: true

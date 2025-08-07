@@ -1,0 +1,548 @@
+[
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/1132570839Sajjan.jpeg",
+    "name": "SAJAJAN",
+    "description": "It is the unique and latest crop nutrient therapy. It has chelated nutrients including zinc and is...",
+    "packing": "200GM"
+  },
+  {
+    "category": "Fungicides",
+    "image": "uploadfiles/30711PROFILE-47FUNGICIDE-683x1024.jpeg",
+    "name": "PROFILE 47%WP",
+    "description": "PROFILE 47%WP Profile is a combination of two elements Kasugamycin and Copper Oxychloride which is...",
+    "packing": "200GM , 500GM"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/14279SAVER-PAIDAWAR-10DANAYDAR-768x1024.png",
+    "name": "SAVER PEDAWAR 10%G",
+    "description": "Crop Suppliment\nA compound to fulfill the deficiency of Zinc and other major elements like...",
+    "packing": "4KG"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1286045188Seed_Care_product.png",
+    "name": "SEED CARE 300FS",
+    "description": "Seed Care 300FS",
+    "packing": "50ML , 100ML"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/30114kick-48-sc.png",
+    "name": "KICK 48%SC",
+    "description": "KICK 48%SC Kick is a mixture of three weedicides which successively controls the broadleaf weeds...",
+    "packing": "350ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1547377629Sudao100ml.png",
+    "name": "SUDAO 11.6%SC",
+    "description": "Emamectin Benzoate 25 gm/ltr.(2.45% w/w) + Chlorantraniliprole 90 gm/ltr. (8.50% w/w)",
+    "packing": "100ML"
+  },
+  {
+    "category": "Fungicides",
+    "image": "uploadfiles/1549943618Goal.png",
+    "name": "GOAL 36%WP",
+    "description": "It is a mixture of two very strong fungicides and has both the contact and systemic way of action....",
+    "packing": "250GM , 1KG"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/6532fast-480-sl.png",
+    "name": "FAST 480SL",
+    "description": "FAST 480SL Fast is a completely non-selective systemic weedicide which completely eliminates weeds...",
+    "packing": "1000ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1697495855valor.jpeg",
+    "name": "VALOR 12%SC",
+    "description": "Abamectin 20 G/L (1.80 % w/w) + Thiamethoxam 100 G/L (9% w/w)",
+    "packing": "400ML"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/112087747Rangeela1Ltr-Yellow.png",
+    "name": "RANGEELA 42%EC",
+    "description": "Pendimethalin 170 gm/Ltr(15% w/w) + Acetochlor 250Gm/Ltr(23% w/w)",
+    "packing": "800ML"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/9991clodinafop-propargly-15-wp.jpeg",
+    "name": "CLODINOFOP 15%WP",
+    "description": "Clodinafop is for Wild Oat, Birdâ€™s Seed Grass and other Grass like weeds which harms wheat...",
+    "packing": "160GM"
+  },
+  {
+    "category": "Fungicides",
+    "image": "uploadfiles/1340720766Triademafone.jpeg",
+    "name": "TRIDEMEFONE 25%WP",
+    "description": "Triadimefon 250g/kg (25%Wp)",
+    "packing": "100GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/2030827368Fast-Plus.jpeg",
+    "name": "FAST PLUS 88.8%WSG",
+    "description": "Glyphosate 888gm/kg (88.8% w/w)",
+    "packing": "50GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/618054907Light.jpeg",
+    "name": "LIGHT 25%WDG",
+    "description": "Exact and long-time control against sucking pests. Gives the excellent crop stand by making it pest...",
+    "packing": "48GM"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/2027jeet-poassium-humate-solid.png",
+    "name": "JEET",
+    "description": "JEET Potassium Humate Solid\nJeet is a soil conditioner. It increases production upto 10 %. Jeet is...",
+    "packing": "8KG , 20KG"
+  },
+  {
+    "category": "Fungicides",
+    "image": "uploadfiles/138648226Condo.png",
+    "name": "CONDO 30%SC",
+    "description": "New, latest and broad-spectrum fungicide. It protects the old foliage and the new as well due to...",
+    "packing": "300ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/197718019Dino.jpeg",
+    "name": "DINO 200SG",
+    "description": "Dinotefuran 20% w/w",
+    "packing": "120GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/963441673Ceedo.png",
+    "name": "CEEDO 20%SC",
+    "description": "It is a latest and unique insecticide chemistry which is from group neonictinoid. It has a contact,...",
+    "packing": "150ML"
+  },
+  {
+    "category": "Granules",
+    "image": "uploadfiles/59481214March.jpeg",
+    "name": "MARCH 0.2%G",
+    "description": "Chlorantraniloprole: 0.2% w/w",
+    "packing": "8KG"
+  },
+  {
+    "category": "Fertilizers",
+    "image": "uploadfiles/1371848144Corner3.jpg",
+    "name": "CORNER 27%Zinc",
+    "description": "Zinc...............(270g/kg) 27% w/w",
+    "packing": "9KG"
+  },
+  {
+    "category": "Granules",
+    "image": "uploadfiles/9497fipronil-0.4-g.png",
+    "name": "FIPRONIL 0.4%G",
+    "description": "Fipronil is a systemic pesticide which kills the pests by eating and contacting. Other than rice,...",
+    "packing": "6KG"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/1679911833Short.png",
+    "name": "SHORT 13%OD",
+    "description": "Very effective mixture weedicide against grass like weeds in wheat even in very low temperature....",
+    "packing": "300ML"
+  },
+  {
+    "category": "Granules",
+    "image": "uploadfiles/902813422Cartapppp.png",
+    "name": "CARTAP 4%G",
+    "description": "Cartap Hydrochloride 40 g/kg (4% w/w)",
+    "packing": "9KG"
+  },
+  {
+    "category": "Fungicides",
+    "image": "uploadfiles/14793143Pivot.jpeg",
+    "name": "PIVOT 18.7%WG",
+    "description": "Pyraclostrobin 67g/Kg (6.7% w/w) + Dimethomorph 120 g/kg (12% w/w)",
+    "packing": "200GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/132520509Super.jpg",
+    "name": "SUPER PLUS 6%WG",
+    "description": "Super Plus is a systemic wheat weedicide which controls the all types of grass-like and broadleaf...",
+    "packing": "110GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/560759570Shiding.jpeg",
+    "name": "SHIDING 21%EC",
+    "description": "Shiding is the best mixture insecticide having a combination of two different grouped insecticide....",
+    "packing": "250ML , 800ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/2066664533Instentsuper.jpeg",
+    "name": "INSTANT SUPER 50%SG",
+    "description": "Nitenpyram 500 gm/kg (50% w/w)",
+    "packing": "50GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/781639325MissionPossible.jpeg",
+    "name": "MISSION POSSIBLE 50%WP",
+    "description": "Mesotrione: 100 g/Kg (10% w/w), Atrazine: 400 g/Kg (40% w/w)",
+    "packing": "400GM , 1KG"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/1178014332Spector.jpeg",
+    "name": "SPECTAR 20%EC",
+    "description": "Metamifop 80 G/L(8% w/w) + Cyhalofop Butyl 120 G/L(12% w/w)",
+    "packing": "300ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/232997538Acephate.jpg",
+    "name": "ACEPHATE 75% SP",
+    "description": "Acephate 750 gm/kg (75% w/w)",
+    "packing": "250GM"
+  },
+  {
+    "category": "Fungicides",
+    "image": "uploadfiles/20030THIOPHANATE-METHYL-70-683x1024.jpeg",
+    "name": "THIOPHENATE 70% WP",
+    "description": "Thiophanate Methyle is a wide range Systemic fungicide. Its real active is capable of both as...",
+    "packing": "400GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/459180245Multi-Clean.png",
+    "name": "MULTICLEAN 25%OD",
+    "description": "Multiclean is a systemic wheat weedicide which controls the all types of grass-like and broadleaf...",
+    "packing": "350ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/11693581Fipronil480ml.png",
+    "name": "FIPRONIL 5%SC",
+    "description": "Fipronil 50 G/L (4.65% w/w)",
+    "packing": "480ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1332648517Woolmer400ml.png",
+    "name": "WOOLMER 3%SC",
+    "description": "Emamectin Benzoate 10 gm/ltr. (0.94% w/w) + Lufenuron 20 gm/ltr. (1.88% w/w)",
+    "packing": "400ML , 1000ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1498527914Sovisect.jpeg",
+    "name": "SOVISECT 50%SP",
+    "description": "Thiocyclam Hydrogen Oxalate 50% w/w",
+    "packing": "100GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/26417speed-10-wdg.jpeg",
+    "name": "SPEED 50%SC",
+    "description": "Speed is an advance IGR belongs to Benzoylurea group which inhibits the Chitin building process by...",
+    "packing": "100ML"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/1817541670Trainer-new.jpg",
+    "name": "TRAINER",
+    "description": "Complex /Blend of Amino Acid and Plant Growth Regulator",
+    "packing": "400ML , 800ML"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/99258872Orcus.jpeg",
+    "name": "ORCUS 75%WDG",
+    "description": "Halosulfuron Methyl 75% w/w",
+    "packing": "20GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/1603655310Skater.png",
+    "name": "SKATER 15%EC",
+    "description": "Broadspectrum post-emergence weedicide for grass-like weeds in all broadleaf crops.",
+    "packing": "400ML"
+  },
+  {
+    "category": "Fungicides",
+    "image": "uploadfiles/28409sulphur-80-wg.png",
+    "name": "SINGLE 80% WG",
+    "description": "SINGLE is broad range fungicide whose ingredient is Sulphur which is made by specific procedure. It...",
+    "packing": "1KG"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/2014729525Leera.png",
+    "name": "LEERA 80%WG",
+    "description": "Leera is the best insecticide against sucking pest and mites as well. It has contact and stomach...",
+    "packing": "150GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/18250lambda-cyhalothring-2.5-ec.jpeg",
+    "name": "LAMBDA CYHALOTHRIN 2.5%EC",
+    "description": "LAMBDA Cyhalothrin 2.5%EC Lambda is a pesticide belongs to advance research of Parathroid group...",
+    "packing": "250ML , 500ML , 1000ML"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/1658160518Walker300ml.png",
+    "name": "WAKER 50%SC",
+    "description": "Fluroxypyr-Meptyl: 100 G/Ltr (8.85% w/w), Mcpa-Isooctyl: 370 g/ltr (32.74%), Bromoxynil: 50 g/ltr...",
+    "packing": "300ML"
+  },
+  {
+    "category": "Granules",
+    "image": "uploadfiles/23938monomehypo-5g.png",
+    "name": "ENERGY 5%G",
+    "description": "Monomehypo is an advanced and most effective pesticide for rich production of Rice. Being systemic,...",
+    "packing": "7KG"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1135537743Chlorfenapyre.jpeg",
+    "name": "CHLORFENAPYR 360SC",
+    "description": "Chlorfenapyr 360 G/L (31.0% w/w)",
+    "packing": "200ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1882442014Pyriproxyfen_product.jpeg",
+    "name": "PYRIPROXYFEN 10.8%EC",
+    "description": "Pyriproxyfen 10.8% EC",
+    "packing": "500ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1412137555Knocker_Plus-product.png",
+    "name": "KNOCK OUT 18%FS",
+    "description": "KNOCK OUT 18%FS",
+    "packing": "1000ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/2014729525Leera.png",
+    "name": "LEERA 80%WG",
+    "description": "Leera is the best insecticide against sucking pest and mites as well. It has contact and stomach...",
+    "packing": "150GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/1192552725ACUBAR-removebg-preview.jpeg",
+    "name": "ACUBAR 30%WP",
+    "description": "ACUBAR (Bensulfuron 6.7% + Acetachlor 23.3 %) Pre Emergence weedicide for the complete control of ...",
+    "packing": "150GM"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/1457091551Kallium30-New.png",
+    "name": "KALLIUM-30",
+    "description": "Potassium (K2O): 30% w/v = 300 G/L",
+    "packing": "1000ML , 20Ltr"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/1384177484Burj.jpeg",
+    "name": "BURJ 75%WG",
+    "description": "Sulfosufuron 75% w/w",
+    "packing": "13.5GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1412141642Bifenthrin.png",
+    "name": "BIFENTHRIN 10% EC",
+    "description": "Bifenthrin 100 gm/Ltr. (10.6% w/w)",
+    "packing": "500ML , 1000ML"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/2132996493Saveron.jpg",
+    "name": "SAVERON Boron 5%",
+    "description": "Boronâ€¦..... 5% w/v (50 G/L)",
+    "packing": "500ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/31561imidacloprid-70-ws.jpeg",
+    "name": "IMIDACLOPRID 25%WP",
+    "description": "N/A",
+    "packing": "100GM"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/5733benefit.jpeg",
+    "name": "BENEFIT",
+    "description": "Benefit (consists of Nitrogen, Phosphorus & Potassium) is a balanced product. Our lands lacks these...",
+    "packing": "500GM , 1000GM"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/13281rapid-zinc.png",
+    "name": "RAPID ZINC 10%W/V",
+    "description": "RAPID ZINC 10%w/v Crop Supplement",
+    "packing": "3Ltr , 20Ltr , 30Ltr"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/115527771King_Pocker-bg.png",
+    "name": "KING POCKER 25%EW",
+    "description": "Carbosulfan (230 G/L) 20% w/w Emamectin Benzoate (20 G/L) 1.74% w/w",
+    "packing": "200ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/520342368Hectorsachy.jpeg",
+    "name": "HECTOR 10%WDG",
+    "description": "Lambda Cyhalothrin 100gm/kg (10.00% w/w)",
+    "packing": "80GM , 240GM"
+  },
+  {
+    "category": "Fertilizers",
+    "image": "uploadfiles/15250kallium-s.png",
+    "name": "KALLIUM S",
+    "description": "Water Soluble Feritlizer\nKalluim-S is a unique fertilizer which has 50% of Potash and also...",
+    "packing": "10KG , 25KG"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/19305METRIBUZIN-70WP-683x1024.jpeg",
+    "name": "METRIBUZIN 70%WP",
+    "description": "Metribuzin is wide range weedicide which eliminates weeds in crops of Potato and Wheat. Its...",
+    "packing": "250GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1362526246Chlorpyrifos.png",
+    "name": "CHLORPYRIFOS 40%EC",
+    "description": "Chlorpyrifos 400 G/L (38% w/w)",
+    "packing": "1000ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/1763852958Delamethrin+Triazophos_product.jpeg",
+    "name": "RACER 360EC",
+    "description": "Delamethrin+Triazophos 360EC",
+    "packing": "200GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/5819LUFENURON-5-EC-683x1024.png",
+    "name": "LUFENURON 5%EC",
+    "description": "Lufenuron eliminates bollworm by influencing their growth. Lefeunuron is a growth inhibitor...",
+    "packing": "400ML , 1000ML"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/1220103988Atrazin.jpeg",
+    "name": "ATRAZINE 38%SC",
+    "description": "Atrazine 380 gm/ltr  (34.3% w/w)",
+    "packing": "500ML , 1000ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/6380acetamiprid-20-sp.jpg",
+    "name": "ACETAMEPRID 20%SP",
+    "description": "ACETAMIPRID 20%SP Acetamiprid is a new selective discovery according to advance demands for control...",
+    "packing": "250GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/1663843375Demo.png",
+    "name": "DEMO 20%WP",
+    "description": "Metsulfuron Methyl 200 gm/Kg (20% w/w)",
+    "packing": "20GM"
+  },
+  {
+    "category": "Fungicides",
+    "image": "uploadfiles/1987333082Trip-bg.png",
+    "name": "TRIP 250SC",
+    "description": "Iprodione 20% w/v (18.5% w/w) + Tebuconazole 5% w/v (4.6% w/w)",
+    "packing": "125ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/19792imidacloprid-25-wp200.jpeg",
+    "name": "IMIDACLOPRID 25%WP",
+    "description": "Imidacloprid is very effective, systemic and long lasting pesticide from a new group...",
+    "packing": "50GM , 100GM , 200GM"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/757741861Emamectin.png",
+    "name": "EMAMECTIN 1.9%EC",
+    "description": "Emamectin Benzoate 19 G/L (2.04% w/w)",
+    "packing": "200ML , 400ML , 1000ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/959965389Ola-product-pic.jpeg",
+    "name": "OLA 50%WG",
+    "description": "Active: Flunicamid\nDose: 60gm/acre\nRainfast: 2 hours",
+    "packing": "60GM"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/10568pure-humus-soil-conditioner.png",
+    "name": "PURE HUMUS 10%",
+    "description": "PURE HUMUS Soil Conditioner This a soil conditioner which increases production up to 10%. It...",
+    "packing": "4Ltr , 8Ltr , 20Ltr , 30Ltr"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/4463paraquat-20-sl.jpeg",
+    "name": "PARAZONE 20%SL",
+    "description": "PARAZONE 20%SL Very effective non-selective PARAZONE has ability to eliminate all grass like and...",
+    "packing": "1000ML"
+  },
+  {
+    "category": "Insecticides",
+    "image": "uploadfiles/13493imidacloprid-70-ws.jpeg",
+    "name": "IMIDACLOPRID 25%WP",
+    "description": "IMIDACLOPRID 25%WP\nExclusive and unique seed treatment from Neonicotinoids group by use of which...",
+    "packing": "50GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/27855WNSTA-30WP-e1518088107905-731x1024.png",
+    "name": "WINSTO 30%WDG",
+    "description": "Winsta eliminates pointed leaf, braoadleaf and other grass like weeds of rice crop effectively. It...",
+    "packing": "100GM"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/31046bromoxynil-40-ec.png",
+    "name": "BROMOXYNIL 40%EC",
+    "description": "N/A",
+    "packing": "400ML , 800ML"
+  },
+  {
+    "category": "Micro Nutrients",
+    "image": "uploadfiles/1450393423Sniper.png",
+    "name": "SNIPER",
+    "description": "Nitrogen in the Sniper increases the growth of the plants.Sniper is suitable for gardening.The...",
+    "packing": "1KG"
+  },
+  {
+    "category": "Fertilizers",
+    "image": "uploadfiles/11549advancer.png",
+    "name": "ADVANCER",
+    "description": "It contains 14% Nitrogen and 44% Phosphorous. It can be used as Nutrigation by drip. It is 100%...",
+    "packing": "8KG"
+  },
+  {
+    "category": "Weedicides",
+    "image": "uploadfiles/8755mission-extra-55-sc.jpeg",
+    "name": "MISSION EXTRA 55%SC",
+    "description": "Mission Extra is a wide range selective weedicide which eradicates Grassy, Broadleaf and Sedges in...",
+    "packing": "500ML , 1000ML"
+  }
+]
