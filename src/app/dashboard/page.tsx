@@ -39,14 +39,7 @@ export default function DashboardPage() {
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-8">
                   <Link href="/" className="inline-block">
-                    <Image 
-                      src="/logo.png"
-                      alt="Maher Zarai Markaz" 
-                      width={300} 
-                      height={75}
-                      className="mx-auto h-[75px] object-contain"
-                      priority
-                    />
+                    <span className="text-3xl font-bold text-primary">MAHER ZARAI MARKAZ</span>
                   </Link>
                 </div>
                 <Card className="shadow-xl rounded-2xl overflow-hidden border-none">

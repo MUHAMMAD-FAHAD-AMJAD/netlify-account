@@ -169,14 +169,7 @@ export default function AuthPageContent() {
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
             <Link href="/" className="inline-block">
-                <Image 
-                  src="/logo.png"
-                  alt="Maher Zarai Markaz" 
-                  width={250} 
-                  height={60}
-                  className="mx-auto h-[60px] object-contain"
-                  priority
-                />
+                <span className="text-3xl font-bold text-primary">MAHER ZARAI MARKAZ</span>
             </Link>
         </div>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">

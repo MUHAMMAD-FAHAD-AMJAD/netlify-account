@@ -1,30 +1,29 @@
 
 export default function NotificationMarquee() {
-  const content = 'MAHER ZARAI MARKAZ';
+  const notifications = [
+    "Heavy rain may delay operations. Thanks for your cooperation.",
+    "Free Shipping on all orders above Rs. 2500",
+    "Eid Sale! Get 20% off on all products."
+  ];
+
   return (
-    <div className="bg-[#1A1A1A] p-2">
-        <div className="bg-[#1A1A1A] text-white h-8 flex items-center overflow-hidden rounded-xl">
+    <div className="bg-primary text-primary-foreground">
+      <div className="container mx-auto px-4">
+        <div className="h-10 flex items-center overflow-hidden">
             <div className="w-full flex whitespace-nowrap animate-marquee">
-                <span className="mx-12 text-sm font-medium flex items-center gap-4">
-                    <span className="text-white font-bold tracking-wider">{content}</span>
+              {notifications.map((notification, index) => (
+                <span key={index} className="mx-12 text-sm font-medium">
+                  {notification}
                 </span>
-                <span className="mx-12 text-sm font-medium flex items-center gap-4">
-                    <span className="text-white font-bold tracking-wider">{content}</span>
+              ))}
+               {notifications.map((notification, index) => (
+                <span key={`duplicate-${index}`} className="mx-12 text-sm font-medium">
+                  {notification}
                 </span>
-                <span className="mx-12 text-sm font-medium flex items-center gap-4">
-                    <span className="text-white font-bold tracking-wider">{content}</span>
-                </span>
-                <span className="mx-12 text-sm font-medium flex items-center gap-4">
-                    <span className="text-white font-bold tracking-wider">{content}</span>
-                </span>
-                 <span className="mx-12 text-sm font-medium flex items-center gap-4">
-                    <span className="text-white font-bold tracking-wider">{content}</span>
-                </span>
-                 <span className="mx-12 text-sm font-medium flex items-center gap-4">
-                    <span className="text-white font-bold tracking-wider">{content}</span>
-                </span>
+              ))}
             </div>
         </div>
+      </div>
     </div>
   );
 }

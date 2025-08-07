@@ -1,11 +1,10 @@
-
 import { NextResponse } from 'next/server';
 import { mockProducts } from '@/lib/products';
 
 // IMPORTANT: After you deploy your backend to Render, you MUST replace this URL
 // with the actual URL of your Render service.
 // For example: 'https://your-backend-name.onrender.com'
-const BACKEND_URL = 'https://your-render-backend-url.onrender.com';
+const BACKEND_URL = 'https://maher-zarai-markaz.onrender.com';
 
 /**
  * @swagger

@@ -19,28 +19,28 @@ import Link from 'next/link';
 
 const slides = [
   {
-    image: 'https://placehold.co/1600x600',
-    title: 'Premium Agricultural Tools',
-    description: 'Boost your productivity with our high-quality, durable tools designed for modern farming.',
-    imageHint: 'agricultural tools'
+    image: 'https://picsum.photos/seed/agri1/1600/600',
+    title: 'Protect Your Crops, Secure Your Future',
+    description: 'Discover our range of advanced pesticides, designed to protect your crops from pests and diseases, ensuring a bountiful harvest.',
+    imageHint: 'A lush green field of crops under a clear blue sky'
   },
   {
-    image: 'https://placehold.co/1600x600',
-    title: 'Advanced Fabric Covers',
-    description: 'Protect your crops from the elements with our innovative textile solutions.',
-    imageHint: 'fabric covers'
+    image: 'https://picsum.photos/seed/agri2/1600/600',
+    title: 'Nourish Your Soil, Flourish Your Farm',
+    description: 'Our high-quality fertilizers provide the essential nutrients your soil needs for optimal growth and yield.',
+    imageHint: 'A farmer holding rich, dark soil in their hands'
   },
   {
-    image: 'https://placehold.co/1600x600',
-    title: 'Effective & Safe Pesticides',
-    description: 'Ensure a healthy harvest with our range of tested and approved pesticides.',
-    imageHint: 'pesticides farm'
+    image: 'https://picsum.photos/seed/agri3/1600/600',
+    title: 'The Best Start for Your Seeds',
+    description: 'Choose from our wide selection of high-yield seeds for a successful planting season.',
+    imageHint: 'Close-up of a young sprout growing from the earth'
   },
   {
-    image: 'https://placehold.co/1600x600',
-    title: 'Smart Storage Solutions',
-    description: 'Organize your equipment efficiently with our durable and spacious storage organizers.',
-    imageHint: 'equipment storage'
+    image: 'https://picsum.photos/seed/agri4/1600/600',
+    title: 'Expert Solutions for Every Farmer',
+    description: 'From pest control to soil health, we offer expert advice and products to help you succeed.',
+    imageHint: 'An agronomist inspecting a wheat field with a magnifying glass'
   },
 ];
 

@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: 'Maher Zarai Markaz',
-  description: 'Your one-stop shop for premium agricultural products.',
+  description: 'Your one-stop shop for premium pesticides and agricultural products.',
   icons: {
     icon: '/favicon.ico',
   },

@@ -1,67 +1,23 @@
-
 "use client";
 
 import * as React from "react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
-import { ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { getProducts } from "@/lib/products";
+import type { Product } from "@/lib/types";
 
-const navLinks = [
-    { 
-        name: "Insecticides", 
-        href: "/products/insecticides",
-        subLinks: [
-            { title: "Contact", href: "/products/insecticides/contact"},
-            { title: "Systemic", href: "/products/insecticides/systemic"},
-            { title: "Biological", href: "/products/insecticides/biological"},
-        ]
-    },
-    { 
-        name: "Herbicides", 
-        href: "/products/weedicides",
-        subLinks: [
-            { title: "Pre-emergence", href: "/products/weedicides/pre-emergence"},
-            { title: "Post-emergence", href: "/products/weedicides/post-emergence"},
-            { title: "Non-selective", href: "/products/weedicides/non-selective"},
-        ]
-    },
-    { 
-        name: "Fungicides", 
-        href: "/products/fungicides",
-        subLinks: [
-            { title: "Preventive", href: "/products/fungicides/preventive"},
-            { title: "Curative", href: "/products/fungicides/curative"},
-            { title: "Systemic", href: "/products/fungicides/systemic"},
-        ]
-    },
-    { 
-        name: "Fertilizers", 
-        href: "/products/fertilizers",
-        subLinks: [
-            { title: "NPK", href: "/products/fertilizers/npk"},
-            { title: "Urea", href: "/products/fertilizers/urea"},
-            { title: "DAP", href: "/products/fertilizers/dap"},
-            { title: "Organic", href: "/products/fertilizers/organic"},
-        ]
-    },
-    { 
-        name: "Seeds", 
-        href: "/products/seeds",
-        subLinks: [
-            { title: "Wheat", href: "/products/seeds/wheat"},
-            { title: "Rice", href: "/products/seeds/rice"},
-            { title: "Cotton", href: "/products/seeds/cotton"},
-            { title: "Vegetables", href: "/products/seeds/vegetables"},
-        ]
-    },
-];
+interface NavLink {
+    name: string;
+    href: string;
+    subLinks?: { title: string, href: string }[];
+}
 
 interface NavItemProps {
-  link: typeof navLinks[0];
+  link: NavLink;
   closeMobileMenu: () => void;
   isActive: boolean;
 }
@@ -81,11 +37,6 @@ const NavItem = ({ link, closeMobileMenu, isActive }: NavItemProps) => {
           "flex items-center gap-1 text-base font-medium transition-colors duration-300 px-4 py-2",
           isActive ? "text-primary" : "text-black hover:text-black/70"
         )}
-        onClick={(e) => {
-            if (link.subLinks && link.subLinks.length > 0) {
-                // Allow hover to open dropdown, but direct click goes to parent page
-            }
-        }}
       >
         {link.name}
       </Link>
@@ -121,6 +72,20 @@ interface MainNavProps {
 
 export default function MainNav({ isMobile = false, closeMobileMenu }: MainNavProps) {
     const pathname = usePathname();
+    const [navLinks, setNavLinks] = useState<NavLink[]>([]);
+
+    useEffect(() => {
+        async function fetchNavLinks() {
+            const products = await getProducts();
+            const uniqueCategories = Array.from(new Set(products.map(p => p.category)));
+            const links = uniqueCategories.map(categoryName => ({
+                name: categoryName,
+                href: `/products/${categoryName.toLowerCase().replace(/\s/g, '-')}`,
+            }));
+            setNavLinks(links);
+        }
+        fetchNavLinks();
+    }, []);
 
   if (isMobile) {
     return (
@@ -133,7 +98,7 @@ export default function MainNav({ isMobile = false, closeMobileMenu }: MainNavPr
               </AccordionTrigger>
               <AccordionContent>
                 <ul className="pl-4 space-y-2">
-                  {link.subLinks.map((sub) => (
+                  {link.subLinks && link.subLinks.map((sub) => (
                     <li key={sub.title}>
                       <Link href={sub.href} className="block py-2 text-muted-foreground hover:text-primary" onClick={closeMobileMenu}>{sub.title}</Link>
                     </li>

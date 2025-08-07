@@ -25,6 +25,15 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { useToast } from '@/hooks/use-toast';
 
+function TikTokIcon(props: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+            <path d="M12.52.02C13.84 0 15.14.01 16.44 0a5 5 0 0 1 5 5v2.52a5.64 5.64 0 0 1-1.12 3.45A5.12 5.12 0 0 1 16.44 12a5 5 0 0 1-5-5V2.52a5.64 5.64 0 0 1 1.12-3.45A5.12 5.12 0 0 1 12.52.02"/>
+            <path d="M8.52 7.02a5 5 0 0 0-5 5v2.52a5.64 5.64 0 0 0 1.12 3.45A5.12 5.12 0 0 0 8.52 19a5 5 0 0 0 5-5V9.52a5.64 5.64 0 0 0-1.12-3.45A5.12 5.12 0 0 0 8.52 7.02Z"/>
+        </svg>
+    )
+}
+
 function SocialBar() {
     return (
         <div className="bg-gray-100 py-1.5">
@@ -32,6 +41,7 @@ function SocialBar() {
                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Facebook className="h-5 w-5"/></a>
                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Instagram className="h-5 w-5"/></a>
                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Youtube className="h-5 w-5"/></a>
+                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><TikTokIcon className="h-5 w-5"/></a>
             </div>
         </div>
     )
@@ -121,6 +131,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md">
+        <SocialBar />
         <NotificationMarquee />
         <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4 border-b">
           <div className="lg:hidden">
@@ -131,14 +142,7 @@ export default function Header() {
           
           <div className="absolute left-1/2 -translate-x-1/2 lg:static lg:left-0 lg:translate-x-0 flex-shrink-0">
              <Link href="/" className="flex items-center gap-2">
-                <Image 
-                  src="/logo.png" 
-                  alt="Maher Zarai Markaz" 
-                  width={300} 
-                  height={75} 
-                  className="h-[75px] object-contain"
-                  priority
-                />
+                <span className="text-2xl font-bold text-primary">MAHER ZARAI MARKAZ</span>
             </Link>
           </div>
           
@@ -197,13 +201,7 @@ export default function Header() {
             <div className="container mx-auto p-4">
               <div className="flex justify-between items-center mb-8">
                  <Link href="/" className="flex items-center gap-2" onClick={toggleMobileMenu}>
-                    <Image 
-                      src="/logo.png" 
-                      alt="Maher Zarai Markaz" 
-                      width={200}
-                      height={50}
-                      className="h-[50px] object-contain"
-                    />
+                    <span className="text-xl font-bold text-primary">MAHER ZARAI MARKAZ</span>
                  </Link>
                 <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
                   <X className="h-6 w-6" />

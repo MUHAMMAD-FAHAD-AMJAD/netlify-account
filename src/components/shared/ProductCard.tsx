@@ -48,27 +48,6 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
   const handleMouseLeave = () => {
     setCurrentImageIndex(0);
   };
-  
-  const renderStars = () => {
-    const stars = [];
-    const fullStars = Math.floor(product.rating);
-    const hasHalfStar = product.rating - fullStars >= 0.5;
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<Star key={`full_${i}`} className="w-4 h-4 text-yellow-400 fill-yellow-400" />);
-    }
-
-    if (hasHalfStar) {
-      stars.push(<StarHalf key="half" className="w-4 h-4 text-yellow-400 fill-yellow-400" />);
-    }
-
-    const remainingStars = 5 - stars.length;
-    for (let i = 0; i < remainingStars; i++) {
-      stars.push(<Star key={`empty_${i}`} className="w-4 h-4 text-gray-300 fill-gray-300" />);
-    }
-
-    return stars;
-  };
 
   return (
     <Card
@@ -106,10 +85,6 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
       <CardContent className="p-4 flex flex-col flex-1">
         <p className="text-sm text-muted-foreground mb-1">{product.brand}</p>
         <h3 className="font-semibold text-base leading-snug flex-1 text-balance">{product.name}</h3>
-        <div className="flex items-center mt-2">
-            {renderStars()}
-          <span className="ml-2 text-xs text-muted-foreground">({product.reviews} reviews)</span>
-        </div>
         <div className="flex items-center justify-between mt-4">
             <div className="flex items-baseline gap-2">
                 <p className="text-xl font-bold text-gray-900">
@@ -125,7 +100,7 @@ export default function ProductCard({ product, onAddToCart, onViewProduct }: Pro
                     onAddToCart();
                 }}
                 className={cn(
-                  "rounded-full h-10 w-10 transition-all duration-300 ease-in-out z-20",
+                  "rounded-full h-10 w-10 transition-all duration-300 ease-in-out z-20 opacity-0 group-hover:opacity-100",
                   product.isSoldOut
                     ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                     : "bg-black text-white border-2 border-transparent hover:bg-white hover:text-black hover:border-black"
